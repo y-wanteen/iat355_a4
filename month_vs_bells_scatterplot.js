@@ -6,11 +6,15 @@ var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'O
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
-var margin = {top: 30, right: 30, bottom: 40, left: 50};
+var margin = {top: 20, right: 40, bottom: 40, left: 50};
 
 //adjust width and height based on margin size
-var width = 1300 - margin.left - margin.right;
-var height = 900 - margin.top - margin.bottom;
+
+var winHeight = window.innerHeight-20;
+var winWidth = window.innerWidth-20;
+
+var width = winWidth - margin.left - margin.right;
+var height = winHeight - margin.top - margin.bottom;
 
 //create svg
 var svg = d3.select("body")
@@ -25,8 +29,8 @@ var svg = d3.select("body")
 //Global variables //////////
 var totalPriceRange = [];
 
-// BUG DATA ////////////////////////////// 
-d3.csv(bugData, function(datasetBug) 
+// BUG DATA //////////////////////////////
+d3.csv(bugData, function(datasetBug)
 {
 
 	// Get Range of Sell Prices ///////////////////////
@@ -40,14 +44,14 @@ d3.csv(bugData, function(datasetBug)
 	//Get bug sell price range
 	var bugPriceRange = getPriceRange(datasetBug);
 
-	// FISH DATA ////////////////////////////// 
+	// FISH DATA //////////////////////////////
 
 	d3.csv(fishData, function(datasetFish){
 
 		//Get fish sell price range
 		var fishPriceRange = getPriceRange(datasetFish);
 
-		// DEEP SEA CREATURE DATA ////////////////////////////// 
+		// DEEP SEA CREATURE DATA //////////////////////////////
 		d3.csv(divingData, function(datasetDiving){
 
 			//Get deep sea creature sell price range
@@ -171,4 +175,3 @@ d3.csv(bugData, function(datasetBug)
 	}); //end of fish data csv
 
 }); //end of bug data csv
-
