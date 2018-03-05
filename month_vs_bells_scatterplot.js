@@ -9,6 +9,7 @@ var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'O
 var margin = {top: 20, right: 40, bottom: 40, left: 50};
 
 //adjust width and height based on margin size
+
 var winHeight = window.innerHeight-20;
 var winWidth = window.innerWidth-20;
 
@@ -160,7 +161,7 @@ d3.csv(bugData, function(datasetBug)
 				//   u.exit().remove();
 				// }
 
-				//load first
+				// static collision
 				// for(var i=0; i < 300; i++) simulation.tick();
 
 				// var circle = svg.selectAll('circle')
@@ -185,7 +186,7 @@ d3.csv(bugData, function(datasetBug)
 				// 				.attr("opacity", 0.8)
 
 				
-				// STATIC SCATTERPLOT + no collision///////////////////////////
+				// STATIC SCATTERPLOT ///////////////////////////
 
 				var circle = svg.selectAll(searchClass)
 								.data(availableWildLife)
@@ -210,7 +211,7 @@ d3.csv(bugData, function(datasetBug)
 								.attr("stroke-width", "1")
 								.attr("stroke", "lightgrey")
 								.attr("fill", fillColour)
-								.attr("opacity", 0.6);
+								.attr("opacity", 0.8);
 				
 
 
@@ -222,8 +223,8 @@ d3.csv(bugData, function(datasetBug)
 			function plotByMonth(month, scaleAxisVal)
 			{
 				plotPoints("bugs", datasetBug, month, xScale(scaleAxisVal), "mediumaquamarine");
-				// plotPoints("fish", datasetFish, month, xScale(scaleAxisVal), "lightskyblue");
-				// plotPoints("diving", datasetDiving, month, xScale(scaleAxisVal), "mediumpurple");
+				plotPoints("fish", datasetFish, month, xScale(scaleAxisVal), "lightskyblue");
+				plotPoints("diving", datasetDiving, month, xScale(scaleAxisVal), "mediumpurple");
 			}
 
 			plotByMonth('Jan', 1);
