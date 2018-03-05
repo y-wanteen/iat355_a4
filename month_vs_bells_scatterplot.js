@@ -44,6 +44,7 @@ d3.csv(bugData, function(datasetBug)
 	//Get bug sell price range
 	var bugPriceRange = getPriceRange(datasetBug);
 
+
 	// FISH DATA //////////////////////////////
 
 	d3.csv(fishData, function(datasetFish){
@@ -102,9 +103,9 @@ d3.csv(bugData, function(datasetBug)
 			//create function for plotting data by month
 			function plotByMonth(month, scaleAxisVal)
 			{
-				plotPoints("bugs", datasetBug, month, xScale(scaleAxisVal), "mediumaquamarine");
-				plotPoints("fish", datasetFish, month, xScale(scaleAxisVal), "lightskyblue");
-				plotPoints("diving", datasetDiving, month, xScale(scaleAxisVal), "mediumpurple");
+				plotPoints("bugs", datasetBug, month, xScale(scaleAxisVal), "green");
+				plotPoints("fish", datasetFish, month, xScale(scaleAxisVal), "orange");
+				plotPoints("diving", datasetDiving, month, xScale(scaleAxisVal), "darkblue");
 			}
 
 			plotByMonth('Jan', 1);
@@ -129,6 +130,15 @@ d3.csv(bugData, function(datasetBug)
 
 				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
 
+
+				// creating hidden tooltip
+				var tooltip = d3.select("body")
+				.append("div")
+				.style("position", "absolute")
+				.style("z-index", "10")
+				.style("visibility", "hidden");
+
+
 				var circle = svg.selectAll(searchClass)
 				.data(data)
 				.enter()
@@ -150,8 +160,16 @@ d3.csv(bugData, function(datasetBug)
 					return (yScale(+d['Price'])); //return sell price
 				})
 
+				//mouse over tool tip
+				.on("mouseover", function(d){
+					tooltip.style("visibility", "visible");
+					tooltip.html(d['Name']);
+				})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+
 				//point appearance
-				.attr("r", 6)
+				.attr("r", 4)
 				.attr("stroke-width", "1")
 				.attr("stroke", "lightgrey")
 				.attr("fill", fillColour)
@@ -159,7 +177,7 @@ d3.csv(bugData, function(datasetBug)
 				{
 					if (d[month] > 0)
 					{
-						return 0.8;
+						return 0.5;
 					}
 					else
 					{
@@ -168,6 +186,8 @@ d3.csv(bugData, function(datasetBug)
 				});
 
 				console.log(setClass+"/"+month+" Sum: "+sumCounter);
+
+
 			}
 
 		}); //end of diving data csv
