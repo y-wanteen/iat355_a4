@@ -2,7 +2,7 @@ var bugData = "http://www.sfu.ca/~wanteeny/iat355/a4/data/acnl-bugs.csv";
 var fishData = "http://www.sfu.ca/~wanteeny/iat355/a4/data/acnl-fish.csv";
 var divingData = "http://www.sfu.ca/~wanteeny/iat355/a4/data/acnl-diving.csv";
 
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
@@ -47,7 +47,6 @@ d3.csv(bugData, function(datasetBug)
 	//Get bug sell price range
 	var bugPriceRange = getPriceRange(datasetBug);
 
-
 	// FISH DATA //////////////////////////////
 
 	d3.csv(fishData, function(datasetFish){
@@ -88,6 +87,7 @@ d3.csv(bugData, function(datasetBug)
 			var xAxis = d3.axisBottom()
 						.scale(xScale)
 						.tickFormat(function(d,i){return monthsAxis[i]}); //change number labels into months
+
 			svg.append("g")
 				.attr("class", "x axis")
 				.attr("transform", "translate(0, " + height +")")
@@ -103,8 +103,10 @@ d3.csv(bugData, function(datasetBug)
 
 			var transparency = false;
 
+			var monthlyWildlife = []; //array to store all montly available wildlife
+
 			// Plot points ///////////////////////
-			function plotPoints(setClass, data, month, xVal, fillColour)
+			function plotPoints(setClass, data, month)
 			{
 
 				searchClass = setClass + "." + month;
@@ -112,155 +114,156 @@ d3.csv(bugData, function(datasetBug)
 
 				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
 
-				// creating hidden tooltip
-				var tooltip = d3.select("body")
-				.append("div")
-				.style("position", "absolute")
-				.style("z-index", "10")
-				.style("visibility", "hidden");
-
-				var availableWildLife = [];
-
 				//first, check what exactly is available in that month
-				data.forEach(function(d){
+				data.forEach(function(d)
+				{
 					if (d[month] > 0)
 					{
 						sumCounter++;
-						availableWildLife.push(d);
+						//Create new array using only the necessary data from the datasets:
+						//Type of wildlife, available month, species name, and price
+						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price']});
 					}
 				});
-
-				console.log(availableWildLife);
-
-				var radius = 4;
-
-
-				// FORCE LAYOUT COLLISION ?? ////////////////////////////////////
-
-				// var simulation = d3.forceSimulation(availableWildLife)
-				//   .force('charge', d3.forceManyBody().strength(5))
-				//   .force('x', d3.forceX().x(function(d){ return xVal;}))
-				//   .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']);}))
-				//   .force('collision', d3.forceCollide(radius))
-				//   // .stop();
-				//   .on('tick', ticked);
-
-				// function ticked() 
-				// {
-				//     var u = d3.select('svg g')
-				//     .selectAll('circle')
-				//     .data(availableWildLife);
-
-				// 	u.enter()
-				// 	.append("circle")
-				// 	.attr("class", setClass + " " + month)
-				//     .attr('r', radius-0.75)
-				//     .attr('fill', fillColour)
-				//     .attr('opacity', 0.8)
-				//     .attr("stroke-width", "1")
-				// // mouse over tool tip
-				// 	.on("mouseover", function(d){
-				// 		tooltip.style("visibility", "visible");
-				// 		tooltip.html(d['Name']+", $" + d['Price']);
-				// 	})
-				// 	.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-				// 	.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-				// 	.attr("stroke", "lightgrey")
-				//     .merge(u)
-				//     .attr('cx', function(d) {
-				//       return d.x;
-				//     })
-				//     .attr('cy', function(d) {
-				//       return d.y;
-				//     })
-
-				//   u.exit().remove();
-				// }
-
-				// STATIC COLLISION ??  //////////////////////////////////////////
-				// for(var i=0; i < 300; i++) simulation.tick();
-
-				// var circle = svg.selectAll('circle')
-				// 				.data(availableWildLife)
-				// 				.enter()
-				// 				.append("circle")
-
-				// 				//add the setClass and month as seperate classes for filtering later
-				// 				.attr("class", setClass + " " + month)
-				// 				.attr('cx', function(d) {
-				// 			      return d.x;
-				// 			    })
-				// 			    .attr('cy', function(d) {
-				// 			      return d.y;
-				// 			    })
-
-				// 				//point appearance
-				// 				.attr("r", 6)
-				// 				.attr("stroke-width", "1")
-				// 				.attr("stroke", "lightgrey")
-				// 				.attr("fill", fillColour)
-				// 				.attr("opacity", 0.8)
-
-				
-				// STATIC SCATTERPLOT ///////////////////////////
-
-				var circle = svg.selectAll(searchClass)
-								.data(availableWildLife)
-								.enter()
-								.append("circle")
-
-								//add the setClass and month as seperate classes for filtering later
-								.attr("class", setClass + " " + month)
-								.attr("cx", function(d)
-								{
-									//cx based on month availability
-									sumCounter++; //count occurences for debugging
-									return xVal;
-								})
-								.attr("cy", function(d)
-								{
-									return yScale(+d['Price']); //return sell price
-								})
-
-								//mouse over tool tip
-								.on("mouseover", function(d){
-									tooltip.style("visibility", "visible");
-									tooltip.html(d['Name']+", $" + d['Price']);
-								})
-								.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-								.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-
-								//point appearance
-								.attr("r", radius)
-								.attr("stroke-width", "1")
-								.attr("stroke", "lightgrey")
-								.attr("fill", fillColour)
-								.attr("opacity", 0.8);
 				
 				console.log(setClass+"/"+month+" Sum: "+sumCounter)
 				
 			} //end of plot points function
 
-			//create function for plotting data by month
-			function plotByMonth(month, scaleAxisVal)
+			function plotByMonth(category, dataset)
 			{
-				plotPoints("bugs", datasetBug, month, xScale(scaleAxisVal), "green");
-				plotPoints("fish", datasetFish, month, xScale(scaleAxisVal), "orange");
-				plotPoints("diving", datasetDiving, month, xScale(scaleAxisVal), "darkblue");
+				for(var i=0; i<months.length; i++)
+				{
+					plotPoints(category, dataset, months[i]);
+					console.log("month: " + months[i])
+				}
 			}
 
-			plotByMonth('Jan', 1);
-			plotByMonth('Feb', 2);
-			plotByMonth('Mar', 3);
-			plotByMonth('Apr', 4);
-			plotByMonth('May', 5);
-			plotByMonth('Jun', 6);
-			plotByMonth('Jul', 7);
-			plotByMonth('Aug', 8);
-			plotByMonth('Sep', 9);
-			plotByMonth('Oct', 10);
-			plotByMonth('Nov', 11);
-			plotByMonth('Dec', 12);
+			plotByMonth("bugs",datasetBug);
+			plotByMonth("fish",datasetFish);
+			plotByMonth("diving",datasetDiving);
+
+			// creating hidden tooltip
+			var tooltip = d3.select("body")
+			.append("div")
+			.style("position", "absolute")
+			.style("z-index", "10")
+			.style("visibility", "hidden");
+
+			var nodePadding = 1; //padding around each node
+
+			var radius = 4; //radius of each node
+
+			console.log(monthlyWildlife);
+
+			// FORCE LAYOUT COLLISION ////////////////////////////////////
+
+			var simulation = d3.forceSimulation(monthlyWildlife)
+			  .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
+			  .force('x', d3.forceX().x(function(d) //center points to month on axis
+			  { 
+			  		if (d['Month'] == "Jan")
+			  		{
+			  			return xScale(1);
+			  		}
+			  		else if (d['Month'] == "Feb")
+			  		{
+			  			return xScale(2);
+			  		}
+			  		else if (d['Month'] == "Mar")
+			  		{
+			  			return xScale(3);
+			  		}
+			  		else if (d['Month'] == "Apr")
+			  		{
+			  			return xScale(4);
+			  		}
+			  		else if (d['Month'] == "May")
+			  		{
+			  			return xScale(5);
+			  		}
+			  		else if (d['Month'] == "Jun")
+			  		{
+			  			return xScale(6);
+			  		}
+			  		else if (d['Month'] == "Jul")
+			  		{
+			  			return xScale(7);
+			  		}
+			  		else if (d['Month'] == "Aug")
+			  		{
+			  			return xScale(8);
+			  		}
+			  		else if (d['Month'] == "Sep")
+			  		{
+			  			return xScale(9);
+			  		}
+			  		else if (d['Month'] == "Oct")
+			  		{
+			  			return xScale(10);
+			  		}
+			  		else if (d['Month'] == "Nov")
+			  		{
+			  			return xScale(11);
+			  		}
+			  		else
+			  		{
+			  			return xScale(12);
+			  		}
+			  }))
+			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']);})) //set y position to pricing
+			  .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
+			  .on('tick', ticked);
+
+			function ticked() //draw the nodes
+			{
+			    var u = d3.select('svg g')
+			    .selectAll('circle')
+			    .data(monthlyWildlife);
+
+				u.enter()
+				.append("circle")
+				// .attr("class", setClass + " " + month)
+
+				// node appearance
+			    .attr('r', radius)
+			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
+			    	{ 
+			    		if (d['Category'] == "bugs")
+			    		{
+			    			return "green";
+			    		}
+		    			else if (d['Category'] == "fish")
+		    			{
+		    				return "darkorange";
+		    			}
+		    			else
+		    			{
+		    				return "blue";
+		    			}
+			    })
+			    .attr('opacity', 0.8)
+			    .attr("stroke-width", "1")
+				.attr("stroke", "lightgrey")
+
+				// mouse over tool tip
+				.on("mouseover", function(d){
+					tooltip.style("visibility", "visible");
+					tooltip.html(d['Name']+", $" + d['Price']);
+				})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+
+			    .merge(u)
+			    .attr('cx', function(d) {
+			      return d.x;
+			    })
+			    .attr('cy', function(d) {
+			      return d.y;
+			    })
+
+			  u.exit().remove();
+			}
 
 		}); //end of diving data csv
 
