@@ -8,11 +8,44 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
 		<script src="https://d3js.org/d3-color.v1.min.js"></script>
 
+		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 		<title> IAT355 A4 - Animal Crossing </title>
+
 	</head>
 
 	<body>
-		<script src="month_vs_bells_scatterplot.js"></script>
+
+	<div class="header-box">
+		<div class="">
+			<h1 class="title">Animal Crossing:</h1>
+			<h2 class="sub-title">Species price (in Bells) across months when they are availaible</h2>
+		</div>
+
+	<div class="legend">
+		<div class="legend-color">
+			<span class="box" style="background-color:green;"></span>
+			<label>Bugs</label>
+		</div>
+
+		<div class="legend-color">
+			<span class="box" style="background-color:orange;"></span>
+			<label>Fish</label>
+		</div>
+
+		<div class="legend-color">
+			<span class="box" style="background-color:darkblue;"></span>
+			<label>Sea Creatures</label>
+		</div>
+	</div>
+</div>
+
+
+<div class="graph"></div>
+
 	</body>
+
+	<script src="month_vs_bells_scatterplot.js"></script>
+
 
 </html>

@@ -1,0 +1,47 @@
+body{
+font-family: 'Poppins', sans-serif;
+margin: 0;
+}
+
+.header-box{
+      margin: 1rem 0 1rem 10%;
+  display: flex;
+}
+
+.title{
+margin-bottom: 0;
+}
+
+.sub-title{
+  margin: 0;
+      font-size: 1em;
+      font-weight: 100;
+}
+
+
+.legend{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 5rem;
+}
+
+.box{
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0.5rem;
+  box-shadow: 4px 2px 8px #c7c5c5;
+}
+
+.legend-color{
+display: flex;
+text-align: center;
+align-items: center;
+margin: 0 1rem;
+
+}
+
+label{
+  font-size: 0.8rem;
+}

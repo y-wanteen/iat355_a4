@@ -10,14 +10,14 @@ var margin = {top: 20, right: 40, bottom: 40, left: 50};
 
 //adjust width and height based on margin size
 
-var winHeight = window.innerHeight-20;
-var winWidth = window.innerWidth-20;
+var winHeight = window.innerHeight-100;
+var winWidth = window.innerWidth-30;
 
 var width = winWidth - margin.left - margin.right;
 var height = winHeight - margin.top - margin.bottom;
 
 //create svg
-var svg = d3.select("body")
+var svg = d3.select(".graph")
 			.append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.bottom + margin.top)
@@ -163,7 +163,7 @@ d3.csv(bugData, function(datasetBug)
 				//mouse over tool tip
 				.on("mouseover", function(d){
 					tooltip.style("visibility", "visible");
-					tooltip.html(d['Name']);
+					tooltip.html(d['Name']+", $" + d['Price']);
 				})
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
