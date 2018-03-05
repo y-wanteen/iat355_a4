@@ -16,6 +16,9 @@ var winWidth = window.innerWidth-30;
 var width = winWidth - margin.left - margin.right;
 var height = winHeight - margin.top - margin.bottom;
 
+// var width = 1500 - margin.left - margin.right;
+// var height = 750 - margin.top - margin.bottom;
+
 //create svg
 var svg = d3.select(".graph")
 			.append("svg")
@@ -100,6 +103,144 @@ d3.csv(bugData, function(datasetBug)
 
 			var transparency = false;
 
+			// Plot points ///////////////////////
+			function plotPoints(setClass, data, month, xVal, fillColour)
+			{
+
+				searchClass = setClass + "." + month;
+				console.log(searchClass)
+
+				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
+
+				// creating hidden tooltip
+				var tooltip = d3.select("body")
+				.append("div")
+				.style("position", "absolute")
+				.style("z-index", "10")
+				.style("visibility", "hidden");
+
+				var availableWildLife = [];
+
+				//first, check what exactly is available in that month
+				data.forEach(function(d){
+					if (d[month] > 0)
+					{
+						sumCounter++;
+						availableWildLife.push(d);
+					}
+				});
+
+				console.log(availableWildLife);
+
+				var radius = 4;
+
+
+				// FORCE LAYOUT COLLISION ?? ////////////////////////////////////
+
+				// var simulation = d3.forceSimulation(availableWildLife)
+				//   .force('charge', d3.forceManyBody().strength(5))
+				//   .force('x', d3.forceX().x(function(d){ return xVal;}))
+				//   .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']);}))
+				//   .force('collision', d3.forceCollide(radius))
+				//   // .stop();
+				//   .on('tick', ticked);
+
+				// function ticked() 
+				// {
+				//     var u = d3.select('svg g')
+				//     .selectAll('circle')
+				//     .data(availableWildLife);
+
+				// 	u.enter()
+				// 	.append("circle")
+				// 	.attr("class", setClass + " " + month)
+				//     .attr('r', radius-0.75)
+				//     .attr('fill', fillColour)
+				//     .attr('opacity', 0.8)
+				//     .attr("stroke-width", "1")
+				// // mouse over tool tip
+				// 	.on("mouseover", function(d){
+				// 		tooltip.style("visibility", "visible");
+				// 		tooltip.html(d['Name']+", $" + d['Price']);
+				// 	})
+				// 	.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				// 	.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+				// 	.attr("stroke", "lightgrey")
+				//     .merge(u)
+				//     .attr('cx', function(d) {
+				//       return d.x;
+				//     })
+				//     .attr('cy', function(d) {
+				//       return d.y;
+				//     })
+
+				//   u.exit().remove();
+				// }
+
+				// STATIC COLLISION ??  //////////////////////////////////////////
+				// for(var i=0; i < 300; i++) simulation.tick();
+
+				// var circle = svg.selectAll('circle')
+				// 				.data(availableWildLife)
+				// 				.enter()
+				// 				.append("circle")
+
+				// 				//add the setClass and month as seperate classes for filtering later
+				// 				.attr("class", setClass + " " + month)
+				// 				.attr('cx', function(d) {
+				// 			      return d.x;
+				// 			    })
+				// 			    .attr('cy', function(d) {
+				// 			      return d.y;
+				// 			    })
+
+				// 				//point appearance
+				// 				.attr("r", 6)
+				// 				.attr("stroke-width", "1")
+				// 				.attr("stroke", "lightgrey")
+				// 				.attr("fill", fillColour)
+				// 				.attr("opacity", 0.8)
+
+				
+				// STATIC SCATTERPLOT ///////////////////////////
+
+				var circle = svg.selectAll(searchClass)
+								.data(availableWildLife)
+								.enter()
+								.append("circle")
+
+								//add the setClass and month as seperate classes for filtering later
+								.attr("class", setClass + " " + month)
+								.attr("cx", function(d)
+								{
+									//cx based on month availability
+									sumCounter++; //count occurences for debugging
+									return xVal;
+								})
+								.attr("cy", function(d)
+								{
+									return yScale(+d['Price']); //return sell price
+								})
+
+								//mouse over tool tip
+								.on("mouseover", function(d){
+									tooltip.style("visibility", "visible");
+									tooltip.html(d['Name']+", $" + d['Price']);
+								})
+								.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+								.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+
+								//point appearance
+								.attr("r", radius)
+								.attr("stroke-width", "1")
+								.attr("stroke", "lightgrey")
+								.attr("fill", fillColour)
+								.attr("opacity", 0.8);
+				
+				console.log(setClass+"/"+month+" Sum: "+sumCounter)
+				
+			} //end of plot points function
+
 			//create function for plotting data by month
 			function plotByMonth(month, scaleAxisVal)
 			{
@@ -120,75 +261,6 @@ d3.csv(bugData, function(datasetBug)
 			plotByMonth('Oct', 10);
 			plotByMonth('Nov', 11);
 			plotByMonth('Dec', 12);
-
-			// Plot points ///////////////////////
-			function plotPoints(setClass, data, month, xVal, fillColour)
-			{
-
-				searchClass = setClass + "." + month;
-				// console.log(searchClass)
-
-				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
-
-
-				// creating hidden tooltip
-				var tooltip = d3.select("body")
-				.append("div")
-				.style("position", "absolute")
-				.style("z-index", "10")
-				.style("visibility", "hidden");
-
-
-				var circle = svg.selectAll(searchClass)
-				.data(data)
-				.enter()
-				.append("circle")
-
-				//add the setClass and month as seperate classes for filtering later
-				.attr("class", setClass + " " + month)
-				.attr("cx", function(d)
-				{
-					//cx based on month availability
-					if (d[month] > 0) //0 in the dataset means the wildlife doesn't spawn in that month
-					{
-						sumCounter++; //count occurences for debugging
-						return xVal;
-					}
-				})
-				.attr("cy", function(d)
-				{
-					return (yScale(+d['Price'])); //return sell price
-				})
-
-				//mouse over tool tip
-				.on("mouseover", function(d){
-					tooltip.style("visibility", "visible");
-					tooltip.html(d['Name']+", $" + d['Price']);
-				})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-
-				//point appearance
-				.attr("r", 4)
-				.attr("stroke-width", "1")
-				.attr("stroke", "lightgrey")
-				.attr("fill", fillColour)
-				.attr("opacity", function(d)
-				{
-					if (d[month] > 0)
-					{
-						return 0.5;
-					}
-					else
-					{
-						return 0;	//make point transparent if it doesn't spawn in that month
-					}
-				});
-
-				console.log(setClass+"/"+month+" Sum: "+sumCounter);
-
-
-			}
 
 		}); //end of diving data csv
 
