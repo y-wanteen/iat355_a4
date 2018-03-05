@@ -76,8 +76,8 @@ d3.csv(bugData, function(datasetBug)
 					.range([0,width]);
 
 			yScale = d3.scaleLinear()
-					.domain([maxPrice+1000, 0])
-					.range([0,height]);
+					.domain([maxPrice+1000, 2000, 0])
+					.range([0,height-height/5, height]);
 
 			//Create array of text labels for the x-axis to use
 			var monthsAxis = [""];
@@ -93,7 +93,8 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0, " + height +")")
 				.call(xAxis);
 
-			var yAxis = d3.axisLeft().scale(yScale);
+			var yAxis = d3.axisLeft()
+						.scale(yScale);
 			svg.append("g")
 				.attr("class", "y axis")
 				.attr("transform", "translate(0,0)")
@@ -110,7 +111,6 @@ d3.csv(bugData, function(datasetBug)
 			{
 
 				searchClass = setClass + "." + month;
-				console.log(searchClass)
 
 				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
 
@@ -135,7 +135,7 @@ d3.csv(bugData, function(datasetBug)
 				for(var i=0; i<months.length; i++)
 				{
 					plotPoints(category, dataset, months[i]);
-					console.log("month: " + months[i])
+					// console.log("month: " + months[i])
 				}
 			}
 
@@ -152,7 +152,7 @@ d3.csv(bugData, function(datasetBug)
 
 			var nodePadding = 1; //padding around each node
 
-			var radius = 4; //radius of each node
+			var radius = 3.6; //radius of each node
 
 			console.log(monthlyWildlife);
 
@@ -211,7 +211,7 @@ d3.csv(bugData, function(datasetBug)
 			  			return xScale(12);
 			  		}
 			  }))
-			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']);})) //set y position to pricing
+			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
 			  .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
 			  .on('tick', ticked);
 
@@ -226,7 +226,7 @@ d3.csv(bugData, function(datasetBug)
 				// .attr("class", setClass + " " + month)
 
 				// node appearance
-			    .attr('r', radius)
+			    .attr('r', radius-0.5)
 			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
 			    	{ 
 			    		if (d['Category'] == "bugs")
@@ -259,7 +259,8 @@ d3.csv(bugData, function(datasetBug)
 			      return d.x;
 			    })
 			    .attr('cy', function(d) {
-			      return d.y;
+			      // return d.y;
+			      return d.y = Math.max(radius, Math.min(height - radius, d.y));
 			    })
 
 			  u.exit().remove();
