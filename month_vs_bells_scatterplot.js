@@ -80,8 +80,8 @@ d3.csv(bugData, function(datasetBug)
 			var yScale;
 
 			xScale = d3.scaleLinear()
-					.domain([0, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
-					.range([0,width]);
+					.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
+					.range([0, 75, width-75, width]);
 
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
