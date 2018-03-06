@@ -6,26 +6,34 @@ var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oc
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
-var margin = {top: 20, right: 40, bottom: 40, left: 50};
+var margin = {top: 70, right:0, bottom: 20, left: 40};
 
 //adjust width and height based on margin size
 
-var winHeight = window.innerHeight-100;
-var winWidth = window.innerWidth-30;
+var winHeight = window.innerHeight;
+var winWidth = window.innerWidth;
 
 var width = winWidth - margin.left - margin.right;
 var height = winHeight - margin.top - margin.bottom;
 
-// var width = 1500 - margin.left - margin.right;
-// var height = 750 - margin.top - margin.bottom;
+var graphWidth =  winWidth + margin.left + margin.right;
+var graphHeight = winHeight + margin.top + margin.bottom;
+
 
 //create svg
-var svg = d3.select(".graph")
-			.append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.bottom + margin.top)
-			.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("#graph")
+
+		.append("div")
+		.classed("svg-container", true) //container class to make it responsive
+		.append("svg")
+		//responsive SVG needs these 2 attributes and no width and height attr
+		.attr("preserveAspectRatio", "xMinYMin meet")
+		.attr("viewBox", "0 0 "+ graphWidth +" "+ graphHeight)
+
+		//class to make svg responsive
+		.classed("svg-content-responsive", true)
+		.append("g")
+		.attr("transform", "translate( 50," + margin.top + ")");
 
 // start working with d3 and data
 
@@ -93,12 +101,29 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0, " + height +")")
 				.call(xAxis);
 
+				// text label for the x axis
+				svg.append("text")
+						.attr("transform",
+					"translate(" + (width/2) + " ," +
+												 (height + margin.top) + ")")
+						.style("text-anchor", "middle")
+						.text("Month of Appearance");
+
+
 			var yAxis = d3.axisLeft()
 						.scale(yScale);
 			svg.append("g")
 				.attr("class", "y axis")
 				.attr("transform", "translate(0,0)")
 				.call(yAxis);
+
+				// text label for y-axis
+				svg.append("text")
+		 .attr("y", 0 - 70)
+		 .attr("x",0 + margin.left )
+		 .attr("dy", "3em")
+		 .style("text-anchor", "middle")
+		 .text("Selling Price (in Bells)");
 
 			// PLOT DATA /////////////////////////////
 
@@ -125,9 +150,9 @@ d3.csv(bugData, function(datasetBug)
 						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price']});
 					}
 				});
-				
+
 				console.log(setClass+"/"+month+" Sum: "+sumCounter)
-				
+
 			} //end of plot points function
 
 			function plotByMonth(category, dataset)
@@ -147,7 +172,11 @@ d3.csv(bugData, function(datasetBug)
 			var tooltip = d3.select("body")
 			.append("div")
 			.style("position", "absolute")
+			.style("background-color", "#ffffffcc")
+			.style("padding", "0.2rem")
+			.style("font-weight", "bold")
 			.style("z-index", "10")
+			.style("box-shadow","4px 2px 8px #c7c5c5")
 			.style("visibility", "hidden");
 
 			var nodePadding = 1; //padding around each node
@@ -161,7 +190,7 @@ d3.csv(bugData, function(datasetBug)
 			var simulation = d3.forceSimulation(monthlyWildlife)
 			  .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
 			  .force('x', d3.forceX().x(function(d) //center points to month on axis
-			  { 
+			  {
 			  		if (d['Month'] == "Jan")
 			  		{
 			  			return xScale(1);
@@ -228,7 +257,7 @@ d3.csv(bugData, function(datasetBug)
 				// node appearance
 			    .attr('r', radius-0.5)
 			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
-			    	{ 
+			    	{
 			    		if (d['Category'] == "bugs")
 			    		{
 			    			return "green";
@@ -250,6 +279,18 @@ d3.csv(bugData, function(datasetBug)
 				.on("mouseover", function(d){
 					tooltip.style("visibility", "visible");
 					tooltip.html(d['Name']+", $" + d['Price']);
+					if(d['Category'] == "bugs")
+					{
+						tooltip.style("color", "green");
+					}
+					else if (d['Category'] == "fish")
+					{
+						tooltip.style("color", "darkorange");
+					}
+					else
+					{
+						tooltip.style("color", "blue");
+					}
 				})
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})

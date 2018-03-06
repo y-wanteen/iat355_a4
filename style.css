@@ -3,18 +3,26 @@ font-family: 'Poppins', sans-serif;
 margin: 0;
 }
 
+#graph{
+  background-color: whitesmoke;
+}
+
 .header-box{
-      margin: 1rem 0 1rem 10%;
+  padding: 1rem 0 1rem 10%;
   display: flex;
+  box-shadow: 4px 2px 8px #c7c5c5;
+  z-index: 1000;
+  position: relative;
+  background-color: white;
 }
 
 .title{
-margin-bottom: 0;
+margin: 0;
 }
 
 .sub-title{
   margin: 0;
-      font-size: 1em;
+      font-size: 0.8em;
       font-weight: 100;
 }
 
@@ -44,4 +52,19 @@ margin: 0 1rem;
 
 label{
   font-size: 0.8rem;
+}
+
+.svg-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    /* padding-bottom: 100%; /* aspect ratio */ */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: block;
+    position: relative;
+    /* top: 10px;
+    left: 0; */
 }
