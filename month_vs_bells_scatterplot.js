@@ -81,7 +81,7 @@ d3.csv(bugData, function(datasetBug)
 
 			xScale = d3.scaleLinear()
 					.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
-					.range([0, 75, width-75, width]);
+					.range([0, 60, width-60, width]);
 
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
@@ -179,9 +179,9 @@ d3.csv(bugData, function(datasetBug)
 			.style("box-shadow","4px 2px 8px #c7c5c5")
 			.style("visibility", "hidden");
 
-			var nodePadding = 1; //padding around each node
+			var nodePadding = 4; //padding around each node
 
-			var radius = 3.6; //radius of each node
+			var radius = 3.6; //fixed radius of each node
 			// var minRadius = 3;
 
 			console.log(monthlyWildlife);
@@ -242,7 +242,11 @@ d3.csv(bugData, function(datasetBug)
 			  		}
 			  }))
 			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
-			  .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
+			  // .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
+			  .force('collision', d3.forceCollide().radius(function(d) 
+				{
+					    return +d.Rarity+nodePadding;
+				}))
 			  .on('tick', ticked);
 
 			function ticked() //draw the nodes
@@ -256,35 +260,35 @@ d3.csv(bugData, function(datasetBug)
 				// .attr("class", setClass + " " + month)
 
 				// node appearance
-			    .attr('r', radius-0.5)
-			    // .attr('r', function(d) //different node size based on rarity
-			    // {
-			    // 	var rarity = +d['Rarity'];
-			    // 	var nodeRadius;
-			    // 	if (rarity == 1)
-			    // 	{
-			    // 		nodeRadius = 3;
-			    // 	}
-			    // 	else if (rarity == 2)
-			    // 	{
-			    // 		nodeRadius = 4;
-			    // 	}
-			    // 	else if (rarity == 3)
-			    // 	{
-			    // 		nodeRadius = 5;
-			    // 	}
-			    // 	else if (rarity == 4)
-			    // 	{
-			    // 		nodeRadius = 6;
-			    // 	}
-			    // 	else if (rarity == 5)
-			    // 	{
-			    // 		nodeRadius = 7;
-			    // 	}
+			    //.attr('r', radius-0.5)
+			    .attr('r', function(d) //different node size based on rarity
+			    {
+			    	var rarity = +d['Rarity'];
+			    	var nodeRadius;
+			    	if (rarity == 1)
+			    	{
+			    		nodeRadius = 3.5;
+			    	}
+			    	else if (rarity == 2)
+			    	{
+			    		nodeRadius = 4;
+			    	}
+			    	else if (rarity == 3)
+			    	{
+			    		nodeRadius = 5;
+			    	}
+			    	else if (rarity == 4)
+			    	{
+			    		nodeRadius = 6;
+			    	}
+			    	else if (rarity == 5)
+			    	{
+			    		nodeRadius = 7;
+			    	}
 
-			    // 	return nodeRadius;
+			    	return nodeRadius-0.5;
 
-			    // })
+			    })
 			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
 			    	{
 			    		if (d['Category'] == "bugs")
