@@ -101,13 +101,13 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0, " + height +")")
 				.call(xAxis);
 
-				// text label for the x axis
-				svg.append("text")
-						.attr("transform",
-					"translate(" + (width/2) + " ," +
-												 (height + margin.top) + ")")
-						.style("text-anchor", "middle")
-						.text("Month of Appearance");
+			// text label for the x axis
+			svg.append("text")
+					.attr("transform",
+				"translate(" + (width/2) + " ," +
+											 (height + margin.top) + ")")
+					.style("text-anchor", "middle")
+					.text("Month of Appearance");
 
 
 			var yAxis = d3.axisLeft()
@@ -119,11 +119,11 @@ d3.csv(bugData, function(datasetBug)
 
 				// text label for y-axis
 				svg.append("text")
-		 .attr("y", 0 - 70)
-		 .attr("x",0 + margin.left )
-		 .attr("dy", "3em")
-		 .style("text-anchor", "middle")
-		 .text("Selling Price (in Bells)");
+				 .attr("y", 0 - 70)
+				 .attr("x",0 + margin.left )
+				 .attr("dy", "3em")
+				 .style("text-anchor", "middle")
+				 .text("Selling Price (in Bells)");
 
 			// PLOT DATA /////////////////////////////
 
@@ -131,8 +131,8 @@ d3.csv(bugData, function(datasetBug)
 
 			var monthlyWildlife = []; //array to store all montly available wildlife
 
-			// Plot points ///////////////////////
-			function plotPoints(setClass, data, month)
+			// Get Monthly Availability ///////////////////////
+			function getAvailability(setClass, data, month)
 			{
 
 				searchClass = setClass + "." + month;
@@ -147,7 +147,7 @@ d3.csv(bugData, function(datasetBug)
 						sumCounter++;
 						//Create new array using only the necessary data from the datasets:
 						//Type of wildlife, available month, species name, and price
-						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price']});
+						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price'], "Rarity":d[month]});
 					}
 				});
 
@@ -159,7 +159,7 @@ d3.csv(bugData, function(datasetBug)
 			{
 				for(var i=0; i<months.length; i++)
 				{
-					plotPoints(category, dataset, months[i]);
+					getAvailability(category, dataset, months[i]);
 					// console.log("month: " + months[i])
 				}
 			}
@@ -182,6 +182,7 @@ d3.csv(bugData, function(datasetBug)
 			var nodePadding = 1; //padding around each node
 
 			var radius = 3.6; //radius of each node
+			// var minRadius = 3;
 
 			console.log(monthlyWildlife);
 
@@ -256,6 +257,34 @@ d3.csv(bugData, function(datasetBug)
 
 				// node appearance
 			    .attr('r', radius-0.5)
+			    // .attr('r', function(d) //different node size based on rarity
+			    // {
+			    // 	var rarity = +d['Rarity'];
+			    // 	var nodeRadius;
+			    // 	if (rarity == 1)
+			    // 	{
+			    // 		nodeRadius = 3;
+			    // 	}
+			    // 	else if (rarity == 2)
+			    // 	{
+			    // 		nodeRadius = 4;
+			    // 	}
+			    // 	else if (rarity == 3)
+			    // 	{
+			    // 		nodeRadius = 5;
+			    // 	}
+			    // 	else if (rarity == 4)
+			    // 	{
+			    // 		nodeRadius = 6;
+			    // 	}
+			    // 	else if (rarity == 5)
+			    // 	{
+			    // 		nodeRadius = 7;
+			    // 	}
+
+			    // 	return nodeRadius;
+
+			    // })
 			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
 			    	{
 			    		if (d['Category'] == "bugs")
@@ -278,7 +307,7 @@ d3.csv(bugData, function(datasetBug)
 				// mouse over tool tip
 				.on("mouseover", function(d){
 					tooltip.style("visibility", "visible");
-					tooltip.html(d['Name']+", $" + d['Price']);
+					tooltip.html(d['Name']+", $" + d['Price']+", Rarity: "+d['Rarity']);
 					if(d['Category'] == "bugs")
 					{
 						tooltip.style("color", "green");
