@@ -179,7 +179,7 @@ d3.csv(bugData, function(datasetBug)
 			.style("box-shadow","4px 2px 8px #c7c5c5")
 			.style("visibility", "hidden");
 
-			var nodePadding = 4; //padding around each node
+			var nodePadding = 2; //padding around each node
 
 			var radius = 3.6; //fixed radius of each node
 			// var minRadius = 3;
@@ -243,7 +243,7 @@ d3.csv(bugData, function(datasetBug)
 			  }))
 			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
 			  // .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
-			  .force('collision', d3.forceCollide().radius(function(d) 
+			  .force('collision', d3.forceCollide().radius(function(d)
 				{
 					    return +d.Rarity+nodePadding;
 				}))
@@ -311,7 +311,15 @@ d3.csv(bugData, function(datasetBug)
 				// mouse over tool tip
 				.on("mouseover", function(d){
 					tooltip.style("visibility", "visible");
-					tooltip.html(d['Name']+", $" + d['Price']+", Rarity: "+d['Rarity']);
+
+					if (d['Rarity'] == "1") var rarity="common";
+					if (d['Rarity'] == "2") var rarity="fairly common";
+					if (d['Rarity'] == "3") var rarity="uncommon";
+					if (d['Rarity'] == "4") var rarity="scarce";
+					if (d['Rarity'] == "5") var rarity="rare";
+
+					tooltip.html(d['Name']+", $" + d['Price']+ ", " +rarity);
+
 					if(d['Category'] == "bugs")
 					{
 						tooltip.style("color", "green");

@@ -24,14 +24,21 @@ margin: 0;
   margin: 0;
       font-size: 0.8em;
       font-weight: 100;
+      max-width: 300px;
 }
 
 
 .legend{
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 0 5rem;
+/* display: flex; */
+/* align-items: center;
+justify-content: center; */
+margin: 1rem 0;
+}
+
+.legend-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .box{
@@ -67,4 +74,24 @@ label{
     position: relative;
     /* top: 10px;
     left: 0; */
+}
+
+.circle {
+	width: 5px;
+	height: 5px;
+	background: grey;
+  border: solid grey 1px ;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 50%;
+  display: inline-block;
+  margin: 1rem 1rem 0 2rem;
+  box-shadow: 4px 2px 8px #c7c5c5;
+}
+
+.rarity-label{
+  display: block;
+    margin: 0rem 0.5rem 0 1rem;
+    font-size: 0.7em;
+
 }
