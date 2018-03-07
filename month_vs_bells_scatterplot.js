@@ -181,7 +181,7 @@ d3.csv(bugData, function(datasetBug)
 
 			var nodePadding = 2.5; //padding around each node
 
-			var radius = 6; //average radius of nodes
+			var radius = 5; //average radius of nodes
 			// var minRadius = 3;
 
 			console.log(monthlyWildlife);
@@ -248,6 +248,7 @@ d3.csv(bugData, function(datasetBug)
 					    return +d.Rarity+nodePadding;
 				}))
 			  .on('tick', ticked);
+			  // simulation.alphaTarget(0.3).restart();
 
 			function ticked() //draw the nodes
 			{
@@ -297,7 +298,7 @@ d3.csv(bugData, function(datasetBug)
 			    		}
 		    			else if (d['Category'] == "fish")
 		    			{
-		    				return "darkorange";
+		    				return "tomato";
 		    			}
 		    			else
 		    			{
@@ -326,7 +327,7 @@ d3.csv(bugData, function(datasetBug)
 					}
 					else if (d['Category'] == "fish")
 					{
-						tooltip.style("color", "darkorange");
+						tooltip.style("color", "tomato");
 					}
 					else
 					{
@@ -337,8 +338,70 @@ d3.csv(bugData, function(datasetBug)
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
 
 			    .merge(u)
-			    .attr('cx', function(d) {
-			      return d.x;
+			    .attr('cx', function(d) //constrain the x position of each column of points according to month
+			    {
+			    	var columnPadding = xScale(1)*0.75;
+
+			    	function leftConstraint(scaleVal) 	//create the left/min constraint for the x value
+			    	{
+			    		return xScale(scaleVal)-columnPadding;
+			    	}
+
+			    	function rightConstraint(scaleVal)	//create the right/max constraint for the x value
+			    	{
+			    		return xScale(scaleVal)+columnPadding;
+			    	}
+
+			    	if (d['Month']=='Jan')
+			    	{
+			    		return d.x = Math.max(leftConstraint(1), Math.min(rightConstraint(1), d.x));
+			    	}
+			    	else if (d['Month'] == 'Feb')
+			    	{
+			    		return d.x = Math.max(leftConstraint(2), Math.min(rightConstraint(2), d.x));
+			    	}
+			    	else if (d['Month'] == 'Mar')
+			    	{
+			    		return d.x = Math.max(leftConstraint(3), Math.min(rightConstraint(3), d.x));
+			    	}
+			    	else if (d['Month'] == 'Apr')
+			    	{
+			    		return d.x = Math.max(leftConstraint(4), Math.min(rightConstraint(4), d.x));
+			    	}
+			    	else if (d['Month'] == 'May')
+			    	{
+			    		return d.x = Math.max(leftConstraint(5), Math.min(rightConstraint(5), d.x));
+			    	}
+			    	else if (d['Month'] == 'Jun')
+			    	{
+			    		return d.x = Math.max(leftConstraint(6), Math.min(rightConstraint(6), d.x));
+			    	}
+			    	else if (d['Month'] == 'Jul')
+			    	{
+			    		return d.x = Math.max(leftConstraint(7), Math.min(rightConstraint(7), d.x));
+			    	}
+			    	else if (d['Month'] == 'Aug')
+			    	{
+			    		return d.x = Math.max(leftConstraint(8), Math.min(rightConstraint(8), d.x));
+			    	}
+			    	else if (d['Month'] == 'Sep')
+			    	{
+			    		return d.x = Math.max(leftConstraint(9), Math.min(rightConstraint(9), d.x));
+			    	}			    	
+			    	else if (d['Month'] == 'Oct')
+			    	{
+			    		return d.x = Math.max(leftConstraint(10), Math.min(rightConstraint(10), d.x));
+			    	}			    	
+			    	else if (d['Month'] == 'Nov')
+			    	{
+			    		return d.x = Math.max(leftConstraint(11), Math.min(rightConstraint(11), d.x));
+			    	}
+			    	else if (d['Month'] == 'Dec')
+			    	{
+			    		return d.x = Math.max(leftConstraint(12), Math.min(rightConstraint(12), d.x));
+			    	}
+			    	
+
 			    })
 			    .attr('cy', function(d) {
 			      // return d.y;
