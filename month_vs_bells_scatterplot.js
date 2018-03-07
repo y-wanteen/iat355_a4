@@ -294,7 +294,7 @@ d3.csv(bugData, function(datasetBug)
 			    	{
 			    		if (d['Category'] == "bugs")
 			    		{
-			    			return "green";
+			    			return "#69D1C5";
 			    		}
 		    			else if (d['Category'] == "fish")
 		    			{
@@ -302,7 +302,7 @@ d3.csv(bugData, function(datasetBug)
 		    			}
 		    			else
 		    			{
-		    				return "blue";
+		    				return "#2A1E5C";
 		    			}
 			    })
 			    .attr('opacity', 0.8)
@@ -323,7 +323,7 @@ d3.csv(bugData, function(datasetBug)
 
 					if(d['Category'] == "bugs")
 					{
-						tooltip.style("color", "green");
+						tooltip.style("color", "#69D1C5");
 					}
 					else if (d['Category'] == "fish")
 					{
@@ -331,7 +331,7 @@ d3.csv(bugData, function(datasetBug)
 					}
 					else
 					{
-						tooltip.style("color", "blue");
+						tooltip.style("color", "#2A1E5C");
 					}
 				})
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
@@ -387,11 +387,11 @@ d3.csv(bugData, function(datasetBug)
 			    	else if (d['Month'] == 'Sep')
 			    	{
 			    		return d.x = Math.max(leftConstraint(9), Math.min(rightConstraint(9), d.x));
-			    	}			    	
+			    	}
 			    	else if (d['Month'] == 'Oct')
 			    	{
 			    		return d.x = Math.max(leftConstraint(10), Math.min(rightConstraint(10), d.x));
-			    	}			    	
+			    	}
 			    	else if (d['Month'] == 'Nov')
 			    	{
 			    		return d.x = Math.max(leftConstraint(11), Math.min(rightConstraint(11), d.x));
@@ -400,7 +400,7 @@ d3.csv(bugData, function(datasetBug)
 			    	{
 			    		return d.x = Math.max(leftConstraint(12), Math.min(rightConstraint(12), d.x));
 			    	}
-			    	
+
 
 			    })
 			    .attr('cy', function(d) {
