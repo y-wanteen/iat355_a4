@@ -179,7 +179,7 @@ d3.csv(bugData, function(datasetBug)
 			.style("box-shadow","4px 2px 8px #c7c5c5")
 			.style("visibility", "hidden");
 
-			var nodePadding = 2; //padding around each node
+			var nodePadding = 2.5; //padding around each node
 
 			var radius = 3.6; //fixed radius of each node
 			// var minRadius = 3;
@@ -267,23 +267,23 @@ d3.csv(bugData, function(datasetBug)
 			    	var nodeRadius;
 			    	if (rarity == 1)
 			    	{
-			    		nodeRadius = 3.5;
+			    		nodeRadius = 3;
 			    	}
 			    	else if (rarity == 2)
 			    	{
-			    		nodeRadius = 4;
+			    		nodeRadius = 4.5;
 			    	}
 			    	else if (rarity == 3)
 			    	{
-			    		nodeRadius = 5;
+			    		nodeRadius = 5.5;
 			    	}
 			    	else if (rarity == 4)
 			    	{
-			    		nodeRadius = 6;
+			    		nodeRadius = 8;
 			    	}
 			    	else if (rarity == 5)
 			    	{
-			    		nodeRadius = 7;
+			    		nodeRadius = 11;
 			    	}
 
 			    	return nodeRadius-0.5;
