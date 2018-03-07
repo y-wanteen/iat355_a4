@@ -179,7 +179,7 @@ d3.csv(bugData, function(datasetBug)
 			.style("box-shadow","4px 2px 8px #c7c5c5")
 			.style("visibility", "hidden");
 
-			var nodePadding = 3.5; //padding around each node
+			var nodePadding = 2.5; //padding around each node
 
 			var radius = 6; //average radius of nodes
 			// var minRadius = 3;
