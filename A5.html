@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- D3 Library for reading datasets -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+		<script src="https://d3js.org/d3-color.v1.min.js"></script>
+		<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+		<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+		<script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
+		<script src="https://d3js.org/d3-timer.v1.min.js"></script>
+		<script src="https://d3js.org/d3-force.v1.min.js"></script>
+
+		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+		<title> IAT355 A4 - Animal Crossing </title>
+
+	</head>
+
+	<body>
+
+	<div class="header-box">
+		<div class="">
+			<h1 class="title">Animal Crossing:</h1>
+			<h2 class="sub-title">Species selling price (in Bells) across months when they are availaible</h2>
+		</div>
+
+	<div class="legend">
+		<div class="legend-container">
+			<div class="legend-color">
+				<span class="box" style="background-color:#69D1C5;"></span>
+				<label>Bugs</label>
+			</div>
+
+			<div class="legend-color">
+				<span class="box" style="background-color:tomato;"></span>
+				<label>Fish</label>
+			</div>
+
+			<div class="legend-color">
+				<span class="box" style="background-color:#2A1E5C;"></span>
+				<label>Sea Creatures</label>
+			</div>
+		</div>
+
+		<div class="legend-container">
+			<div class="legend-size">
+				<div class="circle"></div>
+				<label class="rarity-label">Common</label>
+			</div>
+
+			<div class="legend-size">
+				<div class="circle"style="width: 6px; height: 6px;"></div>
+				<label class="rarity-label" style="margin-left: 0;">Fairly Common</label>
+			</div>
+
+			<div class="legend-size">
+				<div class="circle"style="width: 8.5px; height: 8.5px;"></div>
+				<label class="rarity-label">Uncommon</label>
+			</div>
+
+			<div class="legend-size">
+				<div class="circle" style="width: 11px; height: 11px;"></div>
+				<label class="rarity-label">Scarce</label>
+			</div>
+
+			<div class="legend-size">
+				<div class="circle" style="width: 16px; height: 16px;"></div>
+				<label class="rarity-label" style="margin-left: 1.7rem;" >Rare</label>
+			</div>
+
+
+		</div>
+
+	</div>
+</div>
+
+
+<div id="graph"></div>
+
+	</body>
+
+	<script src="A5_timeline.js"></script>
+
+
+</html>
