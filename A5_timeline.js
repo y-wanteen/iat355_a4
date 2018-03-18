@@ -7,7 +7,7 @@ var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oc
 // SVG + Graph Setup //////////////////////////////////////////////
 
 var margin = {top: 70, right:0, bottom: 20, left: 40};
-var margin2 = {top: 430, right: 20, bottom: 30, left: 40};
+var margin2 = {top: 630, right: 20, bottom: 30, left: 0};
 
 
 //adjust width and height based on margin size
@@ -21,7 +21,7 @@ var height2 = winHeight - margin2.top - margin2.bottom;
 
 
 var graphWidth =  winWidth + margin.left + margin.right;
-var graphHeight = winHeight + margin.top + margin.bottom;
+var graphHeight = winHeight + margin2.top + margin.bottom;
 
 
 //create svg
@@ -32,7 +32,7 @@ var svg = d3.select("#graph")
 		.append("svg")
 		//responsive SVG needs these 2 attributes and no width and height attr
 		.attr("preserveAspectRatio", "xMinYMin meet")
-		.attr("viewBox", "0 0 "+ graphWidth +" "+ graphHeight+ graphHeight)
+		.attr("viewBox", "0 0 "+ graphWidth +" "+ graphHeight)
 
 		//class to make svg responsive
 		.classed("svg-content-responsive", true)
@@ -80,12 +80,16 @@ d3.csv(bugData, function(datasetBug)
 			console.log("highest sell price: " + maxPrice);
 
 			//create x and y axis ///////////////////////
-			var xScale;
+			var xScale,xScale2;
 			var yScale;
 
 			xScale = d3.scaleLinear()
 					.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
 					.range([0, 60, width-60, width]);
+
+			xScale2 = d3.scaleLinear() //for scrubbing graph
+							.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
+							.range([0, 60, width-60, width]);
 
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
@@ -100,22 +104,11 @@ d3.csv(bugData, function(datasetBug)
 						.scale(xScale)
 						.tickFormat(function(d,i){return monthsAxis[i]}); //change number labels into months
 
+			var xAxis2 = d3.axisBottom()
+			.scale(xScale2)
+			.tickFormat(function(d,i){return monthsAxis[i]});
 
-///from lab
-      var focus = svg.append("g")
-                .attr("class", "focus")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      var context = svg.append("g")
-                .attr("class", "context")
-                .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
-
-      var x2 = d3.scaleTime().range([0, width]),
-          xAxis2 = d3.axisBottom(x2);
-
-          var brush = d3.brushX()
-              .extent([[0, 0], [width, height2]])
-              .on("brush end", brushed);
 
 			svg.append("g")
 				.attr("class", "x axis")
@@ -131,8 +124,31 @@ d3.csv(bugData, function(datasetBug)
 					.text("Month of Appearance");
 
 
+		var context = svg.append("g")
+		                .attr("class", "context")
+		                .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+
 			var yAxis = d3.axisLeft()
 						.scale(yScale);
+
+
+						var brush = d3.brushX()
+				        .extent([[0, 0], [width, height2]])
+				        .on("brush end", brushed);
+
+						    // var area = d3.area()
+						    //     .curve(d3.curveMonotoneX)
+						    //     .x(function(d) { return x(d.date); })
+						    //     .y0(height)
+						    //     .y1(function(d) { return y(d.price); });
+								//
+						    // var area2 = d3.area()
+						    //     .curve(d3.curveMonotoneX)
+						    //     .x(function(d) { return x2(d.date); })
+						    //     .y0(height2)
+						    //     .y1(function(d) { return y2(d.price); });
+
+
 			svg.append("g")
 				.attr("class", "y axis")
 				.attr("transform", "translate(0,0)")
@@ -146,10 +162,25 @@ d3.csv(bugData, function(datasetBug)
 				 .style("text-anchor", "middle")
 				 .text("Selling Price (in Bells)");
 
+//second axis for brushing
          context.append("g")
              .attr("class", "axis axis--x")
              .attr("transform", "translate(0," + height2 + ")")
              .call(xAxis2);
+
+				context.append("g")
+								 .attr("class", "brush")
+								 .call(brush)
+								 .call(brush.move, xScale.range());
+
+								 function brushed() {
+
+		 				        var s = d3.event.selection || xScale2.range();
+		 				        xScale.domain(s.map(xScale2.invert, xScale));
+		 				        svg.select(".area").attr("d", area);
+		 				        svg.select(".axis--x").call(xAxis);
+
+		 				    }
 
 
 			// PLOT DATA /////////////////////////////
@@ -196,24 +227,15 @@ d3.csv(bugData, function(datasetBug)
 			// plotByMonth("diving",datasetDiving);
 
 			// creating hidden tooltip
-			var tooltip = d3.select("body")
-			.append("div")
-			.style("position", "absolute")
-			.style("background-color", "#ffffffcc")
-			.style("padding", "0.2rem")
-			.style("font-weight", "bold")
-			.style("z-index", "10")
-			.style("box-shadow","4px 2px 8px #c7c5c5")
-			.style("visibility", "hidden");
-
-      function brushed() {
-
-          var s = d3.event.selection || x2.range();
-          x.domain(s.map(x2.invert, x2));
-          focus.select(".area").attr("d", area);
-          focus.select(".axis--x").call(xAxis);
-
-      }
+			// var tooltip = d3.select("body")
+			// .append("div")
+			// .style("position", "absolute")
+			// .style("background-color", "#ffffffcc")
+			// .style("padding", "0.2rem")
+			// .style("font-weight", "bold")
+			// .style("z-index", "10")
+			// .style("box-shadow","4px 2px 8px #c7c5c5")
+			// .style("visibility", "hidden");
 
 			// var nodePadding = 2.5; //padding around each node
       //
@@ -446,6 +468,7 @@ d3.csv(bugData, function(datasetBug)
       //
 			//   u.exit().remove();
 			// }
+
 
 		}); //end of diving data csv
 
