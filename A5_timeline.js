@@ -1,14 +1,12 @@
-var bugData = "http://www.sfu.ca/~wanteeny/iat355/a4/data/acnl-bugs.csv";
-var fishData = "http://www.sfu.ca/~wanteeny/iat355/a4/data/acnl-fish.csv";
-var divingData = "http://www.sfu.ca/~wanteeny/iat355/a4/data/acnl-diving.csv";
+var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs.csv";
+var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish.csv";
+var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving.csv";
 
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
 var margin = {top: 70, right:0, bottom: 20, left: 40};
-var margin2 = {top: 630, right: 20, bottom: 30, left: 0};
-
 
 //adjust width and height based on margin size
 
@@ -17,11 +15,9 @@ var winWidth = window.innerWidth;
 
 var width = winWidth - margin.left - margin.right;
 var height = winHeight - margin.top - margin.bottom;
-var height2 = winHeight - margin2.top - margin2.bottom;
-
 
 var graphWidth =  winWidth + margin.left + margin.right;
-var graphHeight = winHeight + margin2.top + margin.bottom;
+var graphHeight = winHeight + margin.top + margin.bottom;
 
 
 //create svg
@@ -80,16 +76,12 @@ d3.csv(bugData, function(datasetBug)
 			console.log("highest sell price: " + maxPrice);
 
 			//create x and y axis ///////////////////////
-			var xScale,xScale2;
+			var xScale;
 			var yScale;
 
 			xScale = d3.scaleLinear()
 					.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
 					.range([0, 60, width-60, width]);
-
-			xScale2 = d3.scaleLinear() //for scrubbing graph
-							.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
-							.range([0, 60, width-60, width]);
 
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
@@ -103,12 +95,6 @@ d3.csv(bugData, function(datasetBug)
 			var xAxis = d3.axisBottom()
 						.scale(xScale)
 						.tickFormat(function(d,i){return monthsAxis[i]}); //change number labels into months
-
-			var xAxis2 = d3.axisBottom()
-			.scale(xScale2)
-			.tickFormat(function(d,i){return monthsAxis[i]});
-
-
 
 			svg.append("g")
 				.attr("class", "x axis")
@@ -124,31 +110,8 @@ d3.csv(bugData, function(datasetBug)
 					.text("Month of Appearance");
 
 
-		var context = svg.append("g")
-		                .attr("class", "context")
-		                .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
-
 			var yAxis = d3.axisLeft()
 						.scale(yScale);
-
-
-						var brush = d3.brushX()
-				        .extent([[0, 0], [width, height2]])
-				        .on("brush end", brushed);
-
-						    // var area = d3.area()
-						    //     .curve(d3.curveMonotoneX)
-						    //     .x(function(d) { return x(d.date); })
-						    //     .y0(height)
-						    //     .y1(function(d) { return y(d.price); });
-								//
-						    // var area2 = d3.area()
-						    //     .curve(d3.curveMonotoneX)
-						    //     .x(function(d) { return x2(d.date); })
-						    //     .y0(height2)
-						    //     .y1(function(d) { return y2(d.price); });
-
-
 			svg.append("g")
 				.attr("class", "y axis")
 				.attr("transform", "translate(0,0)")
@@ -162,313 +125,291 @@ d3.csv(bugData, function(datasetBug)
 				 .style("text-anchor", "middle")
 				 .text("Selling Price (in Bells)");
 
-//second axis for brushing
-         context.append("g")
-             .attr("class", "axis axis--x")
-             .attr("transform", "translate(0," + height2 + ")")
-             .call(xAxis2);
-
-				context.append("g")
-								 .attr("class", "brush")
-								 .call(brush)
-								 .call(brush.move, xScale.range());
-
-								 function brushed() {
-
-		 				        var s = d3.event.selection || xScale2.range();
-		 				        xScale.domain(s.map(xScale2.invert, xScale));
-		 				        svg.select(".area").attr("d", area);
-		 				        svg.select(".axis--x").call(xAxis);
-
-		 				    }
-
-
 			// PLOT DATA /////////////////////////////
 
-			// var transparency = false;
-      //
-			// var monthlyWildlife = []; //array to store all montly available wildlife
-      //
-			// // Get Monthly Availability ///////////////////////
-			// function getAvailability(setClass, data, month)
-			// {
-      //
-			// 	searchClass = setClass + "." + month;
-      //
-			// 	var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
-      //
-			// 	//first, check what exactly is available in that month
-			// 	data.forEach(function(d)
-			// 	{
-			// 		if (d[month] > 0)
-			// 		{
-			// 			sumCounter++;
-			// 			//Create new array using only the necessary data from the datasets:
-			// 			//Type of wildlife, available month, species name, and price
-			// 			monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price'], "Rarity":d[month]});
-			// 		}
-			// 	});
-      //
-			// 	console.log(setClass+"/"+month+" Sum: "+sumCounter)
-      //
-			// } //end of plot points function
-      //
-			// function plotByMonth(category, dataset)
-			// {
-			// 	for(var i=0; i<months.length; i++)
-			// 	{
-			// 		getAvailability(category, dataset, months[i]);
-			// 		// console.log("month: " + months[i])
-			// 	}
-			// }
+			var transparency = false;
 
-			// plotByMonth("bugs",datasetBug);
-			// plotByMonth("fish",datasetFish);
-			// plotByMonth("diving",datasetDiving);
+			var monthlyWildlife = []; //array to store all montly available wildlife
+
+			// Get Monthly Availability ///////////////////////
+			function getAvailability(setClass, data, month)
+			{
+
+				searchClass = setClass + "." + month;
+
+				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
+
+				//first, check what exactly is available in that month
+				data.forEach(function(d)
+				{
+					if (d[month] > 0)
+					{
+						sumCounter++;
+						//Create new array using only the necessary data from the datasets:
+						//Type of wildlife, available month, species name, and price
+						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price'], "Rarity":d[month]});
+					}
+				});
+
+				console.log(setClass+"/"+month+" Sum: "+sumCounter)
+
+			} //end of plot points function
+
+			function plotByMonth(category, dataset)
+			{
+				for(var i=0; i<months.length; i++)
+				{
+					getAvailability(category, dataset, months[i]);
+					// console.log("month: " + months[i])
+				}
+			}
+
+			plotByMonth("bugs",datasetBug);
+			plotByMonth("fish",datasetFish);
+			plotByMonth("diving",datasetDiving);
 
 			// creating hidden tooltip
-			// var tooltip = d3.select("body")
-			// .append("div")
-			// .style("position", "absolute")
-			// .style("background-color", "#ffffffcc")
-			// .style("padding", "0.2rem")
-			// .style("font-weight", "bold")
-			// .style("z-index", "10")
-			// .style("box-shadow","4px 2px 8px #c7c5c5")
-			// .style("visibility", "hidden");
+			var tooltip = d3.select("body")
+			.append("div")
+			.style("position", "absolute")
+			.style("background-color", "#ffffffcc")
+			.style("padding", "0.2rem")
+			.style("font-weight", "bold")
+			.style("z-index", "10")
+			.style("box-shadow","4px 2px 8px #c7c5c5")
+			.style("visibility", "hidden");
 
-			// var nodePadding = 2.5; //padding around each node
-      //
-			// var radius = 5; //average radius of nodes
-			// // var minRadius = 3;
-      //
-			// console.log(monthlyWildlife);
-      //
-			// // FORCE LAYOUT COLLISION ////////////////////////////////////
-      //
-			// var simulation = d3.forceSimulation(monthlyWildlife)
-			//   .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
-			//   .force('x', d3.forceX().x(function(d) //center points to month on axis
-			//   {
-			//   		if (d['Month'] == "Jan")
-			//   		{
-			//   			return xScale(1);
-			//   		}
-			//   		else if (d['Month'] == "Feb")
-			//   		{
-			//   			return xScale(2);
-			//   		}
-			//   		else if (d['Month'] == "Mar")
-			//   		{
-			//   			return xScale(3);
-			//   		}
-			//   		else if (d['Month'] == "Apr")
-			//   		{
-			//   			return xScale(4);
-			//   		}
-			//   		else if (d['Month'] == "May")
-			//   		{
-			//   			return xScale(5);
-			//   		}
-			//   		else if (d['Month'] == "Jun")
-			//   		{
-			//   			return xScale(6);
-			//   		}
-			//   		else if (d['Month'] == "Jul")
-			//   		{
-			//   			return xScale(7);
-			//   		}
-			//   		else if (d['Month'] == "Aug")
-			//   		{
-			//   			return xScale(8);
-			//   		}
-			//   		else if (d['Month'] == "Sep")
-			//   		{
-			//   			return xScale(9);
-			//   		}
-			//   		else if (d['Month'] == "Oct")
-			//   		{
-			//   			return xScale(10);
-			//   		}
-			//   		else if (d['Month'] == "Nov")
-			//   		{
-			//   			return xScale(11);
-			//   		}
-			//   		else
-			//   		{
-			//   			return xScale(12);
-			//   		}
-			//   }))
-			//   .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
-			//   // .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
-			//   .force('collision', d3.forceCollide().radius(function(d)
-			// 	{
-			// 		    return +d.Rarity+nodePadding;
-			// 	}))
-			//   .on('tick', ticked);
-			//   // simulation.alphaTarget(0.3).restart();
-      //
-			// function ticked() //draw the nodes
-			// {
-			//     var u = d3.select('svg g')
-			//     .selectAll('circle')
-			//     .data(monthlyWildlife);
-      //
-			// 	u.enter()
-			// 	.append("circle")
-			// 	// .attr("class", setClass + " " + month)
-      //
-			// 	// node appearance
-			//     //.attr('r', radius-0.5)
-			//     .attr('r', function(d) //different node size based on rarity
-			//     {
-			//     	var rarity = +d['Rarity'];
-			//     	var nodeRadius;
-			//     	if (rarity == 1)
-			//     	{
-			//     		nodeRadius = 3;
-			//     	}
-			//     	else if (rarity == 2)
-			//     	{
-			//     		nodeRadius = 4.5;
-			//     	}
-			//     	else if (rarity == 3)
-			//     	{
-			//     		nodeRadius = 5.5;
-			//     	}
-			//     	else if (rarity == 4)
-			//     	{
-			//     		nodeRadius = 8;
-			//     	}
-			//     	else if (rarity == 5)
-			//     	{
-			//     		nodeRadius = 11;
-			//     	}
-      //
-			//     	return nodeRadius-0.5;
-      //
-			//     })
-			//     .attr('fill', function(d) //set fill colour based on data category/wildlife type
-			//     	{
-			//     		if (d['Category'] == "bugs")
-			//     		{
-			//     			return "#69D1C5";
-			//     		}
-		  //   			else if (d['Category'] == "fish")
-		  //   			{
-		  //   				return "tomato";
-		  //   			}
-		  //   			else
-		  //   			{
-		  //   				return "#2A1E5C";
-		  //   			}
-			//     })
-			//     .attr('opacity', 0.8)
-			//     .attr("stroke-width", "1")
-			// 	.attr("stroke", "lightgrey")
-      //
-			// 	// mouse over tool tip
-			// 	.on("mouseover", function(d){
-			// 		tooltip.style("visibility", "visible");
-      //
-			// 		if (d['Rarity'] == "1") var rarity="common";
-			// 		if (d['Rarity'] == "2") var rarity="fairly common";
-			// 		if (d['Rarity'] == "3") var rarity="uncommon";
-			// 		if (d['Rarity'] == "4") var rarity="scarce";
-			// 		if (d['Rarity'] == "5") var rarity="rare";
-      //
-			// 		tooltip.html(d['Name']+", $" + d['Price']+ ", " +rarity);
-      //
-			// 		if(d['Category'] == "bugs")
-			// 		{
-			// 			tooltip.style("color", "#69D1C5");
-			// 		}
-			// 		else if (d['Category'] == "fish")
-			// 		{
-			// 			tooltip.style("color", "tomato");
-			// 		}
-			// 		else
-			// 		{
-			// 			tooltip.style("color", "#2A1E5C");
-			// 		}
-			// 	})
-			// 	.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-			// 	.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-      //
-			//     .merge(u)
-			//     .attr('cx', function(d) //constrain the x position of each column of points according to month
-			//     {
-			//     	var columnPadding = xScale(1)*0.75;
-      //
-			//     	function leftConstraint(scaleVal) 	//create the left/min constraint for the x value
-			//     	{
-			//     		return xScale(scaleVal)-columnPadding;
-			//     	}
-      //
-			//     	function rightConstraint(scaleVal)	//create the right/max constraint for the x value
-			//     	{
-			//     		return xScale(scaleVal)+columnPadding;
-			//     	}
-      //
-			//     	if (d['Month']=='Jan')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(1), Math.min(rightConstraint(1), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Feb')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(2), Math.min(rightConstraint(2), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Mar')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(3), Math.min(rightConstraint(3), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Apr')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(4), Math.min(rightConstraint(4), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'May')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(5), Math.min(rightConstraint(5), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Jun')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(6), Math.min(rightConstraint(6), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Jul')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(7), Math.min(rightConstraint(7), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Aug')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(8), Math.min(rightConstraint(8), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Sep')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(9), Math.min(rightConstraint(9), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Oct')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(10), Math.min(rightConstraint(10), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Nov')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(11), Math.min(rightConstraint(11), d.x));
-			//     	}
-			//     	else if (d['Month'] == 'Dec')
-			//     	{
-			//     		return d.x = Math.max(leftConstraint(12), Math.min(rightConstraint(12), d.x));
-			//     	}
-      //
-      //
-			//     })
-			//     .attr('cy', function(d) {
-			//       // return d.y;
-			//       return d.y = Math.max(radius, Math.min(height - radius, d.y));
-			//     })
-      //
-			//   u.exit().remove();
-			// }
+			var nodePadding = 2.5; //padding around each node
 
+			var radius = 5; //average radius of nodes
+			// var minRadius = 3;
+
+			console.log(monthlyWildlife);
+
+			// FORCE LAYOUT COLLISION ////////////////////////////////////
+
+			var simulation = d3.forceSimulation(monthlyWildlife)
+			  .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
+			  .force('x', d3.forceX().x(function(d) //center points to month on axis
+			  {
+			  		if (d['Month'] == "Jan")
+			  		{
+			  			return xScale(1);
+			  		}
+			  		else if (d['Month'] == "Feb")
+			  		{
+			  			return xScale(2);
+			  		}
+			  		else if (d['Month'] == "Mar")
+			  		{
+			  			return xScale(3);
+			  		}
+			  		else if (d['Month'] == "Apr")
+			  		{
+			  			return xScale(4);
+			  		}
+			  		else if (d['Month'] == "May")
+			  		{
+			  			return xScale(5);
+			  		}
+			  		else if (d['Month'] == "Jun")
+			  		{
+			  			return xScale(6);
+			  		}
+			  		else if (d['Month'] == "Jul")
+			  		{
+			  			return xScale(7);
+			  		}
+			  		else if (d['Month'] == "Aug")
+			  		{
+			  			return xScale(8);
+			  		}
+			  		else if (d['Month'] == "Sep")
+			  		{
+			  			return xScale(9);
+			  		}
+			  		else if (d['Month'] == "Oct")
+			  		{
+			  			return xScale(10);
+			  		}
+			  		else if (d['Month'] == "Nov")
+			  		{
+			  			return xScale(11);
+			  		}
+			  		else
+			  		{
+			  			return xScale(12);
+			  		}
+			  }))
+			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
+			  // .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
+			  .force('collision', d3.forceCollide().radius(function(d)
+				{
+					    return +d.Rarity+nodePadding;
+				}))
+			  .on('tick', ticked);
+			  // simulation.alphaTarget(0.3).restart();
+
+			function ticked() //draw the nodes
+			{
+			    var u = d3.select('svg g')
+			    .selectAll('circle')
+			    .data(monthlyWildlife);
+
+				u.enter()
+				.append("circle")
+				// .attr("class", setClass + " " + month)
+
+				// node appearance
+			    //.attr('r', radius-0.5)
+			    .attr('r', function(d) //different node size based on rarity
+			    {
+			    	var rarity = +d['Rarity'];
+			    	var nodeRadius;
+			    	if (rarity == 1)
+			    	{
+			    		nodeRadius = 3;
+			    	}
+			    	else if (rarity == 2)
+			    	{
+			    		nodeRadius = 4.5;
+			    	}
+			    	else if (rarity == 3)
+			    	{
+			    		nodeRadius = 5.5;
+			    	}
+			    	else if (rarity == 4)
+			    	{
+			    		nodeRadius = 8;
+			    	}
+			    	else if (rarity == 5)
+			    	{
+			    		nodeRadius = 11;
+			    	}
+
+			    	return nodeRadius-0.5;
+
+			    })
+			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
+			    	{
+			    		if (d['Category'] == "bugs")
+			    		{
+			    			return "#69D1C5";
+			    		}
+		    			else if (d['Category'] == "fish")
+		    			{
+		    				return "tomato";
+		    			}
+		    			else
+		    			{
+		    				return "#2A1E5C";
+		    			}
+			    })
+			    .attr('opacity', 0.8)
+			    .attr("stroke-width", "1")
+				.attr("stroke", "lightgrey")
+
+				// mouse over tool tip
+				.on("mouseover", function(d){
+					tooltip.style("visibility", "visible");
+
+					if (d['Rarity'] == "1") var rarity="common";
+					if (d['Rarity'] == "2") var rarity="fairly common";
+					if (d['Rarity'] == "3") var rarity="uncommon";
+					if (d['Rarity'] == "4") var rarity="scarce";
+					if (d['Rarity'] == "5") var rarity="rare";
+
+					tooltip.html(d['Name']+", $" + d['Price']+ ", " +rarity);
+
+					if(d['Category'] == "bugs")
+					{
+						tooltip.style("color", "#69D1C5");
+					}
+					else if (d['Category'] == "fish")
+					{
+						tooltip.style("color", "tomato");
+					}
+					else
+					{
+						tooltip.style("color", "#2A1E5C");
+					}
+				})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+
+			    .merge(u)
+			    .attr('cx', function(d) //constrain the x position of each column of points according to month
+			    {
+			    	var columnPadding = xScale(1)*0.75;
+
+			    	function leftConstraint(scaleVal) 	//create the left/min constraint for the x value
+			    	{
+			    		return xScale(scaleVal)-columnPadding;
+			    	}
+
+			    	function rightConstraint(scaleVal)	//create the right/max constraint for the x value
+			    	{
+			    		return xScale(scaleVal)+columnPadding;
+			    	}
+
+			    	if (d['Month']=='Jan')
+			    	{
+			    		return d.x = Math.max(leftConstraint(1), Math.min(rightConstraint(1), d.x));
+			    	}
+			    	else if (d['Month'] == 'Feb')
+			    	{
+			    		return d.x = Math.max(leftConstraint(2), Math.min(rightConstraint(2), d.x));
+			    	}
+			    	else if (d['Month'] == 'Mar')
+			    	{
+			    		return d.x = Math.max(leftConstraint(3), Math.min(rightConstraint(3), d.x));
+			    	}
+			    	else if (d['Month'] == 'Apr')
+			    	{
+			    		return d.x = Math.max(leftConstraint(4), Math.min(rightConstraint(4), d.x));
+			    	}
+			    	else if (d['Month'] == 'May')
+			    	{
+			    		return d.x = Math.max(leftConstraint(5), Math.min(rightConstraint(5), d.x));
+			    	}
+			    	else if (d['Month'] == 'Jun')
+			    	{
+			    		return d.x = Math.max(leftConstraint(6), Math.min(rightConstraint(6), d.x));
+			    	}
+			    	else if (d['Month'] == 'Jul')
+			    	{
+			    		return d.x = Math.max(leftConstraint(7), Math.min(rightConstraint(7), d.x));
+			    	}
+			    	else if (d['Month'] == 'Aug')
+			    	{
+			    		return d.x = Math.max(leftConstraint(8), Math.min(rightConstraint(8), d.x));
+			    	}
+			    	else if (d['Month'] == 'Sep')
+			    	{
+			    		return d.x = Math.max(leftConstraint(9), Math.min(rightConstraint(9), d.x));
+			    	}
+			    	else if (d['Month'] == 'Oct')
+			    	{
+			    		return d.x = Math.max(leftConstraint(10), Math.min(rightConstraint(10), d.x));
+			    	}
+			    	else if (d['Month'] == 'Nov')
+			    	{
+			    		return d.x = Math.max(leftConstraint(11), Math.min(rightConstraint(11), d.x));
+			    	}
+			    	else if (d['Month'] == 'Dec')
+			    	{
+			    		return d.x = Math.max(leftConstraint(12), Math.min(rightConstraint(12), d.x));
+			    	}
+
+
+			    })
+			    .attr('cy', function(d) {
+			      // return d.y;
+			      return d.y = Math.max(radius, Math.min(height - radius, d.y));
+			    })
+
+			  u.exit().remove();
+			}
 
 		}); //end of diving data csv
 
