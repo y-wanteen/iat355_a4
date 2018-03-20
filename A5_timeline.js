@@ -7,8 +7,9 @@ var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving.csv";
 var fillColour = {"bugs":"#69D1C5", "fish":"tomato", "diving":"#2A1E5C"};
 
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 var monthStringToNum = {"Jan":1, "Feb":2, "Mar":3, "Apr":4, "May":5, "Jun":6, "Jul":7, "Aug":8, "Sep":9, "Oct":10, "Nov":11, "Dec":12};
+
+var speciesRarity = {1:"common", 2:"fairly common", 3:"uncommon", 4:"scarce", 5:"rare"};
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
@@ -131,15 +132,15 @@ d3.csv(bugData, function(datasetBug)
 			// text label for the x axis
 			svg.append("text")
 					.attr("transform",
-				"translate(" + (width/2) + " ," +
-											 (height + margin.top) + ")")
+						   "translate(" + (width/2) + " ," +
+									 	  (height + margin.top) + ")")
 					.style("text-anchor", "middle")
 					.text("Month of Appearance");
 
 					svg2.append("text")
 							.attr("transform",
 						"translate(" + (width/2) + " ," +
-													 (height + margin.top) + ")")
+										(height + margin.top) + ")")
 							.style("text-anchor", "middle")
 							.text("Time of Appearance");
 
@@ -186,7 +187,7 @@ d3.csv(bugData, function(datasetBug)
 			function getAvailability(setClass, data, month)
 			{
 
-				searchClass = setClass + "." + month;
+				// searchClass = setClass + "." + month;
 
 				var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
 
@@ -245,7 +246,6 @@ d3.csv(bugData, function(datasetBug)
 			  		return xScale(monthStringToNum[d['Month']]);
 			  }))
 			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
-			  // .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
 			  .force('collision', d3.forceCollide().radius(function(d)
 				{
 					    return +d.Rarity+nodePadding;
@@ -309,26 +309,9 @@ d3.csv(bugData, function(datasetBug)
 				.on("mouseover", function(d){
 					tooltip.style("visibility", "visible");
 
-					if (d['Rarity'] == "1") var rarity="common";
-					if (d['Rarity'] == "2") var rarity="fairly common";
-					if (d['Rarity'] == "3") var rarity="uncommon";
-					if (d['Rarity'] == "4") var rarity="scarce";
-					if (d['Rarity'] == "5") var rarity="rare";
-
+					var rarity = speciesRarity[d['Rarity']];
 					tooltip.html(d['Name']+", $" + d['Price']+ ", " +rarity);
-
-					if(d['Category'] == "bugs")
-					{
-						tooltip.style("color", "#69D1C5");
-					}
-					else if (d['Category'] == "fish")
-					{
-						tooltip.style("color", "tomato");
-					}
-					else
-					{
-						tooltip.style("color", "#2A1E5C");
-					}
+					tooltip.style("color", fillColour[d['Category']]);
 				})
 
 				.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
