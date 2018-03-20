@@ -1,8 +1,14 @@
+//Data
 var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs.csv";
 var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish.csv";
 var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving.csv";
 
+//Key/value Arrays commonly used 
+var fillColour = {"bugs":"#69D1C5", "fish":"tomato", "diving":"#2A1E5C"};
+
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+var monthStringToNum = {"Jan":1, "Feb":2, "Mar":3, "Apr":4, "May":5, "Jun":6, "Jul":7, "Aug":8, "Sep":9, "Oct":10, "Nov":11, "Dec":12};
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
@@ -165,6 +171,11 @@ d3.csv(bugData, function(datasetBug)
 					.style("text-anchor", "middle")
 					.text("Selling Price (in Bells)");
 
+				var brush=d3.brush()
+	            .extent([[0, 0], [width, height]])
+	            .on("brush", brushed)
+	            .on("end", brushended);
+
 			// PLOT DATA /////////////////////////////
 
 			var transparency = false;
@@ -208,7 +219,7 @@ d3.csv(bugData, function(datasetBug)
 			plotByMonth("fish",datasetFish);
 			plotByMonth("diving",datasetDiving);
 
-			// creating hidden tooltip
+			// creating hidden tooltip //////////////////////////
 			var tooltip = d3.select("body")
 			.append("div")
 			.style("position", "absolute")
@@ -222,7 +233,6 @@ d3.csv(bugData, function(datasetBug)
 			var nodePadding = 2.5; //padding around each node
 
 			var radius = 5; //average radius of nodes
-			// var minRadius = 3;
 
 			console.log(monthlyWildlife);
 
@@ -232,54 +242,7 @@ d3.csv(bugData, function(datasetBug)
 			  .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
 			  .force('x', d3.forceX().x(function(d) //center points to month on axis
 			  {
-			  		if (d['Month'] == "Jan")
-			  		{
-			  			return xScale(1);
-			  		}
-			  		else if (d['Month'] == "Feb")
-			  		{
-			  			return xScale(2);
-			  		}
-			  		else if (d['Month'] == "Mar")
-			  		{
-			  			return xScale(3);
-			  		}
-			  		else if (d['Month'] == "Apr")
-			  		{
-			  			return xScale(4);
-			  		}
-			  		else if (d['Month'] == "May")
-			  		{
-			  			return xScale(5);
-			  		}
-			  		else if (d['Month'] == "Jun")
-			  		{
-			  			return xScale(6);
-			  		}
-			  		else if (d['Month'] == "Jul")
-			  		{
-			  			return xScale(7);
-			  		}
-			  		else if (d['Month'] == "Aug")
-			  		{
-			  			return xScale(8);
-			  		}
-			  		else if (d['Month'] == "Sep")
-			  		{
-			  			return xScale(9);
-			  		}
-			  		else if (d['Month'] == "Oct")
-			  		{
-			  			return xScale(10);
-			  		}
-			  		else if (d['Month'] == "Nov")
-			  		{
-			  			return xScale(11);
-			  		}
-			  		else
-			  		{
-			  			return xScale(12);
-			  		}
+			  		return xScale(monthStringToNum[d['Month']]);
 			  }))
 			  .force('y', d3.forceY().y(function(d){ return yScale(+d['Price']); })) //set y position to pricing
 			  // .force('collision', d3.forceCollide(radius + nodePadding)) //collision based on node radius + padding
@@ -298,10 +261,14 @@ d3.csv(bugData, function(datasetBug)
 
 				u.enter()
 				.append("circle")
-				// .attr("class", setClass + " " + month)
+				.attr("class", function(d) 	//add classes to circles here
+				{ 
+					// return d['Category'] + " " + d['Name'] + " " + d['Month'];
+					return d['Category'] + " " + d['Name'].replace(" ", "-"); 
+					//replace spaces in name with - so that it doesn't get split into two classes
+				})
 
 				// node appearance
-			    //.attr('r', radius-0.5)
 			    .attr('r', function(d) //different node size based on rarity
 			    {
 			    	var rarity = +d['Rarity'];
@@ -331,19 +298,8 @@ d3.csv(bugData, function(datasetBug)
 
 			    })
 			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
-			    	{
-			    		if (d['Category'] == "bugs")
-			    		{
-			    			return "#69D1C5";
-			    		}
-		    			else if (d['Category'] == "fish")
-		    			{
-		    				return "tomato";
-		    			}
-		    			else
-		    			{
-		    				return "#2A1E5C";
-		    			}
+			    {
+		    		return fillColour[d['Category']];
 			    })
 			    .attr('opacity', 0.8)
 			    .attr("stroke-width", "1")
@@ -374,7 +330,8 @@ d3.csv(bugData, function(datasetBug)
 						tooltip.style("color", "#2A1E5C");
 					}
 				})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+
+				.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
 
 				.on("click", function (d) {
@@ -386,30 +343,30 @@ d3.csv(bugData, function(datasetBug)
 						.style('opacity',0.2)
 						.attr('fill', function(d) //set fill colour based on data category/wildlife type
 						 {
-							 if (d['Category'] == "bugs")
-							 {
-								 return "#69D1C5";
-							 }
-							 else if (d['Category'] == "fish")
-							 {
-								 return "tomato";
-							 }
-							 else
-							 {
-								 return "#2A1E5C";
-							 }
+							 return fillColour[d['Category']];
 
-					 })
+						 })
 
-						d3.select(this)
-						.style('opacity',1);
+						//get the classes of the circle selected
+						var selectorClass = this.className['baseVal'];
+
+						//print classes to console
+						// console.log(selectorClass.replace(" ", "."));
+
+						//select all circles of the same classes/species
+						d3.selectAll("circle."+selectorClass.replace(" ", "."))
+						  .style('opacity',1);
+
+						 //  d3.select(this)
+							// .style('opacity', 1);
+
 
 							// .attr("fill", "orange");
 
 						d3.selectAll(".hidden")
 						.style('opacity',1);
 
-//i have no idea what this part do???
+						//i have no idea what this part do???
 						d3.selectAll("circle").classed("dim", function (dd){
 								if  (dd.key==highlightkey)
 										return false;
@@ -417,7 +374,7 @@ d3.csv(bugData, function(datasetBug)
 										return true;
 						})
 
-})
+				})
 
 			    .merge(u)
 			    .attr('cx', function(d) //constrain the x position of each column of points according to month
@@ -434,67 +391,99 @@ d3.csv(bugData, function(datasetBug)
 			    		return xScale(scaleVal)+columnPadding;
 			    	}
 
-			    	if (d['Month']=='Jan')
-			    	{
-			    		return d.x = Math.max(leftConstraint(1), Math.min(rightConstraint(1), d.x));
-			    	}
-			    	else if (d['Month'] == 'Feb')
-			    	{
-			    		return d.x = Math.max(leftConstraint(2), Math.min(rightConstraint(2), d.x));
-			    	}
-			    	else if (d['Month'] == 'Mar')
-			    	{
-			    		return d.x = Math.max(leftConstraint(3), Math.min(rightConstraint(3), d.x));
-			    	}
-			    	else if (d['Month'] == 'Apr')
-			    	{
-			    		return d.x = Math.max(leftConstraint(4), Math.min(rightConstraint(4), d.x));
-			    	}
-			    	else if (d['Month'] == 'May')
-			    	{
-			    		return d.x = Math.max(leftConstraint(5), Math.min(rightConstraint(5), d.x));
-			    	}
-			    	else if (d['Month'] == 'Jun')
-			    	{
-			    		return d.x = Math.max(leftConstraint(6), Math.min(rightConstraint(6), d.x));
-			    	}
-			    	else if (d['Month'] == 'Jul')
-			    	{
-			    		return d.x = Math.max(leftConstraint(7), Math.min(rightConstraint(7), d.x));
-			    	}
-			    	else if (d['Month'] == 'Aug')
-			    	{
-			    		return d.x = Math.max(leftConstraint(8), Math.min(rightConstraint(8), d.x));
-			    	}
-			    	else if (d['Month'] == 'Sep')
-			    	{
-			    		return d.x = Math.max(leftConstraint(9), Math.min(rightConstraint(9), d.x));
-			    	}
-			    	else if (d['Month'] == 'Oct')
-			    	{
-			    		return d.x = Math.max(leftConstraint(10), Math.min(rightConstraint(10), d.x));
-			    	}
-			    	else if (d['Month'] == 'Nov')
-			    	{
-			    		return d.x = Math.max(leftConstraint(11), Math.min(rightConstraint(11), d.x));
-			    	}
-			    	else if (d['Month'] == 'Dec')
-			    	{
-			    		return d.x = Math.max(leftConstraint(12), Math.min(rightConstraint(12), d.x));
-			    	}
-
+			    	//return d.x value based on month
+			    	return d.x = Math.max(leftConstraint(monthStringToNum[d['Month']]), 
+			    					Math.min(rightConstraint(monthStringToNum[d['Month']]), d.x));
 
 			    })
-			    .attr('cy', function(d) {
+
+			    .attr('cy', function(d) 
+			    {
 			      // return d.y;
 			      return d.y = Math.max(radius, Math.min(height - radius, d.y));
 			    })
 
-
-
 			  u.exit().remove();
-			}
 
+
+			} // end of ticked()
+
+			//call brushing function
+			svg.append("g")
+            .call(brush);
+
+            //brush circles
+			 function brushed() 
+			 {
+		        var s = d3.event.selection,
+		            x0 = s[0][0],
+		            y0 = s[0][1],
+		            dx = s[1][0] - x0,
+		            dy = s[1][1] - y0;
+		         // console.log(s);
+
+		        svg.selectAll('circle')
+		            .style("opacity", function (d) 		//change opacity on selection
+		            {
+		                if (xScale(monthStringToNum[d['Month']]) >= x0 && 
+		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx && 
+		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
+		                {
+		                	//print selected data to console
+		                    console.log(d);
+
+		                     //push these into another array of data 
+		                     //that will get used in the second chart?
+
+		                    // return "#ec7014";
+		                    return 1;
+		                }
+		                else 
+		                {
+		                  //  console.log("keep the same ");
+		                    // return fillColour[d['Category']];
+		                    return 0.8;
+		                }
+		             }) 
+		           	.style("stroke", function(d)			//change stroke colour on selection
+		           	{
+		           		 if (xScale(monthStringToNum[d['Month']]) >= x0 && 
+		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx && 
+		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
+		                {
+		                    return "white";
+		                }
+		                else 
+		                {
+		                    return "lightgrey";
+		                }
+		            });
+		    } //end of brush function
+
+		    function brushended() //default styling
+		    {
+		        if (!d3.event.selection) 
+		        {
+		            svg.selectAll('circle')
+		                .transition()
+		                .duration(150)
+		                .ease(d3.easeLinear)
+		                .style("fill", function(d){ return fillColour[d['Category']]; })
+		                .style("opacity", 0.8)
+		                .style("stroke", "lightgrey");
+		        }
+		    }
+
+		    function isBrushed(brush_coords, cx, cy) //brush coordinates
+		    {
+
+		        var x0 = brush_coords[0][0],
+		            x1 = brush_coords[1][0],
+		            y0 = brush_coords[0][1],
+		            y1 = brush_coords[1][1];
+
+		        return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+		    }
 
 
 		}); //end of diving data csv
