@@ -6,7 +6,7 @@ var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oc
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
-var margin = {top: 70, right:0, bottom: 20, left: 40};
+var margin = {top: 50, right:0, bottom: 200, left: 40};
 
 //adjust width and height based on margin size
 
@@ -337,6 +337,46 @@ d3.csv(bugData, function(datasetBug)
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
 
+				.on("click", function (d) {
+
+						var highlightkey=d.key;
+
+						// remove previous selecitons ...
+						d3.selectAll("circle")
+						.style('opacity',0.2)
+						.attr('fill', function(d) //set fill colour based on data category/wildlife type
+						 {
+							 if (d['Category'] == "bugs")
+							 {
+								 return "#69D1C5";
+							 }
+							 else if (d['Category'] == "fish")
+							 {
+								 return "tomato";
+							 }
+							 else
+							 {
+								 return "#2A1E5C";
+							 }
+					 })
+
+						d3.select(this)
+						.style('opacity',1)
+							// .attr("fill", "orange");
+
+
+						// ticked.onClick(highlightkey);
+
+
+						d3.selectAll("circle.bar").classed("dim", function (dd){
+								if  (dd.key==highlightkey)
+										return false;
+								else
+										return true;
+						})
+
+})
+
 			    .merge(u)
 			    .attr('cx', function(d) //constrain the x position of each column of points according to month
 			    {
@@ -408,8 +448,12 @@ d3.csv(bugData, function(datasetBug)
 			      return d.y = Math.max(radius, Math.min(height - radius, d.y));
 			    })
 
+
+
 			  u.exit().remove();
 			}
+
+
 
 		}); //end of diving data csv
 
