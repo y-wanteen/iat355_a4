@@ -6,7 +6,7 @@ var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oc
 
 // SVG + Graph Setup //////////////////////////////////////////////
 
-var margin = {top: 50, right:0, bottom: 200, left: 40};
+var margin = {top: 70, right:0, bottom: 20, left: 40};
 
 //adjust width and height based on margin size
 
@@ -36,6 +36,22 @@ var svg = d3.select("#graph")
 		.attr("transform", "translate( 50," + margin.top + ")");
 
 // start working with d3 and data
+
+var svg2 = d3.select("#graph")
+
+		.append("div")
+		.classed("svg-container", true) //container class to make it responsive
+		.append("svg")
+		//responsive SVG needs these 2 attributes and no width and height attr
+		.attr("preserveAspectRatio", "xMinYMin meet")
+		.attr("viewBox", "0 0 "+ graphWidth +" "+ graphHeight)
+
+		//class to make svg responsive
+		.classed("svg-content-responsive", true)
+		.classed("hidden", true)
+		.append("g")
+		.attr("transform", "translate( 50," + margin.top + ")")
+		// .style("opacity",0);
 
 //Global variables //////////
 var totalPriceRange = [];
@@ -101,6 +117,11 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0, " + height +")")
 				.call(xAxis);
 
+				svg2.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0, " + height +")")
+					.call(xAxis);
+
 			// text label for the x axis
 			svg.append("text")
 					.attr("transform",
@@ -108,6 +129,13 @@ d3.csv(bugData, function(datasetBug)
 											 (height + margin.top) + ")")
 					.style("text-anchor", "middle")
 					.text("Month of Appearance");
+
+					svg2.append("text")
+							.attr("transform",
+						"translate(" + (width/2) + " ," +
+													 (height + margin.top) + ")")
+							.style("text-anchor", "middle")
+							.text("Time of Appearance");
 
 
 			var yAxis = d3.axisLeft()
@@ -117,6 +145,11 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0,0)")
 				.call(yAxis);
 
+				svg2.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(0,0)")
+					.call(yAxis);
+
 				// text label for y-axis
 				svg.append("text")
 				 .attr("y", 0 - 70)
@@ -124,6 +157,13 @@ d3.csv(bugData, function(datasetBug)
 				 .attr("dy", "3em")
 				 .style("text-anchor", "middle")
 				 .text("Selling Price (in Bells)");
+
+				 svg2.append("text")
+					.attr("y", 0 - 70)
+					.attr("x",0 + margin.left )
+					.attr("dy", "3em")
+					.style("text-anchor", "middle")
+					.text("Selling Price (in Bells)");
 
 			// PLOT DATA /////////////////////////////
 
@@ -358,17 +398,19 @@ d3.csv(bugData, function(datasetBug)
 							 {
 								 return "#2A1E5C";
 							 }
+
 					 })
 
 						d3.select(this)
-						.style('opacity',1)
+						.style('opacity',1);
+
 							// .attr("fill", "orange");
 
+						d3.selectAll(".hidden")
+						.style('opacity',1);
 
-						// ticked.onClick(highlightkey);
-
-
-						d3.selectAll("circle.bar").classed("dim", function (dd){
+//i have no idea what this part do???
+						d3.selectAll("circle").classed("dim", function (dd){
 								if  (dd.key==highlightkey)
 										return false;
 								else

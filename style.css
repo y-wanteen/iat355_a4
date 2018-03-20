@@ -9,3 +9,8 @@
     fill: none;
     pointer-events: all;
 }
+
+.hidden{
+  opacity:0;
+  transition: .35s ease-in-out;
+}
