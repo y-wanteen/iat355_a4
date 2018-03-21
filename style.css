@@ -15,6 +15,29 @@
   transition: .35s ease-in-out;
 }
 
+.filter{
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  border: 2px solid lightgrey;
+  cursor: pointer;
+  border-radius: 9px;
+  padding: 0 1rem;
+  transition: .15s ease-in-out;
+
+}
+
+.filter:hover{
+  box-shadow: 4px 2px 8px lightgrey;
+  transition: .35s ease-in-out;
+}
+
+.filter:focus{
+  box-shadow: 4px 2px 8px lightgrey;
+  transition: .35s ease-in-out;
+  background-color: whitesmoke;
+  outline: none;
+}
+
 circle
 {
 	cursor:pointer;
