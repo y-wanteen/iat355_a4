@@ -26,7 +26,9 @@ var timeline = d3.layout.timeline()
   .size([1000,300])
   .bandStart(function (d) {return d.s})
   .bandEnd(function (d) {return d.e})
-  .dateFormat(function (d) {return parseInt(d)})
+  .dateFormat(function (d) {
+    console.log(parseInt(d));
+    return parseInt(d)})
 
 d3.csv("int_bands.csv", function (csv) {
   timelineBands = timeline(csv);

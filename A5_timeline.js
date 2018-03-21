@@ -36,11 +36,12 @@ var graphHeight = winHeight + margin.top + margin.bottom;
 //   .dateFormat(function (d) {return parseInt(d)})
 
 var timeline = d3.layout.timeline()
-  .size([1000,10000])
+  .size([graphWidth,graphHeight])
   .bandStart(function (d) {return d['Start Time']})
   .bandEnd(function (d) {return d['End Time']})
   .dateFormat(function (d) {return parseInt(d)})
-  .padding(5) //padding between rectangles
+  .extent(["0", "24"])
+  .padding(3) //padding between rectangles
 
 //was trying to get the example graph to show up
 // 	d3.csv("int_bands.csv", function (csv) {
@@ -77,7 +78,7 @@ var svg = d3.select("#graph")
 
 // start working with d3 and data
 
-var svg2 = d3.select("#graph")
+var svg2 = d3.select("#timeline")
 
 		.append("div")
 		.classed("svg-container", true) //container class to make it responsive
@@ -288,7 +289,7 @@ d3.csv(bugData, function(datasetBug)
 
 			var radius = 5; //average radius of nodes
 
-			console.log(monthlyWildlife);
+			// console.log(monthlyWildlife);
 
 			// FORCE LAYOUT COLLISION ////////////////////////////////////
 
@@ -541,11 +542,11 @@ d3.csv(bugData, function(datasetBug)
 		         console.log(dailySpecies);
 
 		         //update the timeline 
-		         dailyTimeline = timeline(dailySpecies);
-		         console.log("timeline formatted:");
-		         console.log(dailyTimeline);
+		         // dailyTimeline = timeline(dailySpecies);
+		         // console.log("timeline formatted:");
+		         // console.log(dailyTimeline);
 
-		         // updateTimeline();
+		         updateTimeline(dailySpecies);
                  
 
 
@@ -578,14 +579,19 @@ d3.csv(bugData, function(datasetBug)
 		        return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
 		    }
 
-		    updateTimeline();
+		        // updateTimeline();
 
-		    function updateTimeline()
+		    function updateTimeline(selection)
 		    {
 
 		    	fishTimeline = timeline(datasetFish);
 		    	bugTimeline = timeline(datasetBug);
 		    	divingTimeline = timeline(datasetDiving);
+
+		    	// dailyTimeline = timeline(dailySpecies);
+		    	dailyTimeline = timeline(selection);
+		    	console.log("daily");
+		    	console.log(dailyTimeline);
 
 		    	everythingTimeline = timeline(monthlyWildlife);
 
@@ -593,19 +599,23 @@ d3.csv(bugData, function(datasetBug)
 
 		    	console.log(d3.map(everythingTimeline, function(d){return d['Name']}).keys());
 
-				d3.select("svg").selectAll("rect")
-					.data(everythingTimeline)
+		    	// d3.select("#timelime").select("svg2").remove();
+
+		    	// var svg2 = d3.select("#timeline")
+		    	// 			.append("svg")
+				svg2.selectAll("rect")
+					.data(dailyTimeline)
 					.enter()
 					.append("rect")
 					.attr("class", function(d) 	//add classes to circles here
 					{
-						// return d['Category'] + " " + d['Name'] + " " + d['Month'];
-						return d['Category'] + " " + d['Name'].replace(" ", "-");
+						// return d['Name'].replace(" ","-");
+						return "timebox " + d['Category'] + " " + d['Name'].replace(" ", "-");
 						//replace spaces in name with - so that it doesn't get split into two classes
 					})
 					.attr("x", function (d) {return d.start})
 					.attr("y", function (d) {return d.y})
-					.attr("height", function (d) {return d.dy})
+					.attr("height", function (d) {return 5})
 					.attr("width", function (d) {return d.end - d.start})
 					.style("fill", function(d) { return fillColour[d['Category']]})
 					// .style("fill", function(d){return "#687a97"})
