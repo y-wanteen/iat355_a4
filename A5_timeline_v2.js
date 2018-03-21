@@ -198,10 +198,10 @@ d3.csv(bugData, function(datasetBug)
 					{
 
 						var startTime = new Date(d['Start Time']);
-						startTime = startTime.getTime()/1000.0;
+						startTime = startTime.getTime();
 
 						var endTime = new Date(d['End Time']);
-						endTime = endTime.getTime()/1000.0;
+						endTime = endTime.getTime();
 
 						sumCounter++;
 						//Create new array using only the necessary data from the datasets:
@@ -214,7 +214,7 @@ d3.csv(bugData, function(datasetBug)
 							"Rarity":d[month],
 							"Starting Time":startTime,
 							"Ending Time":endTime,
-						     times:[{"starting_time":startTime, "ending_time":endTime}]
+						     times:[{"starting_time":startTime, "ending_time":endTime}, {"starting_time":0, "ending_time":0}]
 						});
 					}
 				});
@@ -506,13 +506,13 @@ d3.csv(bugData, function(datasetBug)
 		 function timelineStackedHover(dataArray)
 		 {
 	        var chart = d3.timelines()
-	          .relativeTime()
-	          .tickFormat({
-	            format: function(d) { return d3.timeFormat("%I %p")(d) },
-	            tickTime: d3.timeHour,
-	            tickInterval: 100,
-	            tickSize: 15,
-	          })
+	          // .relativeTime()
+	          // .tickFormat({
+	          //   format: function(d) { return d3.timeFormat("%I %p")(d) },
+	          //   tickTime: d3.timeHour,
+	          //   tickInterval: 100,
+	          //   tickSize: 15,
+	          // })
 	          .stack()
 	          .margin({left:70, right:30, top:0, bottom:0})
 	          // .hover(function (d, i, datum) {
