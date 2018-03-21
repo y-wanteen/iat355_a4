@@ -1,0 +1,73 @@
+,Name,Price,Location,Total time,Start Time,End Time,Peak time,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+,Common Butterfly,90,Above Flowers,15,4,19,8a-5p,0,0,1,1,1,1,0,0,1,0,0,0
+,Yellow Butterfly,90,Above Flowers,15,4,19,8a-5p,0,0,1,1,1,1,0,0,1,0,0,0
+,Tiger Butterfly,160,Above red or pink Flowers,15,4,19,8a-5p,0,0,3,3,3,3,3,3,3,0,0,0
+,Peacock Butterfly,220,"Above blue, purple or black Flowers",15,4,19,8a-5p,0,0,3,3,3,3,3,3,3,0,0,0
+,Monarch Butterfly,140,Above Flowers,13,4,17,8a-4p,0,0,0,0,0,0,0,0,2,2,2,0
+,Emperor Butterfly,2500,Above Flowers,13,19,8,,0,0,0,0,0,4,4,4,4,0,0,0
+,Agrias Butterfly,3000,Above Flowers,9,8,17,,0,0,0,0,0,4,4,4,4,0,0,0
+,Raja Brooke Butterfly,2500,River or Pond,9,8,17,,0,0,0,0,4,4,4,4,4,0,0,0
+,Birdwing Butterfly,4000,Above Flowers,8,8,16,,0,0,0,0,0,3,3,3,3,0,0,0
+,Moth,60,Outdoor Lights,9,19,4,,0,0,0,0,1,1,1,1,1,0,0,0
+,Oak Silk Moth,1200,Tree Trunk,9,19,4,,0,0,0,0,0,4,4,4,4,0,0,0
+,Honeybee,100,Above Flowers,9,8,17,,0,0,1,1,1,1,1,0,0,0,0,0
+,Bee,2500,Shake Trees,24,0,24,,1,1,1,1,1,1,1,1,1,1,1,1
+,Long Locust,200,Ground,11,8,19,,0,0,0,0,2,2,2,2,2,2,2,0
+,Migratory Locust,600,Ground,11,8,19,8a-4p,0,0,0,0,0,0,0,3,3,3,3,0
+,Rice Grasshopper,400,Ground,11,8,19,,0,0,0,0,0,0,0,3,3,3,3,0
+,Mantis,430,On Flowers,9,8,17,8a-4p,0,0,0,3,3,3,3,3,3,3,3,0
+,Orchid Mantis,2400,White Flowers,9,8,17,,0,0,0,4,4,4,4,4,4,4,4,0
+,Brown Cicada,200,Tree Trunk,9,8,17,8a-4p,0,0,0,0,0,0,1,1,0,0,0,0
+,Robust Cicada,300,Tree Trunk,9,8,17,8a-4p,0,0,0,0,0,0,2,2,0,0,0,0
+,Black Cicada,500,Tree Trunk,9,8,17,,0,0,0,0,0,0,3,3,0,0,0,0
+,Walker Cicada,400,Tree Trunk,9,8,17,,0,0,0,0,0,0,3,3,4,0,0,0
+,Evening Cicada,550,Tree Trunk,4,4,8,,0,0,0,0,0,0,2,2,0,0,0,0
+,Cicada Skin,100,Tree Trunk,24,0,24,,0,0,0,0,0,0,3,3,0,0,0,0
+,Lantern Fly,1800,Tree Trunk,15,16,19,,0,0,0,0,0,4,4,4,4,0,0,0
+,Red Dragonfly,80,Flying,11,8,19,4p-5p,0,0,0,0,0,0,0,0,1,1,0,0
+,Darner Dragonfly,200,Flying,9,8,17,4p-5p,0,0,0,0,0,2,2,2,0,0,0,0
+,Banded Dragonfly,4500,Flying,9,8,17,,0,0,0,0,0,0,4,4,0,0,0,0
+,Giant Petaltail,8000,Flying,2,17,19,,0,0,0,0,0,0,0,4,4,4,0,0
+,Ant,80,"Candy, Spoiled Turnips, Rotten Fruit",24,0,24,,1,1,1,1,1,1,1,1,1,1,1,1
+,Pondskater,130,"River, Pond",11,8,19,5p-7p,0,0,0,0,3,3,3,3,3,0,0,0
+,Diving Beetle,800,"River, Ponds",9,8,17,,0,0,0,0,3,3,3,3,3,0,0,0
+,Stinkbug,120,Tree Trunks,24,0,24,,0,0,0,3,3,3,3,3,3,3,0,0
+,Snail,250,On Hibiscus Bushes,24,0,24,Raining,0,0,0,1,1,1,1,1,1,0,0,0
+,Cricket,130,Ground,15,17,8,,0,0,0,0,0,0,0,0,1,1,1,0
+,Bell Cricket,430,Ground,15,17,8,,0,0,0,0,0,0,0,0,1,1,0,0
+,Grasshopper,160,Ground,9,8,17,,0,0,0,0,0,1,1,1,1,0,0,0
+,Mole Cricket,280,Underground,24,0,24,,3,3,3,3,3,0,0,0,0,0,3,3
+,Walking Leaf,600,Ground,9,8,17,,0,0,0,0,0,0,3,3,3,0,0,0
+,Walking Stick,600,Tree Trunk,7,17,19,,0,0,0,0,0,3,3,3,3,3,3,0
+,Bagworm,300,Shake Trees,24,0,24,8a-7p,3,3,0,0,0,0,0,0,0,3,3,3
+,Ladybug,200,On Flowers,9,8,17,,0,0,1,1,1,1,0,0,0,0,0,0
+,Violin Beetle,260,Tree Stumps,13,4,17,,0,0,0,0,0,3,0,0,3,3,3,0
+,Longhorn Beetle,260,Tree Stumps,8,11,19,,0,0,0,0,0,3,3,3,0,0,0,0
+,Tiger Beetle,1500,Ground,11,8,19,,0,0,3,3,3,3,3,3,3,3,0,0
+,Dung Beetle,800,Snowballs,15,17,8,,3,3,0,0,0,0,0,0,0,0,0,3
+,Wharf Roach,200,Beach,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
+,Hermit Crab,1000,Island Beach,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
+,Firefly,300,Fresh Water,9,19,4,,0,0,0,0,0,1,0,0,0,0,0,0
+,Fruit Beetle,100,Tree Trunk,24,0,24,5p-4a,0,0,0,0,0,1,1,1,1,0,0,0
+,Scarab Beetle,6000,Tree Trunk,9,23,8,,0,0,0,0,0,4,4,4,0,0,0,0
+,Jewel Beetle,2400,Tree Trunk,9,8,17,,0,0,0,0,0,4,4,4,0,0,0,0
+,Miyama Stag,1000,Tree Trunk,24,0,24,7p-8a,0,0,0,0,0,1,1,1,0,0,0,0
+,Saw Stag,2000,Tree Trunk,24,0,24,7p-8a,0,0,0,0,0,3,3,3,0,0,0,0
+,Giant Stag,10000,Tree Trunk,9,23,8,,0,0,0,0,0,4,4,4,0,0,0,0
+,Rainbow Stag,10000,Tree Trunk,13,19,8,,0,0,0,0,0,4,4,4,4,0,0,0
+,Cyclommatus Stag,8000,Palm Trunks,15,17,8,,0,0,0,0,0,2,2,2,0,0,0,0
+,Golden Stag,12000,Palm Trunks,15,17,8,,0,0,0,0,0,5,5,5,0,0,0,0
+,Horned Dynastid,1350,Tree Trunk,15,17,8,11p-8a,0,0,0,0,0,3,3,3,0,0,0,0
+,Horned Atlas,8000,Palm Trunks,15,17,8,,0,0,0,0,0,4,4,4,0,0,0,0
+,Horned Elephant,8000,Palm Trunks,15,17,8,,0,0,0,0,0,4,4,4,0,0,0,0
+,Horned Hercules,12000,Palm Trunks,15,17,8,,0,0,0,0,0,5,5,5,0,0,0,0
+,Goliath Beetle,6000,Palm Trunks,13,19,8,,0,0,0,0,0,4,4,4,4,0,0,0
+,Flea,70,On Villager,24,0,24,,0,0,4,4,4,4,4,4,4,4,4,0
+,Pillbug,250,Under Rock,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
+,Mosquito,130,Flying,11,17,4,7p-11p,0,0,0,0,0,2,2,2,2,0,0,0
+,Fly,60,Garbage or Spoiled Turnips,24,0,24,,1,1,1,1,1,1,1,1,1,1,1,1
+,House Centipede,250,Strike Rocks with Shovel,11,19,8,,0,0,0,0,0,0,0,4,4,4,0,0
+,Centipede,300,Strike Rocks with Shovel,7,16,23,,4,4,0,0,0,4,4,4,4,4,4,4
+,Spider,300,Shake Trees,13,19,8,,0,0,3,3,3,3,3,3,0,3,0,0
+,Tarantula,8000,Ground,9,19,4,,0,0,0,0,0,5,5,5,0,0,0,0
+,Scorpion,8000,Ground,9,19,4,,0,0,0,0,0,0,5,5,5,0,0,0

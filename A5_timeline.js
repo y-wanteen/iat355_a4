@@ -29,17 +29,26 @@ var height = winHeight - margin.top - margin.bottom;
 var graphWidth =  winWidth + margin.left + margin.right;
 var graphHeight = winHeight + margin.top + margin.bottom;
 
+// var timeline = d3.layout.timeline()
+//   .size([1000,300])
+//   .bandStart(function (d) {return d.s})
+//   .bandEnd(function (d) {return d.e})
+//   .dateFormat(function (d) {return parseInt(d)})
+
 var timeline = d3.layout.timeline()
-  .size([1000,300])
-  .bandStart(function (d) {return d.s})
-  .bandEnd(function (d) {return d.e})
+  .size([1000,10000])
+  .bandStart(function (d) {return d['Start Time']})
+  .bandEnd(function (d) {return d['End Time']})
   .dateFormat(function (d) {return parseInt(d)})
+  .padding(5) //padding between rectangles
 
 //was trying to get the example graph to show up
 // 	d3.csv("int_bands.csv", function (csv) {
 //   timelineBands = timeline(csv);
-//
-//   d3.select("#graph").selectAll("rect")
+
+//   console.log(timelineBands);
+
+//   d3.select("svg").selectAll("rect")
 //   .data(timelineBands)
 //   .enter()
 //   .append("rect")
@@ -79,13 +88,15 @@ var svg2 = d3.select("#graph")
 
 		//class to make svg responsive
 		.classed("svg-content-responsive", true)
-		.classed("hidden", true)
+		// .classed("hidden", true)
 		.append("g")
-		.attr("transform", "translate( 50," + margin.top + ")")
+		.attr("transform", "translate( 50," + margin.top + ")");
 		// .style("opacity",0);
 
 //Global variables //////////
 var totalPriceRange = [];
+var dailySpecies = [];
+var dailyTimeline = [];
 
 // BUG DATA //////////////////////////////
 d3.csv(bugData, function(datasetBug)
@@ -95,7 +106,7 @@ d3.csv(bugData, function(datasetBug)
 	function getPriceRange(data)
 	{
 		var range = d3.extent(data, function(d){ return +d['Price']});
-		console.log("min price: " + range[0] + " max price: " + range[1]);
+		// console.log("min price: " + range[0] + " max price: " + range[1]);
 		return range;
 	}
 
@@ -120,7 +131,7 @@ d3.csv(bugData, function(datasetBug)
 			totalPriceRange.push(bugPriceRange[1], fishPriceRange[1], divingPriceRange[1]);
 			var maxPrice = Math.max(...totalPriceRange);
 
-			console.log("highest sell price: " + maxPrice);
+			// console.log("highest sell price: " + maxPrice);
 
 			//create x and y axis ///////////////////////
 			var xScale,xScale2;
@@ -159,10 +170,10 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0, " + height +")")
 				.call(xAxis);
 
-				svg2.append("g")
-					.attr("class", "x axis")
-					.attr("transform", "translate(0, " + height +")")
-					.call(xAxis2);
+			svg2.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0, " + height +")")
+				.call(xAxis2);
 
 			// text label for the x axis
 			svg.append("text")
@@ -233,12 +244,19 @@ d3.csv(bugData, function(datasetBug)
 					{
 						sumCounter++;
 						//Create new array using only the necessary data from the datasets:
-						//Type of wildlife, available month, species name, and price
-						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price'], "Rarity":d[month]});
+						 //Type of wildlife, available month, species name, and price
+			            monthlyWildlife.push({"Category":setClass, 
+			                      "Month":month, 
+			                      "Name":d['Name'], 
+			                      "Price":+d['Price'], 
+			                      "Rarity":d[month],
+			                      "Start Time":+d['Start Time'],
+			                      "End Time":+d['End Time']
+			                    });
 					}
 				});
 
-				console.log(setClass+"/"+month+" Sum: "+sumCounter)
+				// console.log(setClass+"/"+month+" Sum: "+sumCounter);
 
 			} //end of plot points function
 
@@ -424,40 +442,40 @@ d3.csv(bugData, function(datasetBug)
 
 				///////////// filter section
 
-													//linking id of buttons in HTML
-													var bFilter = document.getElementById('bug-filter');
-													var fFilter = document.getElementById('fish-filter');
-													var dFilter = document.getElementById('diving-filter');
-													var clear = document.getElementById('clear');
+							//linking id of buttons in HTML
+							var bFilter = document.getElementById('bug-filter');
+							var fFilter = document.getElementById('fish-filter');
+							var dFilter = document.getElementById('diving-filter');
+							var clear = document.getElementById('clear');
 
-													//seting up event listener
-													bFilter.addEventListener('click', function(){
-														filter('bugs')}	);
-													fFilter.addEventListener('click', function(){
-														filter('fish')}	);
-													dFilter.addEventListener('click', function(){
-														filter('diving')}	);
-													clear.addEventListener('click', function(){
-															filter('clear')}	);
+							//seting up event listener
+							bFilter.addEventListener('click', function(){
+								filter('bugs')}	);
+							fFilter.addEventListener('click', function(){
+								filter('fish')}	);
+							dFilter.addEventListener('click', function(){
+								filter('diving')}	);
+							clear.addEventListener('click', function(){
+									filter('clear')}	);
 
-													//passing through data and category variable
-													function filter(category){
-														render(monthlyWildlife, category);
-													}
+							//passing through data and category variable
+							function filter(category){
+								render(monthlyWildlife, category);
+							}
 
-													function render(monthlyWildlife, category){
-														if(category!="clear"){
-															d3.selectAll("circle")
-															.style("opacity", "0.8") //clear previous opacity setting
-															//filters category of species
-															.filter(function(d){return d['Category']!=category})
-															.style("opacity", "0.1"); //lowers opacity of other
-														}else{
-															d3.selectAll("circle")
-															.style("opacity", "0.8") //revert back to orig opacity
-														}
-													}
-													///end filter section
+							function render(monthlyWildlife, category){
+								if(category!="clear"){
+									d3.selectAll("circle")
+									.style("opacity", "0.8") //clear previous opacity setting
+									//filters category of species
+									.filter(function(d){return d['Category']!=category})
+									.style("opacity", "0.1"); //lowers opacity of other
+								}else{
+									d3.selectAll("circle")
+									.style("opacity", "0.8") //revert back to orig opacity
+								}
+							}
+							///end filter section
 
 			  u.exit().remove();
 
@@ -479,6 +497,8 @@ d3.csv(bugData, function(datasetBug)
 		            dy = s[1][1] - y0;
 		         // console.log(s);
 
+		         dailySpecies = []; //clear the array first
+
 		        svg.selectAll('circle')
 		            .style("opacity", function (d) 		//change opacity on selection
 		            {
@@ -487,10 +507,11 @@ d3.csv(bugData, function(datasetBug)
 		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
 		                {
 		                	//print selected data to console
-		                    console.log(d);
+		                    // console.log(d);
 
 		                     //push these into another array of data
-		                     //that will get used in the second chart?
+		                     //that will get used in the second chart
+		                     dailySpecies.push(d);
 
 		                    // return "#ec7014";
 		                    return 1;
@@ -515,6 +536,19 @@ d3.csv(bugData, function(datasetBug)
 		                    return "lightgrey";
 		                }
 		            });
+
+		         console.log("selected:");
+		         console.log(dailySpecies);
+
+		         //update the timeline 
+		         dailyTimeline = timeline(dailySpecies);
+		         console.log("timeline formatted:");
+		         console.log(dailyTimeline);
+
+		         // updateTimeline();
+                 
+
+
 		    } //end of brush function
 
 		    function brushended() //default styling
@@ -525,7 +559,9 @@ d3.csv(bugData, function(datasetBug)
 		                .transition()
 		                .duration(150)
 		                .ease(d3.easeLinear)
-		                .style("fill", function(d){ return fillColour[d['Category']]; })
+		                .style("fill", function(d){ 
+		                	return fillColour[d['Category']]
+		                })
 		                .style("opacity", 0.8)
 		                .style("stroke", "lightgrey");
 		        }
@@ -540,6 +576,44 @@ d3.csv(bugData, function(datasetBug)
 		            y1 = brush_coords[1][1];
 
 		        return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+		    }
+
+		    updateTimeline();
+
+		    function updateTimeline()
+		    {
+
+		    	fishTimeline = timeline(datasetFish);
+		    	bugTimeline = timeline(datasetBug);
+		    	divingTimeline = timeline(datasetDiving);
+
+		    	everythingTimeline = timeline(monthlyWildlife);
+
+		    	console.log("unique");
+
+		    	console.log(d3.map(everythingTimeline, function(d){return d['Name']}).keys());
+
+				d3.select("svg").selectAll("rect")
+					.data(everythingTimeline)
+					.enter()
+					.append("rect")
+					.attr("class", function(d) 	//add classes to circles here
+					{
+						// return d['Category'] + " " + d['Name'] + " " + d['Month'];
+						return d['Category'] + " " + d['Name'].replace(" ", "-");
+						//replace spaces in name with - so that it doesn't get split into two classes
+					})
+					.attr("x", function (d) {return d.start})
+					.attr("y", function (d) {return d.y})
+					.attr("height", function (d) {return d.dy})
+					.attr("width", function (d) {return d.end - d.start})
+					.style("fill", function(d) { return fillColour[d['Category']]})
+					// .style("fill", function(d){return "#687a97"})
+					.style("stroke", "lightgrey")
+					.style("opacity", 0.5);
+
+				console.log("updated");
+			
 		    }
 
 
