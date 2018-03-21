@@ -33,6 +33,10 @@ var graphHeight = winHeight + margin.top + margin.bottom;
 var scrubHeight = 300;
 var scrubWindowHeight = winHeight - margin.top - margin.bottom;
 
+var t = d3.transition()
+    .duration(750)
+    .ease(d3.easeLinear);
+
 //create svg
 var svg = d3.select("#graph")
 
@@ -169,7 +173,7 @@ d3.csv(bugData, function(datasetBug)
 			 .style("text-anchor", "middle")
 			 .text("Selling Price (in Bells)");
 
-			
+
 			// SVG 2 (Price Range)
 
 			var xAxis2 = d3.axisBottom()
@@ -187,7 +191,7 @@ d3.csv(bugData, function(datasetBug)
 									 	  (scrubHeight - margin.top - 30) + ")")
 					.style("text-anchor", "middle")
 					.text("Selling Price (in Bells)");
-				
+
 
 			 svg2.append("text")
 				.attr("y", 0 - 70)
@@ -235,10 +239,10 @@ d3.csv(bugData, function(datasetBug)
 
 						 // start time and end time for doing a timeline in the future
 			            monthlyWildlife.push({
-									"Category":setClass, 
-									"Month":month, 
-									"Name":d['Name'], 
-									"Price":+d['Price'], 
+									"Category":setClass,
+									"Month":month,
+									"Name":d['Name'],
+									"Price":+d['Price'],
 									"Rarity":d[month]
 									// "Start Time":startTime,
 									// "End Time":endTime,
@@ -368,6 +372,7 @@ d3.csv(bugData, function(datasetBug)
 
 						// remove previous selecitons ...
 						d3.selectAll("circle")
+						.classed("enlarge", false)
 						.style('opacity',0.2)
 						.attr('fill', function(d) //set fill colour based on data category/wildlife type
 						 {
@@ -383,10 +388,12 @@ d3.csv(bugData, function(datasetBug)
 
 						//select all circles of the same classes/species
 						d3.selectAll("circle."+selectorClass.replace(" ", "."))
-						  .style('opacity',1);
+						  .style('opacity',1)
+							.classed("enlarge", true);
 
 						d3.selectAll(".hidden")
-						.style('opacity',1);
+						.style('opacity',1)
+						.classed("enlarge", true);
 
 						//i have no idea what this part do???
 						d3.selectAll("circle").classed("dim", function (dd){
@@ -440,8 +447,8 @@ d3.csv(bugData, function(datasetBug)
 				data.forEach(function(d)
 				{
 					speciesOverview.push({
-									"Category":setClass, 
-									"Name":d['Name'], 
+									"Category":setClass,
+									"Name":d['Name'],
 									"Price":+d['Price']
 								})
 				})
@@ -587,12 +594,14 @@ d3.csv(bugData, function(datasetBug)
 			function render(monthlyWildlife, category){
 				if(category!="clear"){
 					d3.selectAll("circle")
+					.transition(t)
 					.style("opacity", "0.8") //clear previous opacity setting
 					//filters category of species
 					.filter(function(d){return d['Category']!=category})
 					.style("opacity", "0.1"); //lowers opacity of other
 				}else{
 					d3.selectAll("circle")
+					.transition(t)
 					.style("opacity", "0.8") //revert back to orig opacity
 				}
 			}
@@ -660,14 +669,14 @@ d3.csv(bugData, function(datasetBug)
 		         // console.log("selected:");
 		         // console.log(dailySpecies);
 
-		         //update the timeline 
+		         //update the timeline
 		         // dailyTimeline = timeline(dailySpecies);
 		         // console.log("timeline formatted:");
 		         // console.log(dailyTimeline);
 
 		         //create the timeline based on brushed data
 		         // timelineStackedHover(dailySpecies);
-                 
+
 
 
 		    } //end of brush function
@@ -676,11 +685,11 @@ d3.csv(bugData, function(datasetBug)
 		    {
 		        if (!d3.event.selection)
 		        {
-		            svg.selectAll('circle')
+		            d3.selectAll('circle')
 		                .transition()
 		                .duration(150)
 		                .ease(d3.easeLinear)
-		                .style("fill", function(d){ 
+		                .style("fill", function(d){
 		                	return fillColour[d['Category']]
 		                })
 		                .style("opacity", 0.8)
