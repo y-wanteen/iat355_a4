@@ -26,7 +26,6 @@ var height = winHeight - margin.top - margin.bottom;
 var graphWidth =  winWidth + margin.left + margin.right;
 var graphHeight = winHeight + margin.top + margin.bottom;
 
-
 //create svg
 var svg = d3.select("#graph")
 
@@ -62,6 +61,7 @@ var svg2 = d3.select("#graph")
 
 //Global variables //////////
 var totalPriceRange = [];
+var timelineSpecies = [];
 
 // BUG DATA //////////////////////////////
 d3.csv(bugData, function(datasetBug)
@@ -196,14 +196,30 @@ d3.csv(bugData, function(datasetBug)
 				{
 					if (d[month] > 0)
 					{
+
+						var startTime = new Date(d['Start Time']);
+						startTime = startTime.getTime()/1000.0;
+
+						var endTime = new Date(d['End Time']);
+						endTime = endTime.getTime()/1000.0;
+
 						sumCounter++;
 						//Create new array using only the necessary data from the datasets:
 						//Type of wildlife, available month, species name, and price
-						monthlyWildlife.push({"Category":setClass, "Month":month, "Name":d['Name'], "Price":+d['Price'], "Rarity":d[month]});
+						monthlyWildlife.push(
+						{   "Category":setClass, 
+							"Month":month,
+							"Name":d['Name'], 
+							"Price":+d['Price'], 
+							"Rarity":d[month],
+							"Starting Time":startTime,
+							"Ending Time":endTime,
+						     times:[{"starting_time":startTime, "ending_time":endTime}]
+						});
 					}
 				});
 
-				console.log(setClass+"/"+month+" Sum: "+sumCounter)
+				// console.log(setClass+"/"+month+" Sum: "+sumCounter)
 
 			} //end of plot points function
 
@@ -236,6 +252,8 @@ d3.csv(bugData, function(datasetBug)
 			var radius = 5; //average radius of nodes
 
 			console.log(monthlyWildlife);
+
+			// SCATTERPLOT /////////////////////////////////////////////////////////////////////
 
 			// FORCE LAYOUT COLLISION ////////////////////////////////////
 
@@ -317,45 +335,45 @@ d3.csv(bugData, function(datasetBug)
 				.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
 
-				.on("click", function (d) {
+				.on("click", function (d) 
+				{
+					var highlightkey=d.key;
 
-						var highlightkey=d.key;
+					// remove previous selecitons ...
+					d3.selectAll("circle")
+					.style('opacity',0.2)
+					.attr('fill', function(d) //set fill colour based on data category/wildlife type
+					 {
+						 return fillColour[d['Category']];
 
-						// remove previous selecitons ...
-						d3.selectAll("circle")
-						.style('opacity',0.2)
-						.attr('fill', function(d) //set fill colour based on data category/wildlife type
-						 {
-							 return fillColour[d['Category']];
+					 })
 
-						 })
+					//get the classes of the circle selected
+					var selectorClass = this.className['baseVal'];
 
-						//get the classes of the circle selected
-						var selectorClass = this.className['baseVal'];
+					//print classes to console
+					// console.log(selectorClass.replace(" ", "."));
 
-						//print classes to console
-						// console.log(selectorClass.replace(" ", "."));
+					//select all circles of the same classes/species
+					d3.selectAll("circle."+selectorClass.replace(" ", "."))
+					  .style('opacity',1);
 
-						//select all circles of the same classes/species
-						d3.selectAll("circle."+selectorClass.replace(" ", "."))
-						  .style('opacity',1);
-
-						 //  d3.select(this)
-							// .style('opacity', 1);
+					 //  d3.select(this)
+						// .style('opacity', 1);
 
 
-							// .attr("fill", "orange");
+						// .attr("fill", "orange");
 
-						d3.selectAll(".hidden")
-						.style('opacity',1);
+					d3.selectAll(".hidden")
+					.style('opacity',1);
 
-						//i have no idea what this part do???
-						d3.selectAll("circle").classed("dim", function (dd){
-								if  (dd.key==highlightkey)
-										return false;
-								else
-										return true;
-						})
+					//i have no idea what this part do???
+					d3.selectAll("circle").classed("dim", function (dd){
+							if  (dd.key==highlightkey)
+									return false;
+							else
+									return true;
+					})
 
 				})
 
@@ -415,8 +433,17 @@ d3.csv(bugData, function(datasetBug)
 		                	//print selected data to console
 		                    console.log(d);
 
-		                     //push these into another array of data 
-		                     //that will get used in the second chart?
+		                    timelineSpecies = []; //clean the array of whatever was in there before
+
+		                    //add new data to array
+
+		                    timelineSpecies.push({label:d['Name'],
+		                     		times: [{"color":fillColour[d['Category']], "starting_time":d['Starting Time'], 
+											"ending_time":d['Ending Time']}]});
+
+		                     console.log(timelineSpecies);
+
+		                     timelineStackedHover();
 
 		                    // return "#ec7014";
 		                    return 1;
@@ -441,6 +468,7 @@ d3.csv(bugData, function(datasetBug)
 		                    return "lightgrey";
 		                }
 		            });
+
 		    } //end of brush function
 
 		    function brushended() //default styling
@@ -468,6 +496,36 @@ d3.csv(bugData, function(datasetBug)
 		        return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
 		    }
 
+		    // TIMELINE //////////////////////////////////////////////////////////////////////
+
+		 function timelineStackedHover() 
+		 {
+	        var chart = d3.timelines()
+	          .relativeTime()
+	          .tickFormat({
+	            format: function(d) { return d3.timeFormat("%I %p")(d) },
+	            tickTime: d3.timeHour,
+	            tickInterval: 100,
+	            tickSize: 15,
+	          })
+	          .stack()
+	          .margin({left:70, right:30, top:0, bottom:0})
+	          .hover(function (d, i, datum) {
+	          // d is the current rendering object
+	          // i is the index during d3 rendering
+	          // datum is the id object
+	            var div = $('#hoverRes');
+	            var colors = chart.colors();
+	            div.find('.coloredDiv').css('background-color', colors(i))
+	            div.find('#name').text(datum.label);
+	          })
+	          .click(function (d, i, datum) {
+	            console.log("timeStackedHover", datum.label);
+	          });
+
+	        var svg = d3.select("#timeline").append("svg").attr("width", width)
+	          .datum(timelineSpecies).call(chart);
+	      }
 
 		}); //end of diving data csv
 
