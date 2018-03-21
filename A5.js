@@ -1,7 +1,7 @@
 //Data
 var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs2.csv";
 var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish2.csv";
-var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving2.csv";
+var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving_v2.csv";
 
 //Key/value Arrays commonly used
 var fillColour = {"bugs":"#69D1C5", "fish":"tomato", "diving":"#2A1E5C"};
@@ -57,7 +57,7 @@ var svg2 = d3.select("#priceRange")
 		.append("svg")
 		//responsive SVG needs these 2 attributes and no width and height attr
 		.attr("preserveAspectRatio", "xMinYMin meet")
-		.attr("viewBox", "0 0 "+ graphWidth +" "+ scrubHeight)
+		// .attr("viewBox", "0 0 "+ graphWidth +" "+ scrubHeight)
 
 		//class to make svg responsive
 		.classed("svg-content-responsive", true)
@@ -108,7 +108,7 @@ d3.csv(bugData, function(datasetBug)
 
 			//create x and y axis ///////////////////////
 			var xScale,xScale2;
-			var yScale;
+			var yScale, yScale2;
 
 			xScale = d3.scaleLinear()
 					.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
@@ -121,6 +121,10 @@ d3.csv(bugData, function(datasetBug)
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
 					.range([0,height-height/5, height]);
+
+			yScale2 = d3.scaleLinear()
+					.domain([1, 0])
+					.range([0, 150]);
 
 			//Create array of text labels for the x-axis to use
 			var monthsAxis = [""];
@@ -151,6 +155,7 @@ d3.csv(bugData, function(datasetBug)
 
 			var yAxis = d3.axisLeft()
 						.scale(yScale);
+
 			svg.append("g")
 				.attr("class", "y axis")
 				.attr("transform", "translate(0,0)")
@@ -174,6 +179,15 @@ d3.csv(bugData, function(datasetBug)
 				.attr("class", "x axis")
 				.attr("transform", "translate(0, " + 150 +")")
 				.call(xAxis2);
+
+			var yAxis2 = d3.axisLeft()
+						.scale(yScale2);
+						
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("transform", "translate(0,0)")
+				.call(yAxis2);
+
 				
 
 			 svg2.append("text")
@@ -226,7 +240,7 @@ d3.csv(bugData, function(datasetBug)
 									"Month":month, 
 									"Name":d['Name'], 
 									"Price":+d['Price'], 
-									"Rarity":d[month],
+									"Rarity":d[month]
 									// "Start Time":startTime,
 									// "End Time":endTime,
 									// times:[{"starting_time":startTime, "ending_time":endTime}, {"starting_time":0, "ending_time":0}]
@@ -268,20 +282,6 @@ d3.csv(bugData, function(datasetBug)
 
 			// console.log(monthlyWildlife);
 
-			var nestedSpecies = d3.nest()
-								  .key(function(d){ return d['Name']})
-								  .rollup(function(v)
-								  { 
-								  	return v.map(function(d)
-								  	{
-								  		return d['Price'];
-								  	})
-								  })
-								  .entries(monthlyWildlife);
-
-			  console.log(nestedSpecies);
-
-
 			// FORCE LAYOUT COLLISION ////////////////////////////////////
 
 			//PRICE VS MONTH  //////////////////
@@ -298,8 +298,6 @@ d3.csv(bugData, function(datasetBug)
 				}))
 			  .on('tick', ticked);
 			  // simulation.alphaTarget(0.3).restart();
-
-			  // var simulation2 = d3.forceSimulation()
 
 			function ticked() //draw the nodes
 			{
@@ -432,6 +430,159 @@ d3.csv(bugData, function(datasetBug)
 
 
 			} // end of ticked()
+
+
+			// PRICE OVERVIEW
+
+			var speciesOverview = [];
+
+			function getOverview(setClass, data)
+			{
+				data.forEach(function(d)
+				{
+					speciesOverview.push({
+									"Category":setClass, 
+									"Name":d['Name'], 
+									"Price":+d['Price']
+								})
+				})
+			}
+
+			getOverview("bugs", datasetBug);
+			getOverview("fish", datasetFish);
+			getOverview("diving", datasetDiving);
+
+			console.log(speciesOverview);
+
+
+			 // var circles= svg2.selectAll("circle.points")
+    //         .data(speciesOverview)
+    //         .enter()
+    //         .append("circle")
+    //         .attr("class","points")
+    //         .attr("cx", function (d){
+
+    //             return xScale2(d['Price'])
+
+    //         })
+    //         .attr("cy", function (d){
+
+    //             return yScale2(75);
+
+    //         })
+    //         .attr("r", function (d){
+    //             return 4;
+    //         })
+    //         .attr("fill", "tomato");
+
+
+
+			 var simulation2 = d3.forceSimulation(speciesOverview)
+			  .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
+			  .force('x', d3.forceX().x(function(d) //plot x according to price
+			  {
+			  		return xScale2(+d['Price']);
+			  }))
+			  .force('y', d3.forceY().y(function(d){ return yScale2(75); })) //around middle of graph
+			  .force('collision', d3.forceCollide().radius(function(d)
+				{
+					    return 2.5;
+				}))
+			  .on('tick', tickedOverview);
+
+			 function tickedOverview()
+			 {
+			  	var pointRadius = 3;
+
+			 	var u = svg2.selectAll('circle.point-set-2')
+			    .data(speciesOverview);
+
+				u.enter()
+				.append("circle")
+				.attr("class", function(d) 	//add classes to circles here
+				{
+					// return d['Category'] + " " + d['Name'] + " " + d['Month'];
+					return "point-set-2 " + d['Category'] + " " + d['Name'].replace(" ", "-");
+					//replace spaces in name with - so that it doesn't get split into two classes
+				})
+
+				// node appearance
+			    .attr('r', function(d) //different node size based on rarity
+			    {
+			    	return pointRadius-0.5;
+
+			    })
+			    .attr('fill', function(d) //set fill colour based on data category/wildlife type
+			    {
+		    		return fillColour[d['Category']];
+			    })
+			    .attr('opacity', 0.8)
+			    .attr("stroke-width", "1")
+				.attr("stroke", "lightgrey")
+
+				// mouse over tool tip
+				.on("mouseover", function(d){
+					tooltip.style("visibility", "visible");
+
+					tooltip.html(d['Name']+", $" + d['Price']);
+					tooltip.style("color", fillColour[d['Category']]);
+				})
+
+				.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+
+				.on("click", function (d) {
+					console.log(d);
+						var highlightkey=d.key;
+
+						// remove previous selecitons ...
+						d3.selectAll("circle")
+						.style('opacity',0.2)
+						.attr('fill', function(d) //set fill colour based on data category/wildlife type
+						 {
+							 return fillColour[d['Category']];
+
+						 })
+
+						//get the classes of the circle selected
+						var selectorClass = this.className['baseVal'];
+
+						//print classes to console
+						// console.log(selectorClass.replace(" ", "."));
+
+						//select all circles of the same classes/species
+						d3.selectAll("circle."+selectorClass.replace(" ", "."))
+						  .style('opacity',1);
+
+						d3.selectAll(".hidden")
+						.style('opacity',1);
+
+						//i have no idea what this part do???
+						d3.selectAll("circle").classed("dim", function (dd){
+								if  (dd.key==highlightkey)
+										return false;
+								else
+										return true;
+						})
+
+				})
+
+			    .merge(u)
+			    .attr('cx', function(d) //constrain the x position of each column of points according to month
+			    {
+			    	return d.x = xScale2(d['Price']);
+
+			    })
+
+			    .attr('cy', function(d)
+			    {
+			      return d.y;
+			      // return d.y = Math.max(radius, Math.min(height - radius, d.y));
+			    })
+
+			  u.exit().remove();
+
+			 } //end of ticked overview
 
 
 			///////////// filter section
