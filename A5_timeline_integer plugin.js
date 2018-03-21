@@ -1,7 +1,7 @@
 //Data
-var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs2.csv";
-var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish2.csv";
-var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving2.csv";
+var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs.csv";
+var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish.csv";
+var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving.csv";
 
 //Key/value Arrays commonly used
 var fillColour = {"bugs":"#69D1C5", "fish":"tomato", "diving":"#2A1E5C"};
@@ -28,6 +28,38 @@ var height = winHeight - margin.top - margin.bottom;
 
 var graphWidth =  winWidth + margin.left + margin.right;
 var graphHeight = winHeight + margin.top + margin.bottom;
+
+// var timeline = d3.layout.timeline()
+//   .size([1000,300])
+//   .bandStart(function (d) {return d.s})
+//   .bandEnd(function (d) {return d.e})
+//   .dateFormat(function (d) {return parseInt(d)})
+
+var timeline = d3.layout.timeline()
+  .size([graphWidth,graphHeight])
+  .bandStart(function (d) {return d['Start Time']})
+  .bandEnd(function (d) {return d['End Time']})
+  .dateFormat(function (d) {return parseInt(d)})
+  .extent(["0", "24"])
+  .padding(3) //padding between rectangles
+
+//was trying to get the example graph to show up
+// 	d3.csv("int_bands.csv", function (csv) {
+//   timelineBands = timeline(csv);
+
+//   console.log(timelineBands);
+
+//   d3.select("svg").selectAll("rect")
+//   .data(timelineBands)
+//   .enter()
+//   .append("rect")
+//   .attr("x", function (d) {return d.start})
+//   .attr("y", function (d) {return d.y})
+//   .attr("height", function (d) {return d.dy})
+//   .attr("width", function (d) {return d.end - d.start})
+//   .style("fill", "#687a97")
+//   .style("stroke", "black")
+// })
 
 //create svg
 var svg = d3.select("#graph")
@@ -211,26 +243,17 @@ d3.csv(bugData, function(datasetBug)
 				{
 					if (d[month] > 0)
 					{
-
-						var startTime = new Date(d['Start Time']);
-						startTime = startTime.getTime();
-
-						var endTime = new Date(d['End Time']);
-						endTime = endTime.getTime();
-
 						sumCounter++;
 						//Create new array using only the necessary data from the datasets:
 						 //Type of wildlife, available month, species name, and price
-			            monthlyWildlife.push({
-									"Category":setClass, 
-									"Month":month, 
-									"Name":d['Name'], 
-									"Price":+d['Price'], 
-									"Rarity":d[month],
-									"Start Time":startTime,
-									"End Time":endTime,
-									times:[{"starting_time":startTime, "ending_time":endTime}, {"starting_time":0, "ending_time":0}]
-								});
+			            monthlyWildlife.push({"Category":setClass, 
+			                      "Month":month, 
+			                      "Name":d['Name'], 
+			                      "Price":+d['Price'], 
+			                      "Rarity":d[month],
+			                      "Start Time":+d['Start Time'],
+			                      "End Time":+d['End Time']
+			                    });
 					}
 				});
 
@@ -489,15 +512,7 @@ d3.csv(bugData, function(datasetBug)
 
 		                     //push these into another array of data
 		                     //that will get used in the second chart
-		                     // dailySpecies.push(d);
-
-		                     dailySpecies.push({label:d['Name'],
-		                     		times: [{"color":fillColour[d['Category']], "starting_time":d['Starting Time'],
-											"ending_time":d['Ending Time']}]});
-
-		                     console.log(dailySpecies);
-
-		                     // timelineStackedHover(timelineSpecies);
+		                     dailySpecies.push(d);
 
 		                    // return "#ec7014";
 		                    return 1;
@@ -531,7 +546,7 @@ d3.csv(bugData, function(datasetBug)
 		         // console.log("timeline formatted:");
 		         // console.log(dailyTimeline);
 
-		         timelineStackedHover(dailySpecies);
+		         updateTimeline(dailySpecies);
                  
 
 
@@ -564,44 +579,53 @@ d3.csv(bugData, function(datasetBug)
 		        return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
 		    }
 
-		    // TIMELINE //////////////////////////////////////////////////////////////////////
+		        // updateTimeline();
 
-			function timelineStackedHover(dataArray)
-			{
-				var chart = d3.timelines()
-						// .relativeTime()
-						// .tickFormat({
-						//   format: function(d) { return d3.timeFormat("%I %p")(d) },
-						//   tickTime: d3.timeHour,
-						//   tickInterval: 100,
-						//   tickSize: 15,
-						// })
-						.stack()
-						.margin({left:70, right:30, top:0, bottom:0})
-						// .hover(function (d, i, datum) {
-						// // d is the current rendering object
-						// // i is the index during d3 rendering
-						// // datum is the id object
-						//   var div = $('#hoverRes');
-						//   var colors = chart.colors();
-						//   div.find('.coloredDiv').css('background-color', colors(i))
-						//   div.find('#name').text(datum.label);
-						// })
-						// .click(function (d, i, datum) {
-						//   console.log("timeStackedHover", datum.label);
-						// });
+		    function updateTimeline(selection)
+		    {
 
-				//clear the previous timeline
-				d3.select("#timeline").select("svg").remove();
+		    	fishTimeline = timeline(datasetFish);
+		    	bugTimeline = timeline(datasetBug);
+		    	divingTimeline = timeline(datasetDiving);
 
-				//create a new timeline
-				var svg = d3.select("#timeline").append("svg")
-				.attr("width", graphWidth)
-				.attr("height", graphHeight)
-				.datum(dataArray).call(chart);
+		    	// dailyTimeline = timeline(dailySpecies);
+		    	dailyTimeline = timeline(selection);
+		    	console.log("daily");
+		    	console.log(dailyTimeline);
 
+		    	everythingTimeline = timeline(monthlyWildlife);
 
-			}
+		    	console.log("unique");
+
+		    	console.log(d3.map(everythingTimeline, function(d){return d['Name']}).keys());
+
+		    	// d3.select("#timelime").select("svg2").remove();
+
+		    	// var svg2 = d3.select("#timeline")
+		    	// 			.append("svg")
+				svg2.selectAll("rect")
+					.data(dailyTimeline)
+					.enter()
+					.append("rect")
+					.attr("class", function(d) 	//add classes to circles here
+					{
+						// return d['Name'].replace(" ","-");
+						return "timebox " + d['Category'] + " " + d['Name'].replace(" ", "-");
+						//replace spaces in name with - so that it doesn't get split into two classes
+					})
+					.attr("x", function (d) {return d.start})
+					.attr("y", function (d) {return d.y})
+					.attr("height", function (d) {return 5})
+					.attr("width", function (d) {return d.end - d.start})
+					.style("fill", function(d) { return fillColour[d['Category']]})
+					// .style("fill", function(d){return "#687a97"})
+					.style("stroke", "lightgrey")
+					.style("opacity", 0.5);
+
+				console.log("updated");
+			
+		    }
+
 
 		}); //end of diving data csv
 
