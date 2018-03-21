@@ -421,6 +421,44 @@ d3.csv(bugData, function(datasetBug)
 			      return d.y = Math.max(radius, Math.min(height - radius, d.y));
 			    })
 
+
+				///////////// filter section
+
+													//linking id of buttons in HTML
+													var bFilter = document.getElementById('bug-filter');
+													var fFilter = document.getElementById('fish-filter');
+													var dFilter = document.getElementById('diving-filter');
+													var clear = document.getElementById('clear');
+
+													//seting up event listener
+													bFilter.addEventListener('click', function(){
+														filter('bugs')}	);
+													fFilter.addEventListener('click', function(){
+														filter('fish')}	);
+													dFilter.addEventListener('click', function(){
+														filter('diving')}	);
+													clear.addEventListener('click', function(){
+															filter('clear')}	);
+
+													//passing through data and category variable
+													function filter(category){
+														render(monthlyWildlife, category);
+													}
+
+													function render(monthlyWildlife, category){
+														if(category!="clear"){
+															d3.selectAll("circle")
+															.style("opacity", "0.8") //clear previous opacity setting
+															//filters category of species
+															.filter(function(d){return d['Category']!=category})
+															.style("opacity", "0.1"); //lowers opacity of other
+														}else{
+															d3.selectAll("circle")
+															.style("opacity", "0.8") //revert back to orig opacity
+														}
+													}
+													///end filter section
+
 			  u.exit().remove();
 
 
