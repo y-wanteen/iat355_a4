@@ -35,6 +35,22 @@ var timeline = d3.layout.timeline()
   .bandEnd(function (d) {return d.e})
   .dateFormat(function (d) {return parseInt(d)})
 
+//was trying to get the example graph to show up
+// 	d3.csv("int_bands.csv", function (csv) {
+//   timelineBands = timeline(csv);
+//
+//   d3.select("#graph").selectAll("rect")
+//   .data(timelineBands)
+//   .enter()
+//   .append("rect")
+//   .attr("x", function (d) {return d.start})
+//   .attr("y", function (d) {return d.y})
+//   .attr("height", function (d) {return d.dy})
+//   .attr("width", function (d) {return d.end - d.start})
+//   .style("fill", "#687a97")
+//   .style("stroke", "black")
+// })
+
 //create svg
 var svg = d3.select("#graph")
 
@@ -51,7 +67,7 @@ var svg = d3.select("#graph")
 		.attr("transform", "translate( 50," + margin.top + ")");
 
 // start working with d3 and data
-//
+
 var svg2 = d3.select("#graph")
 
 		.append("div")
@@ -66,24 +82,7 @@ var svg2 = d3.select("#graph")
 		.classed("hidden", true)
 		.append("g")
 		.attr("transform", "translate( 50," + margin.top + ")")
-		.style("opacity",0);
-
-		d3.csv("int_bands.csv", function (csv) {
-		timelineBands = timeline(csv);
-
-		var svg2= d3.select("#graph")
-		.selectAll("rect")
-		.data(timelineBands)
-		.enter()
-		.append("rect")
-		.attr("x", function (d) {return d.start})
-		.attr("y", function (d) {return d.y})
-		.attr("height", function (d) {return d.dy})
-		.attr("width", function (d) {return d.end - d.start})
-		.style("fill", "#687a97")
-		.style("stroke", "black")
-	})
-
+		// .style("opacity",0);
 
 //Global variables //////////
 var totalPriceRange = [];
