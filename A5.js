@@ -57,7 +57,7 @@ var svg2 = d3.select("#priceRange")
 		.append("svg")
 		//responsive SVG needs these 2 attributes and no width and height attr
 		.attr("preserveAspectRatio", "xMinYMin meet")
-		// .attr("viewBox", "0 0 "+ graphWidth +" "+ scrubHeight)
+		.attr("viewBox", "0 0 "+ graphWidth +" "+ scrubHeight)
 
 		//class to make svg responsive
 		.classed("svg-content-responsive", true)
@@ -180,14 +180,13 @@ d3.csv(bugData, function(datasetBug)
 				.attr("transform", "translate(0, " + 150 +")")
 				.call(xAxis2);
 
-			var yAxis2 = d3.axisLeft()
-						.scale(yScale2);
-						
-			svg.append("g")
-				.attr("class", "y axis")
-				.attr("transform", "translate(0,0)")
-				.call(yAxis2);
-
+			// text label for the x axis
+			svg2.append("text")
+					.attr("transform",
+						   "translate(" + (width/2) + " ," +
+									 	  (scrubHeight - margin.top - 30) + ")")
+					.style("text-anchor", "middle")
+					.text("Selling Price (in Bells)");
 				
 
 			 svg2.append("text")
@@ -195,7 +194,7 @@ d3.csv(bugData, function(datasetBug)
 				.attr("x",0 + margin.left )
 				.attr("dy", "3em")
 				.style("text-anchor", "middle")
-				.text("Selling Price (in Bells)");
+				.text("Species Sell Price");
 
 				var brush=d3.brush()
 	            .extent([[0, 0], [width, height]])
@@ -454,47 +453,24 @@ d3.csv(bugData, function(datasetBug)
 
 			console.log(speciesOverview);
 
-
-			 // var circles= svg2.selectAll("circle.points")
-    //         .data(speciesOverview)
-    //         .enter()
-    //         .append("circle")
-    //         .attr("class","points")
-    //         .attr("cx", function (d){
-
-    //             return xScale2(d['Price'])
-
-    //         })
-    //         .attr("cy", function (d){
-
-    //             return yScale2(75);
-
-    //         })
-    //         .attr("r", function (d){
-    //             return 4;
-    //         })
-    //         .attr("fill", "tomato");
-
-
-
 			 var simulation2 = d3.forceSimulation(speciesOverview)
 			  .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
 			  .force('x', d3.forceX().x(function(d) //plot x according to price
 			  {
 			  		return xScale2(+d['Price']);
 			  }))
-			  .force('y', d3.forceY().y(function(d){ return yScale2(75); })) //around middle of graph
+			  .force('y', d3.forceY().y(function(d){ return 75; })) //around middle of graph
 			  .force('collision', d3.forceCollide().radius(function(d)
 				{
-					    return 2.5;
+					    return 5;
 				}))
 			  .on('tick', tickedOverview);
 
 			 function tickedOverview()
 			 {
-			  	var pointRadius = 3;
+			  	var pointRadius = 5;
 
-			 	var u = svg2.selectAll('circle.point-set-2')
+			 	var u = svg2.selectAll('circle')
 			    .data(speciesOverview);
 
 				u.enter()
@@ -502,7 +478,7 @@ d3.csv(bugData, function(datasetBug)
 				.attr("class", function(d) 	//add classes to circles here
 				{
 					// return d['Category'] + " " + d['Name'] + " " + d['Month'];
-					return "point-set-2 " + d['Category'] + " " + d['Name'].replace(" ", "-");
+					return d['Category'] + " " + d['Name'].replace(" ", "-");
 					//replace spaces in name with - so that it doesn't get split into two classes
 				})
 
