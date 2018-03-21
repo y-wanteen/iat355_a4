@@ -3,11 +3,14 @@ var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs.csv";
 var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish.csv";
 var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving.csv";
 
-//Key/value Arrays commonly used 
+//Key/value Arrays commonly used
 var fillColour = {"bugs":"#69D1C5", "fish":"tomato", "diving":"#2A1E5C"};
 
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var hours = ['1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM','8AM', '9AM', '10AM', '11AM', 'NOON','1PM','2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '9PM', '10PM', '11PM','MIDNIGHT'];
+
 var monthStringToNum = {"Jan":1, "Feb":2, "Mar":3, "Apr":4, "May":5, "Jun":6, "Jul":7, "Aug":8, "Sep":9, "Oct":10, "Nov":11, "Dec":12};
+var hoursStringToNum = {"1AM":1 ,"2AM":2, "3AM":3, "4AM":4, "5AM":5, "6AM":6, "7AM":7, "8AM":8, "9AM":9, "10AM":10, "11AM":11, "NOON":12, "1PM":13, "2PM":14};
 
 var speciesRarity = {1:"common", 2:"fairly common", 3:"uncommon", 4:"scarce", 5:"rare"};
 
@@ -26,6 +29,11 @@ var height = winHeight - margin.top - margin.bottom;
 var graphWidth =  winWidth + margin.left + margin.right;
 var graphHeight = winHeight + margin.top + margin.bottom;
 
+var timeline = d3.layout.timeline()
+  .size([1000,300])
+  .bandStart(function (d) {return d.s})
+  .bandEnd(function (d) {return d.e})
+  .dateFormat(function (d) {return parseInt(d)})
 
 //create svg
 var svg = d3.select("#graph")
@@ -43,7 +51,7 @@ var svg = d3.select("#graph")
 		.attr("transform", "translate( 50," + margin.top + ")");
 
 // start working with d3 and data
-
+//
 var svg2 = d3.select("#graph")
 
 		.append("div")
@@ -58,7 +66,24 @@ var svg2 = d3.select("#graph")
 		.classed("hidden", true)
 		.append("g")
 		.attr("transform", "translate( 50," + margin.top + ")")
-		// .style("opacity",0);
+		.style("opacity",0);
+
+		d3.csv("int_bands.csv", function (csv) {
+		timelineBands = timeline(csv);
+
+		var svg2= d3.select("#graph")
+		.selectAll("rect")
+		.data(timelineBands)
+		.enter()
+		.append("rect")
+		.attr("x", function (d) {return d.start})
+		.attr("y", function (d) {return d.y})
+		.attr("height", function (d) {return d.dy})
+		.attr("width", function (d) {return d.end - d.start})
+		.style("fill", "#687a97")
+		.style("stroke", "black")
+	})
+
 
 //Global variables //////////
 var totalPriceRange = [];
@@ -99,12 +124,16 @@ d3.csv(bugData, function(datasetBug)
 			console.log("highest sell price: " + maxPrice);
 
 			//create x and y axis ///////////////////////
-			var xScale;
+			var xScale,xScale2;
 			var yScale;
 
 			xScale = d3.scaleLinear()
 					.domain([0, 1, 12, 13]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
 					.range([0, 60, width-60, width]);
+
+			xScale2 = d3.scaleLinear()
+							.domain([0,1,25]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
+							.range([0, 60, width-60, width]);
 
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
@@ -114,10 +143,17 @@ d3.csv(bugData, function(datasetBug)
 			var monthsAxis = [""];
 			monthsAxis = monthsAxis.concat(months, "");
 
+			var hoursAxis=[""];
+			hoursAxis=hoursAxis.concat(hours,"");
+
 			//add x and y axis to svg
 			var xAxis = d3.axisBottom()
 						.scale(xScale)
 						.tickFormat(function(d,i){return monthsAxis[i]}); //change number labels into months
+
+						var xAxis2 = d3.axisBottom()
+									.scale(xScale2)
+									.tickFormat(function(d,i){return hoursAxis[i]}); //change number labels into months
 
 			svg.append("g")
 				.attr("class", "x axis")
@@ -127,7 +163,7 @@ d3.csv(bugData, function(datasetBug)
 				svg2.append("g")
 					.attr("class", "x axis")
 					.attr("transform", "translate(0, " + height +")")
-					.call(xAxis);
+					.call(xAxis2);
 
 			// text label for the x axis
 			svg.append("text")
@@ -262,9 +298,9 @@ d3.csv(bugData, function(datasetBug)
 				u.enter()
 				.append("circle")
 				.attr("class", function(d) 	//add classes to circles here
-				{ 
+				{
 					// return d['Category'] + " " + d['Name'] + " " + d['Month'];
-					return d['Category'] + " " + d['Name'].replace(" ", "-"); 
+					return d['Category'] + " " + d['Name'].replace(" ", "-");
 					//replace spaces in name with - so that it doesn't get split into two classes
 				})
 
@@ -318,7 +354,7 @@ d3.csv(bugData, function(datasetBug)
 				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
 
 				.on("click", function (d) {
-
+					console.log(d);
 						var highlightkey=d.key;
 
 						// remove previous selecitons ...
@@ -375,12 +411,12 @@ d3.csv(bugData, function(datasetBug)
 			    	}
 
 			    	//return d.x value based on month
-			    	return d.x = Math.max(leftConstraint(monthStringToNum[d['Month']]), 
+			    	return d.x = Math.max(leftConstraint(monthStringToNum[d['Month']]),
 			    					Math.min(rightConstraint(monthStringToNum[d['Month']]), d.x));
 
 			    })
 
-			    .attr('cy', function(d) 
+			    .attr('cy', function(d)
 			    {
 			      // return d.y;
 			      return d.y = Math.max(radius, Math.min(height - radius, d.y));
@@ -391,12 +427,13 @@ d3.csv(bugData, function(datasetBug)
 
 			} // end of ticked()
 
+
 			//call brushing function
 			svg.append("g")
             .call(brush);
 
             //brush circles
-			 function brushed() 
+			 function brushed()
 			 {
 		        var s = d3.event.selection,
 		            x0 = s[0][0],
@@ -408,35 +445,35 @@ d3.csv(bugData, function(datasetBug)
 		        svg.selectAll('circle')
 		            .style("opacity", function (d) 		//change opacity on selection
 		            {
-		                if (xScale(monthStringToNum[d['Month']]) >= x0 && 
-		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx && 
+		                if (xScale(monthStringToNum[d['Month']]) >= x0 &&
+		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx &&
 		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
 		                {
 		                	//print selected data to console
 		                    console.log(d);
 
-		                     //push these into another array of data 
+		                     //push these into another array of data
 		                     //that will get used in the second chart?
 
 		                    // return "#ec7014";
 		                    return 1;
 		                }
-		                else 
+		                else
 		                {
 		                  //  console.log("keep the same ");
 		                    // return fillColour[d['Category']];
 		                    return 0.8;
 		                }
-		             }) 
+		             })
 		           	.style("stroke", function(d)			//change stroke colour on selection
 		           	{
-		           		 if (xScale(monthStringToNum[d['Month']]) >= x0 && 
-		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx && 
+		           		 if (xScale(monthStringToNum[d['Month']]) >= x0 &&
+		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx &&
 		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
 		                {
 		                    return "white";
 		                }
-		                else 
+		                else
 		                {
 		                    return "lightgrey";
 		                }
@@ -445,7 +482,7 @@ d3.csv(bugData, function(datasetBug)
 
 		    function brushended() //default styling
 		    {
-		        if (!d3.event.selection) 
+		        if (!d3.event.selection)
 		        {
 		            svg.selectAll('circle')
 		                .transition()
