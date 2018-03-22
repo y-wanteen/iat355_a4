@@ -395,14 +395,6 @@ d3.csv(bugData, function(datasetBug)
 						.style('opacity',1)
 						.classed("enlarge", true);
 
-						//i have no idea what this part do???
-						d3.selectAll("circle").classed("dim", function (dd){
-								if  (dd.key==highlightkey)
-										return false;
-								else
-										return true;
-						})
-
 				})
 
 			    .merge(u)
@@ -520,6 +512,7 @@ d3.csv(bugData, function(datasetBug)
 
 						// remove previous selecitons ...
 						d3.selectAll("circle")
+						.classed("enlarge", false)
 						.style('opacity',0.2)
 						.attr('fill', function(d) //set fill colour based on data category/wildlife type
 						 {
@@ -535,18 +528,20 @@ d3.csv(bugData, function(datasetBug)
 
 						//select all circles of the same classes/species
 						d3.selectAll("circle."+selectorClass.replace(" ", "."))
+						.classed("enlarge", true)
 						  .style('opacity',1);
 
 						d3.selectAll(".hidden")
+						.classed("enlarge", false)
 						.style('opacity',1);
 
 						//i have no idea what this part do???
-						d3.selectAll("circle").classed("dim", function (dd){
-								if  (dd.key==highlightkey)
-										return false;
-								else
-										return true;
-						})
+						// d3.selectAll("circle").classed("dim", function (dd){
+						// 		if  (dd.key==highlightkey)
+						// 				return false;
+						// 		else
+						// 				return true;
+						// })
 
 				})
 
@@ -594,6 +589,7 @@ d3.csv(bugData, function(datasetBug)
 			function render(monthlyWildlife, category){
 				if(category!="clear"){
 					d3.selectAll("circle")
+					.classed("enlarge", false)
 					.transition(t)
 					.style("opacity", "0.8") //clear previous opacity setting
 					//filters category of species
@@ -601,6 +597,7 @@ d3.csv(bugData, function(datasetBug)
 					.style("opacity", "0.1"); //lowers opacity of other
 				}else{
 					d3.selectAll("circle")
+					.classed("enlarge", false)
 					.transition(t)
 					.style("opacity", "0.8") //revert back to orig opacity
 				}
@@ -611,6 +608,8 @@ d3.csv(bugData, function(datasetBug)
 			//call brushing function
 			svg.append("g")
             .call(brush);
+
+
 
             //brush over dot plot of price vs month
 			 function brushed()
@@ -625,6 +624,9 @@ d3.csv(bugData, function(datasetBug)
 		         dailySpecies = []; //clear the array first
 
 		        svg.selectAll('circle')
+						.classed("enlarge", false)
+
+
 		            .style("opacity", function (d) 		//change opacity on selection
 		            {
 		                if (xScale(monthStringToNum[d['Month']]) >= x0 &&
