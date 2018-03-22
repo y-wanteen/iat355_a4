@@ -196,10 +196,10 @@ d3.csv(bugData, function(datasetBug)
 
 			 svg2.append("text")
 				.attr("y", 0 - 70)
-				.attr("x",0 + margin.left )
+				.attr("x",0 + (margin.left*3) )
 				.attr("dy", "3em")
 				.style("text-anchor", "middle")
-				.text("Species Sell Price");
+				.text("Species Sell Price- drag to brush");
 
             //x-axis brush
             var brushX = d3.brushX()
@@ -623,13 +623,13 @@ d3.csv(bugData, function(datasetBug)
         					console.log("selected: ");
         					console.log(selectedSpecies);
 
-        					return 1;						
+        					return 1;
 		                }
 		                else //else lower opacity
 		                {
 		                    return 0.2;
 		                }
-        				
+
         			})
     			   .style('stroke', function(d)	 //change stroke colour on selection
 		           	{
