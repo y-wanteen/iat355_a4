@@ -32,70 +32,65 @@
 			<h2 class="sub-title">Species selling price (in Bells) across months when they are availaible</h2>
 		</div>
 
-	<div class="legend">
-		<div class="legend-container">
-			<div class="legend-color">
-				<span class="box" style="background-color:#69D1C5;"></span>
-				<button class="filter" id="bug-filter">Bugs</button>
+		<div class="legend">
+			<div class="legend-container">
+				<div class="legend-color">
+					<span class="box" style="background-color:#69D1C5;"></span>
+					<button class="filter" id="bug-filter">Bugs</button>
+				</div>
+
+				<div class="legend-color">
+					<span class="box" style="background-color:tomato;"></span>
+					<button class="filter" id="fish-filter">Fish</button>
+				</div>
+
+				<div class="legend-color">
+					<span class="box" style="background-color:#2A1E5C;"></span>
+					<button class="filter" id="diving-filter">Sea Creatures</button>
+				</div>
+
+				<button class="filter" id="clear">Clear</button>
+
 			</div>
 
-			<div class="legend-color">
-				<span class="box" style="background-color:tomato;"></span>
-				<button class="filter" id="fish-filter">Fish</button>
-			</div>
 
-			<div class="legend-color">
-				<span class="box" style="background-color:#2A1E5C;"></span>
-				<button class="filter" id="diving-filter">Sea Creatures</button>
-			</div>
+			<div class="legend-container">
+				<div class="legend-size">
+					<div class="circle"></div>
+					<label class="rarity-label">Common</label>
+				</div>
 
-			<button class="filter" id="clear">Clear</button>
+				<div class="legend-size">
+					<div class="circle"style="width: 6px; height: 6px;"></div>
+					<label class="rarity-label" style="margin-left: 0;">Fairly Common</label>
+				</div>
+
+				<div class="legend-size">
+					<div class="circle"style="width: 8.5px; height: 8.5px;"></div>
+					<label class="rarity-label">Uncommon</label>
+				</div>
+
+				<div class="legend-size">
+					<div class="circle" style="width: 11px; height: 11px;"></div>
+					<label class="rarity-label">Scarce</label>
+				</div>
+
+				<div class="legend-size">
+					<div class="circle" style="width: 16px; height: 16px;"></div>
+					<label class="rarity-label" style="margin-left: 1.7rem;" >Rare</label>
+				</div>
+
+
+			</div>
 
 		</div>
-
-
-		<div class="legend-container">
-			<div class="legend-size">
-				<div class="circle"></div>
-				<label class="rarity-label">Common</label>
-			</div>
-
-			<div class="legend-size">
-				<div class="circle"style="width: 6px; height: 6px;"></div>
-				<label class="rarity-label" style="margin-left: 0;">Fairly Common</label>
-			</div>
-
-			<div class="legend-size">
-				<div class="circle"style="width: 8.5px; height: 8.5px;"></div>
-				<label class="rarity-label">Uncommon</label>
-			</div>
-
-			<div class="legend-size">
-				<div class="circle" style="width: 11px; height: 11px;"></div>
-				<label class="rarity-label">Scarce</label>
-			</div>
-
-			<div class="legend-size">
-				<div class="circle" style="width: 16px; height: 16px;"></div>
-				<label class="rarity-label" style="margin-left: 1.7rem;" >Rare</label>
-			</div>
-
-
-		</div>
-
 	</div>
-</div>
 
 
-<div id="graph"></div>
-<div id="priceRange"></div>
-<!-- <div id="timeline"></div> -->
-<!--  <div id="hoverRes">
-      <div class="coloredDiv"></div>
-      <div id="name"></div>
-    </div> -->
+	<div id="graph"></div>
+	<div id="priceRange"></div>
 
-	</body>
+</body>
 
 	<script src="A5.js"></script>
 
