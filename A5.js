@@ -608,7 +608,9 @@ d3.csv(bugData, function(datasetBug)
 
 		         selectedSpecies = []; //clear the array first
 
-		        svg.selectAll('circle'
+		         d3.selectAll('circle').classed('enlarge', false);
+
+		        d3.selectAll('circle')
 		            .style("opacity", function (d) 		//change opacity on selection
 		            {
 		                if (xScale(monthStringToNum[d['Month']]) >= x0 &&
