@@ -121,6 +121,8 @@ d3.csv(bugData, function(datasetBug)
 							.domain([0, 2000, maxPrice+1000]) //0 as blank start point, 1-12 for jan-dec, 13 for extra space at the end of graph
 							.range([0, width/5, width]);
 
+			xScrubScale = d3.scaleLinear().range([0, width]);
+
 			yScale = d3.scaleLinear()
 					.domain([maxPrice+1000, 2000, 0])
 					.range([0,height-height/5, height]);
@@ -138,7 +140,7 @@ d3.csv(bugData, function(datasetBug)
 
 			//add x and y axis to svg////////////////////////
 
-			// SVG 1 (Price vs Month Availability)
+			// SVG 1 (Price vs Month Availability) ///////////////////////
 			var xAxis = d3.axisBottom()
 						.scale(xScale)
 						.tickFormat(function(d,i){return monthsAxis[i]}); //change number labels into months
@@ -173,7 +175,7 @@ d3.csv(bugData, function(datasetBug)
 			 .text("Selling Price (in Bells)");
 
 
-			// SVG 2 (Price Range)
+			// SVG 2 (Price Distribution) ////////////////////////
 
 			var xAxis2 = d3.axisBottom()
 						.scale(xScale2);
@@ -199,10 +201,11 @@ d3.csv(bugData, function(datasetBug)
 				.style("text-anchor", "middle")
 				.text("Species Sell Price");
 
-				var brush=d3.brush()
-	            .extent([[0, 0], [width, height]])
-	            .on("brush", brushed)
-	            .on("end", brushended);
+            //x-axis brush
+            var brushX = d3.brushX()
+            			.extent([[0,0], [width, scrubHeight/2 - 5]])
+            			.on("brush", brushedX)
+            			.on("end", brushended);
 
 			// PLOT DATA /////////////////////////////
 
@@ -417,7 +420,7 @@ d3.csv(bugData, function(datasetBug)
 			} // end of ticked()
 
 
-			// PRICE OVERVIEW
+			// PRICE DISTRIBUTION OVERVIEW ///////////////////////////////////////
 
 			var speciesOverview = [];
 
@@ -592,69 +595,58 @@ d3.csv(bugData, function(datasetBug)
 			///end filter section
 
 
-			//call brushing function
-			svg.append("g")
-            .call(brush);
+			//BRUSHING /////////////////////////////////////////////////////
 
-            //brush over dot plot of price vs month
-			 function brushed()
-			 {
-		        var s = d3.event.selection,
-		            x0 = s[0][0],
-		            y0 = s[0][1],
-		            dx = s[1][0] - x0,
-		            dy = s[1][1] - y0;
-		         // console.log(s);
+			//add brush to the second vis
+            svg2.append("g")
+            	.call(brushX)
+            	.call(brushX.move, [0,1]); //initial brush size
 
-		         selectedSpecies = []; //clear the array first
+            function brushedX()
+            {
+            	var s = d3.event.selection || xScale2.range();
+            	var e = d3.event.selection.map(xScale2.invert, xScale2);
 
-		         d3.selectAll('circle').classed('enlarge', false);
+            	 selectedSpecies = []; //clear the array first
 
-		        d3.selectAll('circle')
-		            .style("opacity", function (d) 		//change opacity on selection
-		            {
-		                if (xScale(monthStringToNum[d['Month']]) >= x0 &&
-		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx &&
-		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
-		                {
-		                	//print selected data to console
-		                    // console.log(d);
+		         d3.selectAll('circle').classed('enlarge', false); //remove enlarged highlighting
 
-		                     //push these into another array of data
-		                     //for the other chart
+	        	//change highlight + opacity of selected circles that are brushed over
+    			d3.selectAll('circle')
+    			   .style('opacity', function(d)
+        			{
+        				//make opacity darker if selected
+        				if (e[0] <= d['Price'] && d['Price'] <= e[1])
+        				{
+         					//add them to the array of selected species
+        					selectedSpecies.push(d);
+        					console.log("selected: ");
+        					console.log(selectedSpecies);
 
-
-		         //             console.log(selectedSpecies);
-
-		                    return 1;
+        					return 1;						
 		                }
-		                else
+		                else //else lower opacity
 		                {
-		                  //  console.log("keep the same ");
-		                    return 0.8;
+		                    return 0.2;
 		                }
-		             })
-		           	.style("stroke", function(d)			//change stroke colour on selection
+        				
+        			})
+    			   .style('stroke', function(d)	 //change stroke colour on selection
 		           	{
-		           		 if (xScale(monthStringToNum[d['Month']]) >= x0 &&
-		                	xScale(monthStringToNum[d['Month']]) <= x0 + dx &&
-		                	yScale(+d['Price']) >= y0 && yScale(+d['Price']) <= y0 + dy)
+		           		//make stroke white if selected
+		           		if (e[0] <= d['Price'] && d['Price'] <= e[1])
 		                {
 		                    return "white";
 		                }
-		                else
+		                else //else keep grey
 		                {
 		                    return "lightgrey";
 		                }
 		            });
 
-		         // console.log("selected:");
-		         // console.log(dailySpecies);
+            }
 
-
-		    } //end of brush function
-
-		    function brushended() //default styling
+		    function brushended() //return to default styling
 		    {
 		        if (!d3.event.selection)
 		        {
@@ -673,16 +665,6 @@ d3.csv(bugData, function(datasetBug)
 		        }
 		    }
 
-		    function isBrushed(brush_coords, cx, cy) //brush coordinates
-		    {
-
-		        var x0 = brush_coords[0][0],
-		            x1 = brush_coords[1][0],
-		            y0 = brush_coords[0][1],
-		            y1 = brush_coords[1][1];
-
-		        return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
-		    }
 
 		}); //end of diving data csv
 
