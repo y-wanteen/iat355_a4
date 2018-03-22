@@ -369,6 +369,7 @@ d3.csv(bugData, function(datasetBug)
 							 return fillColour[d['Category']];
 
 						 })
+						.style('stroke', 'lightgrey');
 
 						//get the classes of the circle selected
 						var selectorClass = this.className['baseVal'];
@@ -379,10 +380,12 @@ d3.csv(bugData, function(datasetBug)
 						//select all circles of the same classes/species
 						d3.selectAll("circle."+selectorClass.replace(" ", "."))
 						  .style('opacity',1)
+						  .style('stroke', 'white')
 							.classed("enlarge", true);
 
 						d3.selectAll(".hidden")
 						.style('opacity',1)
+						.style('stroke', 'white')
 						.classed("enlarge", true);
 
 				})
