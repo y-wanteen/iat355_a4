@@ -559,36 +559,58 @@ d3.csv(bugData, function(datasetBug)
 			///////////// filter section
 
 			//linking id of buttons in HTML
-			var bFilter = document.getElementById('bug-filter');
+			var bFilter = document.getElementById('bug-filter'); //species category bttons
 			var fFilter = document.getElementById('fish-filter');
 			var dFilter = document.getElementById('diving-filter');
 			var clear = document.getElementById('clear');
+      var common= document.getElementById('common');//rarity buttons
+      var fairlyCommon= document.getElementById('fairlyCommon');
+      var uncommon= document.getElementById('uncommon');
+      var scarce= document.getElementById('scarce');
+      var rare= document.getElementById('rare');
+
 
 			//seting up event listener
 			bFilter.addEventListener('click', function(){
-				filter('bugs')}	);
+				filter('category',monthlyWildlife,'bugs')}	);
 			fFilter.addEventListener('click', function(){
-				filter('fish')}	);
+				filter('category',monthlyWildlife,'fish')}	);
 			dFilter.addEventListener('click', function(){
-				filter('diving')}	);
+				filter('category',monthlyWildlife,'diving')}	);
 			clear.addEventListener('click', function(){
-					filter('clear')}	);
+					filter('category',monthlyWildlife,'clear')}	);
 
-			//passing through data and category variable
-			function filter(category){
-				render(monthlyWildlife, category);
-			}
+      common.addEventListener('click',function(){
+        filter('rarity',monthlyWildlife,'1') });
+        fairlyCommon.addEventListener('click',function(){
+          filter('rarity',monthlyWildlife,'2') });
+          uncommon.addEventListener('click',function(){
+            filter('rarity',monthlyWildlife,'3') });
+            scarce.addEventListener('click',function(){
+              filter('rarity',monthlyWildlife,'4') });
+              rare.addEventListener('click',function(){
+                filter('rarity',monthlyWildlife,'5') });
 
-			function render(monthlyWildlife, category){
-				if(category!="clear"){
+			function filter(filterType, monthlyWildlife, filterValue){
+				if(filterValue!="clear" &&filterType=="category"){
 					d3.selectAll("circle")
 					.classed("enlarge", false)
 					.transition(t)
-					.style("opacity", "0.8") //clear previous opacity setting
-					//filters category of species
-					.filter(function(d){return d['Category']!=category})
+          //clear previous opacity setting
+					.style("opacity", "0.8")
+        	//filters categories of species based on datatype selected
+					.filter(function(d){return d['Category']!=filterValue})
 					.style("opacity", "0.1"); //lowers opacity of other
-				}else{
+
+				}else if(filterValue!="clear" &&filterType=="rarity"){
+          d3.selectAll("circle")
+          .classed("enlarge", false)
+          .transition(t)
+          .style("opacity", "0.8")
+          .filter(function(d){return d['Rarity']!=filterValue})
+          .style("opacity", "0.1"); //lowers opacity of other
+        }else{
+          //clear filters when clear button pressed or any error occurs
 					d3.selectAll("circle")
 					.classed("enlarge", false)
 					.transition(t)
