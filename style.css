@@ -29,9 +29,23 @@ margin: 0;
 }
 
 .icon{
-  max-width: 250px;
+  max-width: 200px;
 }
 
+.tooltip{
+  position: absolute;
+  left: -500px;
+  background-color: white;
+  padding: 0.5rem;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 4px 2px 8px #c7c5c5;
+}
+
+.tooltip-text{
+font-weight: 500;
+font-size: 0.85em;
+}
 
 .legend{
 /* display: flex; */

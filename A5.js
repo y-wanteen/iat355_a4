@@ -237,7 +237,7 @@ d3.csv(bugData, function(datasetBug)
 									"Name":d['Name'],
 									"Price":+d['Price'],
 									"Rarity":d[month],
-                  "URL": d['Image URL'],
+                  "Image URL": d['Image URL'],
                   "Location": d['Location']
 								});
 					}
@@ -263,12 +263,7 @@ d3.csv(bugData, function(datasetBug)
 			// creating hidden tooltip //////////////////////////
 			var tooltip = d3.select("body")
 			.append("div")
-			.style("position", "absolute")
-			.style("background-color", "#ffffffcc")
-			.style("padding", "0.2rem")
-			.style("font-weight", "bold")
-			.style("z-index", "10")
-			.style("box-shadow","4px 2px 8px #c7c5c5")
+      .classed('tooltip',true)
 			.style("visibility", "hidden");
 
 			var nodePadding = 2.5; //padding around each node
@@ -349,18 +344,21 @@ d3.csv(bugData, function(datasetBug)
 				// mouse over tool tip
 				.on("mouseover", function(d){
           var rarity = speciesRarity[d['Rarity']];
-         yourImagePath = "Image URL: "+ d['Location'];
-          console.log(yourImagePath); //???????
-          // var string = "<img class='icon' src=" +  yourImagePath + "/>";
-					tooltip.style("visibility", "visible")
+         var imagePath = d['Image URL'];
+         var urlString = "<img class='icon' src=" + imagePath + "/>";
+
+        	tooltip.style("visibility", "visible")
           .style("color", fillColour[d['Category']])
-          // .html(string)
+          .html(urlString)
           .append("HTML").attr("dy", "0em")
           .text(d['Name'])
           .append("HTML").attr("dy", "1em")
-          .text(" $" + d['Price'])
-          .append("HTML").attr("dy", "2em")
-          .text(rarity);
+          .text(" $" + d['Price']+", "+ rarity)
+          .classed('tooltip-text', true)
+          .append("HTML").attr("dy", "1em")
+          .text("Location: " +d['Location'])
+          .classed('tooltip-text', true);
+
 				})
 
 				.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
