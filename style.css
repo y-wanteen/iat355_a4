@@ -28,6 +28,10 @@ margin: 0;
       max-width: 500px;
 }
 
+.icon{
+  max-width: 250px;
+}
+
 
 .legend{
 /* display: flex; */

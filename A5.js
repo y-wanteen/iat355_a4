@@ -1,7 +1,7 @@
 //Data
-var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs2.csv";
-var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish2.csv";
-var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving_v2.csv";
+var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs3.csv";
+var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish3.csv";
+var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving3.csv";
 
 //Key/value Arrays commonly used
 var fillColour = {"bugs":"#69D1C5", "fish":"tomato", "diving":"#2A1E5C"};
@@ -236,7 +236,9 @@ d3.csv(bugData, function(datasetBug)
 									"Month":month,
 									"Name":d['Name'],
 									"Price":+d['Price'],
-									"Rarity":d[month]
+									"Rarity":d[month],
+                  "URL": d['Image URL'],
+                  "Location": d['Location']
 								});
 					}
 				});
@@ -346,15 +348,25 @@ d3.csv(bugData, function(datasetBug)
 
 				// mouse over tool tip
 				.on("mouseover", function(d){
-					tooltip.style("visibility", "visible");
-
-					var rarity = speciesRarity[d['Rarity']];
-					tooltip.html(d['Name']+", $" + d['Price']+ ", " +rarity);
-					tooltip.style("color", fillColour[d['Category']]);
+          var rarity = speciesRarity[d['Rarity']];
+         yourImagePath = "Image URL: "+ d['Location'];
+          console.log(yourImagePath); //???????
+          // var string = "<img class='icon' src=" +  yourImagePath + "/>";
+					tooltip.style("visibility", "visible")
+          .style("color", fillColour[d['Category']])
+          // .html(string)
+          .append("HTML").attr("dy", "0em")
+          .text(d['Name'])
+          .append("HTML").attr("dy", "1em")
+          .text(" $" + d['Price'])
+          .append("HTML").attr("dy", "2em")
+          .text(rarity);
 				})
 
 				.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
-				.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+				.on("mouseout", function(){
+          return tooltip.style("visibility", "hidden")
+          .html("");})
 
 				.on("click", function (d) {
 					console.log(d);
@@ -434,7 +446,9 @@ d3.csv(bugData, function(datasetBug)
 					speciesOverview.push({
 									"Category":setClass,
 									"Name":d['Name'],
-									"Price":+d['Price']
+									"Price":+d['Price'],
+                  "Location": d['Location'],
+                  "Image URL": d['Image URL']
 								})
 				})
 			}
