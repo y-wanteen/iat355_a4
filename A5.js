@@ -611,10 +611,10 @@ d3.csv(bugData, function(datasetBug) {
 
       d3.select("#speciesList")
      .selectAll("option")
-     .data(monthlyWildlife)
+     .data(speciesOverview)
      .enter()
      .append("option")
-     .attr("value", function(option) { return option['Name']; });
+     .attr("value", function(option) { return option.Name; });
 
       d3.select("#search").on("change", function() {
         var searchValue = document.getElementById("search").value;
