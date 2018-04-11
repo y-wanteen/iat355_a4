@@ -17,6 +17,27 @@ margin: 0;
   flex:1;
 }
 
+#timeline .axis path
+{
+  stroke:white;
+}
+
+#timeline .axis line
+{
+  stroke:lightgrey;
+  opacity:0.7;
+}
+
+#timeline .custom.axis path, #timeline .custom.axis line
+{
+  stroke:black;
+}
+
+#timeline
+{
+  margin-left:2.5rem;
+}
+
 .title{
 margin: 0;
 }

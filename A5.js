@@ -95,8 +95,6 @@ var svg = d3.select("#graph")
   .append("g")
   .attr("transform", "translate( 50," + margin.top + ")");
 
-// start working with d3 and data
-
 var svg2 = d3.select("#priceRange")
 
   .append("div")
@@ -112,6 +110,8 @@ var svg2 = d3.select("#priceRange")
   .append("g")
   .attr("transform", "translate( 50," + margin.top + ")");
 // .style("opacity",0);
+
+// start working with d3 and data			
 
 //Global variables //////////
 var totalPriceRange = [];
@@ -262,7 +262,8 @@ d3.csv(bugData, function(datasetBug) {
       var monthlyWildlife = []; //array to store all montly available wildlife
 
       // Get Monthly Availability ///////////////////////
-      function getAvailability(setClass, data, month) {
+      function getAvailability(setClass, data, month) 
+      {
 
         // searchClass = setClass + "." + month;
 
@@ -270,21 +271,54 @@ d3.csv(bugData, function(datasetBug) {
 
         //first, check what exactly is available in that month
         data.forEach(function(d) {
-          if (d[month] > 0) {
+          if (d[month] > 0) 
+          {
+
             sumCounter++;
 
-            //Create new array using only the necessary data from the datasets:
-            //Type of wildlife, available month, species name, and price
+          	//get time of day that the species appears in
+          	var startTime = new Date(d['Start Time']);
+			startTime = startTime.getTime();
 
-            monthlyWildlife.push({
-              "Category": setClass,
-              "Month": month,
-              "Name": d['Name'],
-              "Price": +d['Price'],
-              "Rarity": d[month],
-              "Image URL": d['Image URL'],
-              "Location": d['Location']
-            });
+			var endTime = new Date(d['End Time']);
+			endTime = endTime.getTime();
+
+			var startTime2, endTime2;
+			//check if there's a second time frame in the day that the species shows up in
+			if (d['Start Time 2'] != 0 && d['End Time 2'] != 0)
+			{
+				startTime2 = new Date(d['Start Time 2']);
+				startTime2 = startTime2.getTime();
+
+				endTime2 = new Date(d['End Time 2']);
+				endTime2 = endTime2.getTime();
+			
+			}
+			else
+			{
+				//if there is only one time frame the species appears in
+				//set the 2nd set to 0
+	            startTime2 = 0;
+	            endTime2 = 0;
+	        }
+
+		        //Then create new array using only necessary data from the datasets:
+	            //Type of wildlife, available month, species name, and price
+	            //Also include the image URL, location, and times of day they appear
+				monthlyWildlife.push(
+	            {
+	              "Category": setClass,
+	              "Month": month,
+	              "Name": d['Name'],
+	              "Price": +d['Price'],
+	              "Rarity": d[month],
+	              "Image URL": d['Image URL'],
+	              "Location": d['Location'],
+	              "Start Time":startTime,
+	              "End Time":endTime,
+	              "Start Time 2":startTime2,
+	              "End Time 2":endTime2
+	            });
           }
         });
 
@@ -474,14 +508,48 @@ d3.csv(bugData, function(datasetBug) {
 
       var speciesOverview = [];
 
-      function getOverview(setClass, data) {
-        data.forEach(function(d) {
-          speciesOverview.push({
+      function getOverview(setClass, data)
+      {
+        data.forEach(function(d) 
+        {
+
+        	//get time of day that the species appears in
+          	var startTime = new Date(d['Start Time']);
+			startTime = startTime.getTime();
+
+			var endTime = new Date(d['End Time']);
+			endTime = endTime.getTime();
+
+			var startTime2, endTime2;
+			//check if there's a second time frame in the day that the species shows up in
+			if (d['Start Time 2'] != 0 && d['End Time 2'] != 0)
+			{
+				startTime2 = new Date(d['Start Time 2']);
+				startTime2 = startTime2.getTime();
+
+				endTime2 = new Date(d['End Time 2']);
+				endTime2 = endTime2.getTime();
+			
+			}
+			else
+			{
+				//if there is only one time frame the species appears in
+				//set the 2nd set to 0
+	            startTime2 = 0;
+	            endTime2 = 0;
+	        }
+
+          speciesOverview.push(
+          {
             "Category": setClass,
             "Name": d['Name'],
             "Price": +d['Price'],
             "Location": d['Location'],
-            "Image URL": d['Image URL']
+            "Image URL": d['Image URL'],
+            "Start Time": startTime,
+            "End Time": endTime,
+            "Start Time 2": startTime2,
+            "End Time 2": endTime2
           })
         })
       }
@@ -490,7 +558,7 @@ d3.csv(bugData, function(datasetBug) {
       getOverview("fish", datasetFish);
       getOverview("diving", datasetDiving);
 
-      console.log(speciesOverview);
+      // console.log(speciesOverview);
 
       var simulation2 = d3.forceSimulation(speciesOverview)
         .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
@@ -517,7 +585,7 @@ d3.csv(bugData, function(datasetBug) {
           .attr("class", function(d) //add classes to circles here
             {
               // return d['Category'] + " " + d['Name'] + " " + d['Month'];
-              return d['Category'] + " " + d['Name'].replace(" ", "-");
+              return "overview " + d['Category'] + " " + d['Name'].replace(" ", "-");
               //replace spaces in name with - so that it doesn't get split into two classes
             })
 
@@ -608,6 +676,22 @@ d3.csv(bugData, function(datasetBug) {
 
 
       //dropdown+search function
+
+      //sort speciesOverview alphabetically
+      speciesOverview.sort(function(a,b)
+      {
+      	if(a.Name < b.Name)
+  		{
+  			return -1;
+  		}
+
+      	if(a.Name > b.Name)
+      	{
+      		return 1;
+      	}
+
+      	return 0;
+      });
 
       d3.select("#speciesList")
      .selectAll("option")
@@ -721,19 +805,88 @@ d3.csv(bugData, function(datasetBug) {
       }
       ///end filter section
 
+      // TIMELINE //////////////////////////////////////////////////////////////////////
+
+
+	 	var timelineTicks = ['12AM', '2AM', '4AM', '6AM', '8AM',
+	 						  '10AM', '12PM', '2PM', '4PM','6PM', 
+	 						  '8PM', '10PM', '12AM']
+
+        console.log(timelineTicks)
+
+	 function timelineStackedHover(dataArray)
+	 {
+
+
+        var chart = d3.timelines()
+          // .relativeTime()
+          // .tickFormat({
+            // format: function(d) { return d3.timeFormat("%I %p")(d) },
+            // tickTime: d3.timeHour,
+            // tickInterval: 50,
+            // tickSize: 15,
+          // })
+          .stack()
+          .margin({left:175, right:30, top:50, bottom:50})
+          .showTimeAxis()
+          .showTimeAxisTick()
+          // .hover(function (d, i, datum) {
+          // // d is the current rendering object
+          // // i is the index during d3 rendering
+          // // datum is the id object
+          //   var div = $('#hoverRes');
+          //   var colors = chart.colors();
+          //   div.find('.coloredDiv').css('background-color', colors(i))
+          //   div.find('#name').text(datum.label);
+          // })
+          // .click(function (d, i, datum) {
+          //   console.log("timeStackedHover", datum.label);
+          // });
+
+		d3.select("#timeline").select("svg").remove();
+
+
+
+		var timelineScale = d3.scaleLinear()
+						    .domain([0, 12])
+						    .range([175, graphWidth-130]);
+
+
+		var timelineAxis = d3.axisTop()
+	        .scale(timelineScale)
+	        .tickFormat(function(d, i) {
+	          console.log(timelineTicks[i]);
+	          return timelineTicks[i]
+	        }); //change number labels into months
+
+        var svg3 = d3.select("#timeline").append("svg")
+					.attr("width", graphWidth-100)
+					.attr("height", graphHeight)
+      				.datum(dataArray).call(chart);
+
+      	svg3.append("g")
+	        .attr("class", "x custom axis")
+	        .attr("transform", "translate(0, " + 30 + ")")
+	        .call(timelineAxis);
+      }
+
 
       //BRUSHING /////////////////////////////////////////////////////
+
+      var timelineSpecies = [];
 
       //add brush to the second vis
       svg2.append("g")
         .call(brushX)
         .call(brushX.move, [0, 1]); //initial brush size
 
-      function brushedX() {
+      function brushedX() 
+      {
         var s = d3.event.selection || xScale2.range();
         var e = d3.event.selection.map(xScale2.invert, xScale2);
 
         selectedSpecies = []; //clear the array first
+        timelineSpecies = [];
 
         d3.selectAll('circle').classed('enlarge', false); //remove enlarged highlighting
 
@@ -741,7 +894,8 @@ d3.csv(bugData, function(datasetBug) {
         d3.selectAll('circle')
           .style('opacity', function(d) {
             //make opacity darker if selected
-            if (e[0] <= d['Price'] && d['Price'] <= e[1]) {
+            if (e[0] <= d['Price'] && d['Price'] <= e[1]) 
+            {
               //add them to the array of selected species
               selectedSpecies.push(d);
               console.log("selected: ");
@@ -764,6 +918,66 @@ d3.csv(bugData, function(datasetBug) {
                 return "lightgrey";
               }
             });
+
+
+
+		 d3.selectAll('circle.overview')
+          .style('opacity', function(d) {
+            //make opacity darker if selected
+            if (e[0] <= d['Price'] && d['Price'] <= e[1]) 
+            {
+
+	             if (d['Start Time 2'] != 0 && d['End Time 2'] != 0)
+				{
+					//push both time frames the species shows up in into the times value
+					timelineSpecies.push(
+		            {
+		            	label:d['Name'],
+		            	times:[{"color": fillColour[d['Category']],
+		            			"starting_time": d['Start Time'], "ending_time":d['End Time']
+		            			},
+		            			{ "color": fillColour[d['Category']],
+		            			  "starting_time":d['Start Time 2'], "ending_time":d['End Time 2']
+		            			}]
+		            });
+				
+				}
+				else
+				{
+					//if there is only one time frame the species appears in
+					//only push that one time frame
+					timelineSpecies.push(
+		            {
+		            	label:d['Name'],
+		            	times:[{"color": fillColour[d['Category']],
+		            			"starting_time":d['Start Time'], "ending_time":d['End Time']
+		            			}]
+		            });
+	        	}
+
+              console.log("timeline:");
+              console.log(timelineSpecies)
+
+              return 1;
+            } else //else lower opacity
+            {
+              return 0.2;
+            }
+
+          })
+          .style('stroke', function(d) //change stroke colour on selection
+            {
+              //make stroke white if selected
+              if (e[0] <= d['Price'] && d['Price'] <= e[1]) {
+                return "white";
+              } else //else keep grey
+              {
+                return "lightgrey";
+              }
+            });
+
+
+           timelineStackedHover(timelineSpecies);
 
       }
 
