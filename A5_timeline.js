@@ -829,7 +829,8 @@ d3.csv(bugData, function(datasetBug) {
 
                 var svg3 = d3.select("#timeline").append("svg")
                   .attr("width", graphWidth-100)
-                  .attr("height", 4450)
+                  // .attr("height", 4450)
+                  .attr("height", 4750)
                   .datum(dataArray).call(chart);
 
                 svg3.append("g")
