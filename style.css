@@ -35,6 +35,7 @@ margin: 0;
 
 #timeline
 {
+  /*display:inline-block;*/
   margin-left:2.5rem;
 }
 
@@ -47,6 +48,14 @@ margin: 0;
       font-size: 0.8em;
       font-weight: 100;
       max-width: 500px;
+}
+
+.fixed
+{
+  position:fixed;
+  bottom:0;
+  background:white;
+  border: solid 1px lightgrey;
 }
 
 .icon{
@@ -186,6 +195,11 @@ circle
 
 }
 
+rect[class*="timelineSeries_"]
+{
+  cursor:pointer;
+  opacity:0.8;
+}
 path{
   stroke-width:2;
   stroke-dasharray: 5;
