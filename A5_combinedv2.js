@@ -202,8 +202,16 @@ d3.csv(bugData, function(datasetBug) {
 
       svg.append("g")
         .attr("class", "x axis")
+        .attr("id", "monthsAxis")
         .attr("transform", "translate(0, " + height + ")")
         .call(xAxis);
+
+      //give individual ticks ids
+      svg.select("#monthsAxis").selectAll("text")
+        .attr("id", function(d, i) { return months[i-1]; })
+        .append("input")
+        .attr("type","checkbox")
+        .attr("value", function(d,i){ return months[i-1]; })
 
       // text label for the x axis
       svg.append("text")
@@ -220,6 +228,7 @@ d3.csv(bugData, function(datasetBug) {
         .attr("class", "y axis")
         .attr("transform", "translate(0,0)")
         .call(yAxis);
+
 
       // text label for y-axis
       svg.append("text")
@@ -297,21 +306,21 @@ d3.csv(bugData, function(datasetBug) {
           if (d[month] > 0) 
           {
 
-          sumCounter++;
+             sumCounter++;
 
           //create new array using only necessary data from the datasets:
             //Type of wildlife, available month, species name, and price
             //Also include the image URL, location
-      monthlyWildlife.push(
-            {
-              "Category": setClass,
-              "Month": month,
-              "Name": d['Name'],
-              "Price": +d['Price'],
-              "Rarity": d[month],
-              "Image URL": d['Image URL'],
-              "Location": d['Location']
-            });
+            monthlyWildlife.push(
+                  {
+                    "Category": setClass,
+                    "Month": month,
+                    "Name": d['Name'],
+                    "Price": +d['Price'],
+                    "Rarity": d[month],
+                    "Image URL": d['Image URL'],
+                    "Location": d['Location']
+                  });
           }
         });
 
@@ -533,6 +542,16 @@ d3.csv(bugData, function(datasetBug) {
 	            endTime2 = 0;
       	    }
 
+            var monthsList = [];
+
+            for (var i = 0; i < months.length; i++) 
+            {
+              if (d[months[i]] > 0)
+              {
+                monthsList.push(months[i]);
+              }
+            }
+
           speciesOverview.push(
           {
             "Category": setClass,
@@ -544,7 +563,8 @@ d3.csv(bugData, function(datasetBug) {
             "Start Time": startTime,
             "End Time": endTime,
             "Start Time 2": startTime2,
-            "End Time 2": endTime2
+            "End Time 2": endTime2,
+            "Month List":monthsList
           })
 
           //initialize the timeline array
@@ -560,13 +580,13 @@ d3.csv(bugData, function(datasetBug) {
       getOverview("fish", datasetFish);
       getOverview("diving", datasetDiving);
 
-      console.log("timeline");
-      console.log(timelineSpecies);
+      // console.log("timeline");
+      // console.log(timelineSpecies);
 
       //initialize the timeline
      // timelineStackedHover(timelineSpecies);
 
-      // console.log(speciesOverview);
+      console.log(speciesOverview);
 
       var simulation2 = d3.forceSimulation(speciesOverview)
         .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
@@ -712,7 +732,7 @@ d3.csv(bugData, function(datasetBug) {
       } //end of ticked overview
 
 
-      function updateTimelineArray(name, category, startTime, endTime, startTime2, endTime2, price, imageURL, rarity, location)
+      function updateTimelineArray(name, category, startTime, endTime, startTime2, endTime2, price, imageURL, rarity, location, monthList)
       {
 
         var setClass = category + " " + name.replace(/ /g, "-");
@@ -733,6 +753,7 @@ d3.csv(bugData, function(datasetBug) {
                           "imageURL": imageURL,
                           "Rarity": rarity,
                           "location": location,
+                          "Month List":monthList,
                           "color": fillColour[category],
                           "starting_time": startTime, "ending_time":endTime
                       },
@@ -743,6 +764,7 @@ d3.csv(bugData, function(datasetBug) {
                         "imageURL": imageURL,
                         "Rarity": rarity,
                         "location": location,
+                        "Month List": monthList,
                         "color": fillColour[category],
                         "starting_time":startTime2, "ending_time":endTime2
                       }]
@@ -764,6 +786,7 @@ d3.csv(bugData, function(datasetBug) {
                           "imageURL": imageURL,
                           "Rarity": rarity,
                           "location": location,
+                          "Month List": monthList,
                           "color": fillColour[category],
                           "starting_time":startTime, "ending_time":endTime
                       }]
@@ -827,7 +850,7 @@ d3.csv(bugData, function(datasetBug) {
               {
                 updateTimelineArray(d['Name'], d['Category'], d['Start Time'],
                                     d['End Time'], d['Start Time 2'], d['End Time 2'],
-                                    +d['Price'], d['Image URL'], +d['Rarity'], d['Location']);
+                                    +d['Price'], d['Image URL'], +d['Rarity'], d['Location'], d['Month List']);
             
               }
 
@@ -849,20 +872,16 @@ d3.csv(bugData, function(datasetBug) {
 
       };
 
-      ////////////// month filter
-
-      // //search function for species search
-      // d3.select("#monthFilter").on("change", function() 
-      // {
-      //     var searchValue = document.getElementById("monthFilter").value;
-      //     plotByMonth(searchValue);
-
-      //     var oldCircles = svg2.selectAll('circle');
-      //     oldCircles.exit().remove();
-      // });
-
 
       ///////////// filter section
+
+       function addFilterListener(type, filterId, value)
+      {
+        filterId.addEventListener('click', function()
+        {
+          filter(type, monthlyWildlife, value)
+        })
+      }
 
       //linking id of buttons in HTML
       var bFilter = document.getElementById('bug-filter'); //species category bttons
@@ -875,39 +894,52 @@ d3.csv(bugData, function(datasetBug) {
       var scarce = document.getElementById('scarce');
       var rare = document.getElementById('rare');
 
+      //setting up event listener for categories
+      addFilterListener('category', bFilter, 'bugs');
+      addFilterListener('category', fFilter, 'fish');
+      addFilterListener('category', dFilter, 'diving');
+      addFilterListener('category', clear, 'clear');
 
-      //seting up event listener
-      bFilter.addEventListener('click', function() {
-        filter('category', monthlyWildlife, 'bugs')
-      });
-      fFilter.addEventListener('click', function() {
-        filter('category', monthlyWildlife, 'fish')
-      });
-      dFilter.addEventListener('click', function() {
-        filter('category', monthlyWildlife, 'diving')
-      });
-      clear.addEventListener('click', function() {
-        filter('category', monthlyWildlife, 'clear')
-      });
+      //setting up event listener for rarity
+      addFilterListener('rarity', common, '1');
+      addFilterListener('rarity', fairlyCommon, '2');
+      addFilterListener('rarity', uncommon, '3');
+      addFilterListener('rarity', scarce, '4');
+      addFilterListener('rarity', rare, '5');
 
-      common.addEventListener('click', function() {
-        filter('rarity', monthlyWildlife, '1')
-      });
-      fairlyCommon.addEventListener('click', function() {
-        filter('rarity', monthlyWildlife, '2')
-      });
-      uncommon.addEventListener('click', function() {
-        filter('rarity', monthlyWildlife, '3')
-      });
-      scarce.addEventListener('click', function() {
-        filter('rarity', monthlyWildlife, '4')
-      });
-      rare.addEventListener('click', function() {
-        filter('rarity', monthlyWildlife, '5')
-      });
+      ////////////// month filter via axis
 
-      function filter(filterType, monthlyWildlife, filterValue) {
-        if (filterValue != "clear" && filterType == "category") 
+      var janFilter = document.getElementById('Jan');
+      var febFilter = document.getElementById('Feb');
+      var marFilter = document.getElementById('Mar');
+      var aprFilter = document.getElementById('Apr');
+      var mayFilter = document.getElementById('May');
+      var junFilter = document.getElementById('Jun');
+      var julFilter = document.getElementById('Jul');
+      var augFilter = document.getElementById('Aug');
+      var sepFilter = document.getElementById('Sep');
+      var octFilter = document.getElementById('Oct');
+      var novFilter = document.getElementById('Nov');
+      var decFilter = document.getElementById('Dec');
+
+      //setting up event listener for months
+      addFilterListener('month', janFilter, 'Jan');
+      addFilterListener('month', febFilter, 'Feb');
+      addFilterListener('month', marFilter, 'Mar');
+      addFilterListener('month', aprFilter, 'Apr');
+      addFilterListener('month', mayFilter, 'May');
+      addFilterListener('month', junFilter, 'Jun');
+      addFilterListener('month', julFilter, 'Jul');
+      addFilterListener('month', augFilter, 'Aug');
+      addFilterListener('month', sepFilter, 'Sep');
+      addFilterListener('month', octFilter, 'Oct');
+      addFilterListener('month', novFilter, 'Nov');
+      addFilterListener('month', decFilter, 'Dec');
+
+
+      function filter(filterType, monthlyWildlife, filterValue)
+      {
+        if (filterValue != "clear" && filterType == "category") //filter by category
         {
           d3.selectAll("circle,rect")
             .classed("enlarge", false)
@@ -920,7 +952,9 @@ d3.csv(bugData, function(datasetBug) {
               return d['Category'] != filterValue
             })
             .style("opacity", "0.1"); //lowers opacity of other
-        } else if (filterValue != "clear" && filterType == "rarity") {
+        } 
+        else if (filterValue != "clear" && filterType == "rarity") //filter by rarity
+        {
           d3.selectAll("circle,rect")
             .classed("enlarge", false)
             .transition(t)
@@ -929,7 +963,32 @@ d3.csv(bugData, function(datasetBug) {
               return d['Rarity'] != filterValue
             })
             .style("opacity", "0.1"); //lowers opacity of other
-        } else {
+        } 
+        else if (filterValue != "clear" && filterType == "month") //filter by month
+        {
+          d3.selectAll("circle,rect")
+            .classed("enlarge", false)
+            .transition(t)
+            .style("opacity",0.8)
+            .filter(function(d)
+            {
+              if (d['Month'] != null)
+              {
+                console.log(d['Month'])
+                return d['Month'] != filterValue;
+              }
+
+              if (d['Month List'] != null)
+              {
+                console.log(d['Month List'])
+                return !d['Month List'].includes(filterValue);
+              }
+
+            })
+            .style("opacity", "0.1"); //lowers opacity of other
+        }
+        else 
+        {
           //clear filters when clear button pressed or any error occurs
           d3.selectAll("circle,rect")
             .classed("enlarge", false)
@@ -1087,7 +1146,7 @@ d3.csv(bugData, function(datasetBug) {
 
               updateTimelineArray(d['Name'], d['Category'], d['Start Time'],
                                   d['End Time'], d['Start Time 2'], d['End Time 2'],
-                                    +d['Price'], d['Image URL'], +d['Rarity'], d['Location']);
+                                    +d['Price'], d['Image URL'], +d['Rarity'], d['Location'], d['Month List']);
 
               console.log("timeline:");
               console.log(timelineSpecies)
