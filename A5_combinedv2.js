@@ -81,6 +81,20 @@ var t = d3.transition()
   .ease(d3.easeLinear);
 
 //create svg
+var svg = d3.select("#graph")
+
+  .append("div")
+  .classed("svg-container", true) //container class to make it responsive
+  .append("svg")
+  //responsive SVG needs these 2 attributes and no width and height attr
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 " + graphWidth + " " + graphHeight)
+
+  //class to make svg responsive
+  .classed("svg-content-responsive", true)
+  .append("g")
+  .attr("transform", "translate( 50," + margin.top + ")");
+
 var svg2 = d3.select("#priceRange")
 
   .append("div")
@@ -174,6 +188,43 @@ d3.csv(bugData, function(datasetBug) {
       hoursAxis = hoursAxis.concat(hours, "");
 
       //add x and y axis to svg////////////////////////
+
+      // SVG 1 (Price vs Month Availability) ///////////////////////
+      var xAxis = d3.axisBottom()
+        .scale(xScale)
+        .tickFormat(function(d, i) {
+          return monthsAxis[i]
+        }); //change number labels into months
+
+      svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0, " + height + ")")
+        .call(xAxis);
+
+      // text label for the x axis
+      svg.append("text")
+        .attr("transform",
+          "translate(" + (width / 2) + " ," +
+          (height + margin.top) + ")")
+        .style("text-anchor", "middle")
+        .text("Month of Appearance");
+
+      var yAxis = d3.axisLeft()
+        .scale(yScale);
+
+      svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(0,0)")
+        .call(yAxis);
+
+      // text label for y-axis
+      svg.append("text")
+        .attr("y", 0 - 70)
+        .attr("x", 0 + margin.left)
+        .attr("dy", "3em")
+        .style("text-anchor", "middle")
+        .text("Selling Price (in Bells)");
+
       // SVG 2 (Price Distribution) ////////////////////////
 
       var xAxis2 = d3.axisBottom()
@@ -229,82 +280,51 @@ d3.csv(bugData, function(datasetBug) {
 
       var monthlyWildlife = []; //array to store all montly available wildlife
 
-      // // Get Monthly Availability ///////////////////////
-      // function getAvailability(setClass, data, month) 
-      // {
+      // Get Monthly Availability ///////////////////////
+      function getAvailability(setClass, data, month) 
+      {
 
-      //   // searchClass = setClass + "." + month;
+        // searchClass = setClass + "." + month;
 
-      //   var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
+        var sumCounter = 0; //debug value to count how many points are plotted for each month/wildlife set
 
-      //   //first, check what exactly is available in that month
-      //   data.forEach(function(d) {
-      //     if (d[month] > 0) 
-      //     {
+        //first, check what exactly is available in that month
+        data.forEach(function(d) {
+          if (d[month] > 0) 
+          {
 
-      //       sumCounter++;
+          sumCounter++;
 
-      //     	//get time of day that the species appears in
-      //     	var startTime = new Date(d['Start Time']);
-      // 			startTime = startTime.getTime();
+          //create new array using only necessary data from the datasets:
+            //Type of wildlife, available month, species name, and price
+            //Also include the image URL, location
+      monthlyWildlife.push(
+            {
+              "Category": setClass,
+              "Month": month,
+              "Name": d['Name'],
+              "Price": +d['Price'],
+              "Rarity": d[month],
+              "Image URL": d['Image URL'],
+              "Location": d['Location']
+            });
+          }
+        });
 
-      // 			var endTime = new Date(d['End Time']);
-      // 			endTime = endTime.getTime();
+        // console.log(setClass+"/"+month+" Sum: "+sumCounter);
 
-      // 			var startTime2, endTime2;
-      // 			//check if there's a second time frame in the day that the species shows up in
-      // 			if (d['Start Time 2'] != 0 && d['End Time 2'] != 0)
-      // 			{
-      // 				startTime2 = new Date(d['Start Time 2']);
-      // 				startTime2 = startTime2.getTime();
+      } //end of plot points function
 
-      // 				endTime2 = new Date(d['End Time 2']);
-      // 				endTime2 = endTime2.getTime();
-      			
-      // 			}
-      // 			else
-      // 			{
-      // 				//if there is only one time frame the species appears in
-      // 				//set the 2nd set to 0
-      // 	            startTime2 = 0;
-      // 	            endTime2 = 0;
-      // 	        }
+      function plotByMonth(category, dataset) {
+        for (var i = 0; i < months.length; i++) {
+          getAvailability(category, dataset, months[i]);
+          // console.log("month: " + months[i])
+        }
+      }
 
-		    //     //Then create new array using only necessary data from the datasets:
-	     //        //Type of wildlife, available month, species name, and price
-	     //        //Also include the image URL, location, and times of day they appear
-      //         monthlyWildlife.push(
-      // 	            {
-      // 	              "Category": setClass,
-      // 	              "Month": month,
-      // 	              "Name": d['Name'],
-      // 	              "Price": +d['Price'],
-      // 	              "Rarity": d[month],
-      // 	              "Image URL": d['Image URL'],
-      // 	              "Location": d['Location'],
-      // 	              "Start Time":startTime,
-      // 	              "End Time":endTime,
-      // 	              "Start Time 2":startTime2,
-      // 	              "End Time 2":endTime2
-      // 	            });
-      //           }
-      //   });
-
-      //   // console.log(setClass+"/"+month+" Sum: "+sumCounter);
-
-      // } //end of plot points function
-
-      // getAvailability("bugs", datasetBug, "Jan");
-      // getAvailability("fish", datasetFish, "Jan");
-      // getAvailability("diving", datasetDiving, "Jan");
-
-      // function plotByMonth(month)
-      // {
-      //   getAvailability("bugs", datasetBug, month);
-      //   getAvailability("fish", datasetFish, month);
-      //   getAvailability("diving", datasetDiving, month);
-
-      // }
+      plotByMonth("bugs", datasetBug);
+      plotByMonth("fish", datasetFish);
+      plotByMonth("diving", datasetDiving);
 
       // creating hidden tooltip //////////////////////////
       var tooltip = d3.select("body")
@@ -319,6 +339,158 @@ d3.csv(bugData, function(datasetBug) {
       // console.log(monthlyWildlife);
 
       // FORCE LAYOUT COLLISION ////////////////////////////////////
+
+      //PRICE VS MONTH  //////////////////
+      var simulation = d3.forceSimulation(monthlyWildlife)
+        .force('charge', d3.forceManyBody().strength(-0.1)) //repel points away from each other
+        .force('x', d3.forceX().x(function(d) //center points to month on axis
+          {
+            return xScale(monthStringToNum[d['Month']]);
+          }))
+        .force('y', d3.forceY().y(function(d) {
+          return yScale(+d['Price']);
+        })) //set y position to pricing
+        .force('collision', d3.forceCollide().radius(function(d) {
+          return +d.Rarity + nodePadding;
+        }))
+        .on('tick', ticked);
+      // simulation.alphaTarget(0.3).restart();
+
+      function ticked() //draw the nodes
+      {
+        var u = d3.select('svg g')
+          .selectAll('circle')
+          .data(monthlyWildlife);
+
+        u.enter()
+          .append("circle")
+          .attr("class", function(d) //add classes to circles here
+            {
+              // return d['Category'] + " " + d['Name'] + " " + d['Month'];
+              return d['Category'] + " " + d['Name'].replace(/ /g, "-");
+              //replace spaces in name with - so that it doesn't get split into two classes
+            })
+
+          // node appearance
+          .attr('r', function(d) //different node size based on rarity
+            {
+              var rarity = +d['Rarity'];
+              var nodeRadius;
+              if (rarity == 1) {
+                nodeRadius = 3;
+              } else if (rarity == 2) {
+                nodeRadius = 4.5;
+              } else if (rarity == 3) {
+                nodeRadius = 5.5;
+              } else if (rarity == 4) {
+                nodeRadius = 8;
+              } else if (rarity == 5) {
+                nodeRadius = 11;
+              }
+
+              return nodeRadius - 0.5;
+
+            })
+          .attr('fill', function(d) //set fill colour based on data category/wildlife type
+            {
+              return fillColour[d['Category']];
+            })
+          .attr('opacity', 0.8)
+          .attr("stroke-width", "1")
+          .attr("stroke", "lightgrey")
+
+          // mouse over tool tip
+          .on("mouseover", function(d) {
+            var rarity = speciesRarity[d['Rarity']];
+            var imagePath = d['Image URL'];
+            var urlString = "<img class='icon' src=" + imagePath + "/>";
+
+            tooltip.style("visibility", "visible")
+              .style("color", fillColour[d['Category']])
+              .html(urlString)
+              .append("HTML").attr("dy", "0em")
+              .text(d['Name'])
+              .append("HTML").attr("dy", "1em")
+              .text(" $" + d['Price'] + ", " + rarity)
+              .classed('tooltip-text', true)
+              .append("HTML").attr("dy", "1em")
+              .text("Location: " + d['Location'])
+              .classed('tooltip-text', true);
+
+          })
+
+          .on("mousemove", function() {
+            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+          })
+          .on("mouseout", function() {
+            return tooltip.style("visibility", "hidden")
+              .html("");
+          })
+
+          .on("click", function(d) {
+            console.log(d);
+            var highlightkey = d.key;
+
+            // remove previous selecitons ...
+            d3.selectAll("circle")
+              .classed("enlarge", false)
+              .style('opacity', 0.2)
+              .attr('fill', function(d) //set fill colour based on data category/wildlife type
+                {
+                  return fillColour[d['Category']];
+
+                })
+              .style('stroke', 'lightgrey');
+
+            //get the classes of the circle selected
+            var selectorClass = this.className['baseVal'];
+
+            //print classes to console
+            // console.log(selectorClass.replace(" ", "."));
+
+            //select all circles of the same classes/species
+            d3.selectAll("circle." + selectorClass.replace(/ /g, "."))
+              .style('opacity', 1)
+              .style('stroke', 'white')
+              .classed("enlarge", true);
+
+            d3.selectAll(".hidden")
+              .style('opacity', 1)
+              .style('stroke', 'white')
+              .classed("enlarge", true);
+
+          })
+
+          .merge(u)
+          .attr('cx', function(d) //constrain the x position of each column of points according to month
+            {
+              var columnPadding = xScale(1) * 0.75;
+
+              function leftConstraint(scaleVal) //create the left/min constraint for the x value
+              {
+                return xScale(scaleVal) - columnPadding;
+              }
+
+              function rightConstraint(scaleVal) //create the right/max constraint for the x value
+              {
+                return xScale(scaleVal) + columnPadding;
+              }
+
+              //return d.x value based on month
+              return d.x = Math.max(leftConstraint(monthStringToNum[d['Month']]),
+                Math.min(rightConstraint(monthStringToNum[d['Month']]), d.x));
+
+            })
+
+          .attr('cy', function(d) {
+            // return d.y;
+            return d.y = Math.max(radius, Math.min(height - radius, d.y));
+          })
+
+        u.exit().remove();
+
+
+      } // end of ticked()
 
 
       // PRICE DISTRIBUTION OVERVIEW ///////////////////////////////////////
@@ -416,7 +588,7 @@ d3.csv(bugData, function(datasetBug) {
           .attr("class", function(d) //add classes to circles here
             {
               // return d['Category'] + " " + d['Name'] + " " + d['Month'];
-              return d['Category'] + " " + d['Name'].replace(/ /g, "-");
+              return "overview " + d['Category'] + " " + d['Name'].replace(/ /g, "-");
               //replace spaces in name with - so that it doesn't get split into two classes
             })
 
@@ -539,57 +711,60 @@ d3.csv(bugData, function(datasetBug) {
         var setClass = category + " " + name.replace(/ /g, "-");
 
         if (startTime2 != 0 && endTime2!= 0)
+        {
+          //push both time frames the species shows up in into the times value
+          timelineSpecies.push
+          (
                 {
-                  //push both time frames the species shows up in into the times value
-                  timelineSpecies.push
-                  (
-                        {
-                          class: setClass,
-                          label: name,
-                          times:[
-                              {
-                                  "Category": category, 
-                                  "speciesName": name,
-                                  "Price": price,
-                                  "imageURL": imageURL,
-                                  "Rarity": rarity,
-                                  "location": location,
-                                  "color": fillColour[category],
-                                  "starting_time": startTime, "ending_time":endTime
-                              },
-                              { 
-                                "Category": category, 
-                                "speciesName": name,
-                                "Price": price,
-                                "imageURL": imageURL,
-                                "Rarity": rarity,
-                                "location": location,
-                                "color": fillColour[category],
-                                "starting_time":startTime2, "ending_time":endTime2
-                              }]
-                        });
-                
-                }
-                else
+                  class: setClass,
+                  label: name,
+                  times:[
+                      {
+                          "Category": category, 
+                          "speciesName": name,
+                          "Price": price,
+                          "imageURL": imageURL,
+                          "Rarity": rarity,
+                          "location": location,
+                          "color": fillColour[category],
+                          "starting_time": startTime, "ending_time":endTime
+                      },
+                      { 
+                        "Category": category, 
+                        "speciesName": name,
+                        "Price": price,
+                        "imageURL": imageURL,
+                        "Rarity": rarity,
+                        "location": location,
+                        "color": fillColour[category],
+                        "starting_time":startTime2, "ending_time":endTime2
+                      }]
+                });
+        
+        }
+        else
+        {
+          //if there is only one time frame the species appears in
+          //only push that one time frame
+          timelineSpecies.push(
                 {
-                  //if there is only one time frame the species appears in
-                  //only push that one time frame
-                  timelineSpecies.push(
-                        {
-                          class: setClass,
-                          label: name,
-                          times:[{
-                                  "Category": category, 
-                                  "speciesName": name,
-                                  "Price": price,
-                                  "imageURL": imageURL,
-                                  "Rarity": rarity,
-                                  "location": location,
-                                  "color": fillColour[category],
-                                  "starting_time":startTime, "ending_time":endTime
-                              }]
-                        });
-                }
+                  class: setClass,
+                  label: name,
+                  times:[{
+                          "Category": category, 
+                          "speciesName": name,
+                          "Price": price,
+                          "imageURL": imageURL,
+                          "Rarity": rarity,
+                          "location": location,
+                          "color": fillColour[category],
+                          "starting_time":startTime, "ending_time":endTime
+                      }]
+                });
+        }
+
+        console.log("timeline update")
+        console.log(timelineSpecies);
       }
 
 
@@ -859,8 +1034,39 @@ d3.csv(bugData, function(datasetBug) {
 
         d3.selectAll('circle').classed('enlarge', false); //remove enlarged highlighting
 
+        //select the circles in the main graph with months
         //change highlight + opacity of selected circles that are brushed over
-        d3.selectAll('circle')
+         d3.selectAll('circle')
+          .style('opacity', function(d) {
+            //make opacity darker if selected
+            if (e[0] <= d['Price'] && d['Price'] <= e[1]) 
+            {
+              //add them to the array of selected species
+              selectedSpecies.push(d);
+              console.log("selected: ");
+              console.log(selectedSpecies);
+
+              return 1;
+            } else //else lower opacity
+            {
+              return 0.2;
+            }
+
+          })
+          .style('stroke', function(d) //change stroke colour on selection
+            {
+              //make stroke white if selected
+              if (e[0] <= d['Price'] && d['Price'] <= e[1]) {
+                return "white";
+              } else //else keep grey
+              {
+                return "lightgrey";
+              }
+            });
+
+        //selection for circles in OVERVIEW graph only and subsequently the timeline
+        //prevents duplicates from drawing in the timeline as well
+        d3.selectAll('.overview')
           .style('opacity', function(d) 
           {
             //make opacity darker if selected
@@ -905,10 +1111,10 @@ d3.csv(bugData, function(datasetBug) {
       function brushended() //return to default styling
       {
         if (!d3.event.selection) {
-          d3.selectAll('circle')
+          d3.selectAll('circle,rect')
             .classed("enlarge", false);
 
-          d3.selectAll('circle')
+          d3.selectAll('circle,rect')
             .transition()
             .duration(150)
             .ease(d3.easeLinear)
