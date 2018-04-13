@@ -1,73 +1,73 @@
-,Name,Price,Shadow,Location,Total time,Start Time,End Time,Peak time,Island Time,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
-,Bitterling,900,Shortest,River,24,0,24,4a-9p,,2,2,0,0,0,0,0,0,0,0,2,2
-,Pale Chub,200,Shortest,River,7,9,16,,,3,3,3,3,3,3,3,3,3,3,3,3
-,Crucian Carp,120,Short,River,24,0,24,9a-4p,,2,2,2,2,2,2,2,2,2,2,2,2
-,Dace,200,Medium,River,17,16,9,,,1,1,1,2,2,2,2,2,2,2,1,1
-,Barbel Steed,200,Medium,River,24,0,24,,,2,2,1,2,2,2,2,2,2,1,1,2
-,Carp,300,Long,River,24,0,24,4a-9p,,2,2,2,1,1,1,1,2,2,1,1,2
-,Koi,4000,Long,River,17,16,9,,,4,4,4,4,4,4,4,4,4,4,4,4
-,Goldfish,1300,Shortest,River,24,0,24,,,4,4,4,4,4,4,4,4,4,4,4,4
-,Pop-eyed Goldfish,1300,Shortest,River,7,9,16,,,4,4,4,4,4,4,4,4,4,4,4,4
-,Killifish,300,Shortest,Small Pond,24,0,24,,,0,0,0,3,3,3,3,3,0,0,0,0
-,Crawfish,200,Short,Small Pond,24,0,24,,,0,0,0,1,1,1,1,1,1,0,0,0
-,Soft-shelled Turtle,3750,Medium,River,17,16,9,,,0,0,0,0,0,0,0,4,4,0,0,0
-,Tadpole,100,Shortest,Small Pond,24,0,24,,,0,0,3,3,3,3,3,0,0,0,0,0
-,Frog,120,Short,Small Pond,24,0,24,,,0,0,0,0,1,1,1,1,0,0,0,0
-,Freshwater Goby,300,Short,River,17,16,9,,,4,4,4,3,3,3,3,3,3,4,4,4
-,Loach,300,Short,River,24,0,24,9a-4p,,0,0,1,1,1,0,0,0,0,0,0,0
-,Catfish,800,Long,Lake,17,16,9,9p-4a,,0,0,0,0,2,2,2,2,2,2,0,0
-,Eel,2000,Long and Thin,River,17,16,9,9a-4p,,0,0,0,0,0,2,2,2,2,0,0,0
-,Giant Snakehead,5500,Very Long,Lake,7,9,16,,,0,0,0,0,0,4,3,3,0,0,0,0
-,Bluegill,120,Short,River,7,9,16,,,3,3,3,3,3,3,3,3,3,3,3,3
-,Yellow Perch,240,Medium,River,24,0,24,,,2,2,2,0,0,0,0,0,0,2,2,2
-,Black Bass,300,Long,River,24,0,24,,,1,1,1,1,1,1,1,1,1,1,1,1
-,Pike,1800,Very Long,River,17,4,21,,,0,0,0,0,0,0,0,0,3,3,3,3
-,Pond Smelt,300,Short,River,24,0,24,,,1,1,0,0,0,0,0,0,0,0,0,1
-,Sweetfish,900,Medium,River,24,0,24,,,0,0,0,0,0,0,2,2,2,0,0,0
-,Cherry Salmon,1000,Medium,River,14,4,9,,,0,0,3,3,3,3,0,0,3,3,3,0
-,Char,3800,Medium,Waterfall,14,4,9,,,0,0,3,3,3,3,0,0,3,3,3,0
-,Rainbow Trout,800,Long,River,14,4,9,,,0,0,2,2,2,2,0,0,2,2,2,0
-,Stringfish,15000,Longest,River,17,16,9,,,5,5,0,0,0,0,0,0,0,0,0,5
-,Salmon,700,Long,River Mouth,24,0,24,,,0,0,0,0,0,0,0,0,1,0,0,0
-,King Salmon,1800,Longest,River Mouth,24,0,24,,,0,0,0,0,0,0,0,0,4,0,0,0
-,Mitten Crab,2000,Short,River,17,16,9,,,0,0,0,0,0,0,0,0,4,4,4,0
-,Guppy,1300,Shortest,River,7,9,16,,,0,0,0,4,4,4,4,4,4,4,4,0
-,Nibble Fish,1500,Short,River,7,9,16,,,0,0,0,0,4,4,4,4,4,0,0,0
-,Angelfish,3000,Short,River,17,16,9,,,0,0,0,0,4,4,4,4,4,4,0,0
-,Neon Tetra,500,Shortest,River,7,9,16,,,0,0,0,3,3,3,3,3,3,3,3,0
-,Piranha,2500,Short,River,14,9,16,,,0,0,0,0,0,4,4,4,4,0,0,0
-,Arowana,10000,Long,River,17,16,9,,,0,0,0,0,0,5,5,5,5,0,0,0
-,Dorado,15000,Very Long,River,17,4,21,,,0,0,0,0,0,5,5,5,5,0,0,0
-,Gar,6000,Longest,Lake,17,16,9,,,0,0,0,0,0,4,4,4,4,0,0,0
-,Arapaima,10000,Longest,River,17,16,9,,,0,0,0,0,0,0,4,4,4,0,0,0
-,Saddled Bichir,4000,Long,River,7,21,4,,,0,0,0,0,0,4,4,4,4,0,0,0
-,Sea Butterfly,1000,Shortest,Ocean,24,0,24,,,3,3,0,0,0,0,0,0,0,0,0,3
-,Sea Horse,1100,Shortest,Ocean,24,0,24,4a-9p,"All Year, All Day",0,0,0,3,2,2,2,2,2,2,3,0
-,Clown Fish,650,Shortest,Ocean,24,0,24,,"All Year, All Day",0,0,0,3,2,2,2,2,3,0,0,0
-,Surgeonfish,1000,Short,Ocean,24,0,24,,"All Year, All Day",0,0,0,3,3,3,3,3,3,0,0,0
-,Butterfly Fish,1000,Short,Ocean,24,0,24,,,0,0,0,3,3,3,3,3,3,0,0,0
-,Napoleonfish,10000,Longest,Ocean,17,4,21,,"All Year, All Day",0,0,0,0,0,0,4,4,0,0,0,0
-,Zebra Turkeyfish,400,Medium,Ocean,24,0,24,,"All Year, All Day",0,0,0,2,2,1,1,1,2,2,2,0
-,Blow Fish,125,Medium,Ocean,7,21,4,,,4,4,0,0,0,0,0,0,0,0,4,4
-,Puffer Fish,240,Medium,Ocean,24,0,24,,"All Year, All Day",0,0,0,0,0,0,3,3,3,0,0,0
-,Horse Mackerel,150,Short,Ocean,24,0,24,,"All Year, All Day",1,1,1,1,1,1,1,1,1,1,1,1
-,Barred Knifejaw,5000,Medium,Ocean,24,0,24,,"All Year, All Day",0,0,4,4,4,4,4,4,4,4,4,0
-,Sea Bass,200,Very Long,Ocean,24,0,24,,"All Year, All Day",1,1,1,1,1,1,1,1,1,1,1,1
-,Red Snapper,3000,Medium,Ocean,24,0,24,,"All Year, All Day",3,3,3,3,3,3,3,3,3,3,3,3
-,Dab,300,Medium,Ocean,24,0,24,,,2,2,2,2,0,0,0,0,0,2,2,2
-,Olive Flounder,800,Long,Ocean,24,0,24,,"All Year, All Day",3,3,3,3,3,3,3,3,3,3,3,3
-,Squid,400,Medium,Ocean,24,0,24,,"All Year, All Day",2,2,2,2,2,2,2,2,0,0,0,2
-,Moray Eel,2000,Very Long,Ocean,24,0,24,,"All Year, All Day",0,0,0,0,0,0,0,3,3,3,0,0
-,Ribbon Eel,600,Long and Thin,Tropical Island,24,0,24,,"All Year, All Day",3,3,3,3,3,3,3,3,3,3,3,3
-,Football Fish,2500,Long,Ocean,17,16,9,,,3,3,3,0,0,0,0,0,0,0,3,3
-,Tuna,7000,Longest,Ocean,24,0,24,,,4,4,4,0,0,0,0,0,0,0,4,4
-,Blue Marlin,10000,Longest,Ocean,24,0,24,,"All Year, All Day",0,0,0,0,0,0,4,4,4,0,0,0
-,Giant Trevally,4500,Very Long,Tropical Island,24,0,24,,,4,4,4,4,4,4,4,4,4,4,4,4
-,Ray,3000,Very Long,Ocean,17,4,21,,"All Year, All Day",0,0,0,0,0,0,0,4,4,4,4,0
-,Ocean Sunfish,4000,"Longest, Fin",Ocean,17,4,21,,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
-,Hammerhead Shark,8000,"Longest, Fin",Ocean,17,16,9,,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
-,Shark,15000,"Longest, Fin",Ocean,17,16,9,,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
-,Saw Shark,12000,"Longest, Fin",Ocean,17,16,9,,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
-,Whale Shark,13000,"Longest, Fin",Tropical Island,24,0,24,,,4,4,4,4,4,4,4,4,4,4,4,4
-,Oarfish,9000,Longest,Ocean,24,0,24,,,4,4,4,4,4,0,0,0,0,0,0,4
-,Coelacanth,15000,Longest,Ocean during rain or snow,17,16,9,,,5,5,5,5,5,5,5,5,5,5,5,5
+,Name,Price,Shadow,Location,Image URL,Total time,Start Time,End Time,Start Time 2,End Time 2,Rarity,Island Time,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+,Bitterling,900,Shortest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/d/d7/Bitterling_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150820001849,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,2,2,0,0,0,0,0,0,0,0,2,2
+,Pale Chub,200,Shortest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/f/f7/PaleChubNL.png/revision/latest?cb=20130724222225,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,3,,3,3,3,3,3,3,3,3,3,3,3,3
+,Crucian Carp,120,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/c/c4/Crucian_carp_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200530,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,2,2,2,2,2,2,2,2,2,2,2,2
+,Dace,200,Medium,River,https://vignette.wikia.nocookie.net/animalcrossing/images/2/23/Dace.png/revision/latest?cb=20130616204231,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,,1,1,1,2,2,2,2,2,2,2,1,1
+,Barbel Steed,200,Medium,River,https://vignette.wikia.nocookie.net/animalcrossing/images/9/99/Barbel_steed_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200521,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,2,2,1,2,2,2,2,2,2,1,1,2
+,Carp,300,Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/f/f2/Carp_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200524,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,2,2,2,1,1,1,1,2,2,1,1,2
+,Koi,4000,Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/Koi_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200541,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,4,4,4,4,4,4,4,4,4,4,4,4
+,Goldfish,1300,Shortest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/f/f8/GoldfishNL.png/revision/latest?cb=20130614221224,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,,4,4,4,4,4,4,4,4,4,4,4,4
+,Pop-eyed Goldfish,1300,Shortest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/d/df/PopeyedGoldfish.png/revision/latest?cb=20130614221442,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,4,,4,4,4,4,4,4,4,4,4,4,4,4
+,Killifish,300,Shortest,Small Pond,https://vignette.wikia.nocookie.net/animalcrossing/images/2/20/Killifish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200540,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,,0,0,0,3,3,3,3,3,0,0,0,0
+,Crawfish,200,Short,Small Pond,https://vignette.wikia.nocookie.net/animalcrossing/images/b/be/Crawfish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200529,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,,0,0,0,1,1,1,1,1,1,0,0,0
+,Soft-shelled Turtle,3750,Medium,River,https://vignette.wikia.nocookie.net/animalcrossing/images/3/35/Soft-shelledTurtleNL.png/revision/latest?cb=20130806151912,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,0,0,0,0,0,0,0,4,4,0,0,0
+,Tadpole,100,Shortest,Small Pond,https://vignette.wikia.nocookie.net/animalcrossing/images/8/86/Tadpole_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200559,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,,0,0,3,3,3,3,3,0,0,0,0,0
+,Frog,120,Short,Small Pond,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e6/Frog.png/revision/latest?cb=20130622232351,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,,0,0,0,0,1,1,1,1,0,0,0,0
+,Freshwater Goby,300,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/c/cf/Freshwater_goby_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150819192201,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,4,4,4,3,3,3,3,3,3,4,4,4
+,Loach,300,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5f/Loach_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200542,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,,0,0,1,1,1,0,0,0,0,0,0,0
+,Catfish,800,Long,Lake,https://vignette.wikia.nocookie.net/animalcrossing/images/2/26/Catfish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200525,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,,0,0,0,0,2,2,2,2,2,2,0,0
+,Eel,2000,Long and Thin,River,https://vignette.wikia.nocookie.net/animalcrossing/images/2/29/Eel_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200534,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,,0,0,0,0,0,2,2,2,2,0,0,0
+,Giant Snakehead,5500,Very Long,Lake,https://vignette.wikia.nocookie.net/animalcrossing/images/b/b1/Giant_snakehead_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200538,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,3,,0,0,0,0,0,4,3,3,0,0,0,0
+,Bluegill,120,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/a/a2/Bluegill.png/revision/latest?cb=20130614220512,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,3,,3,3,3,3,3,3,3,3,3,3,3,3
+,Yellow Perch,240,Medium,River,https://vignette.wikia.nocookie.net/animalcrossing/images/4/41/Yellow_perch_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200602,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,2,2,2,0,0,0,0,0,0,2,2,2
+,Black Bass,300,Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/1/14/Black_bass_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200523,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,,1,1,1,1,1,1,1,1,1,1,1,1
+,Pike,1800,Very Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/c/c5/Pike_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200546,17, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT,,,3,,0,0,0,0,0,0,0,0,3,3,3,3
+,Pond Smelt,300,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/6/63/PondSmelt.jpg/revision/latest?cb=20130731214944,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,,1,1,0,0,0,0,0,0,0,0,0,1
+,Sweetfish,900,Medium,River,https://vignette.wikia.nocookie.net/animalcrossing/images/2/2d/Sweetfish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200558,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,0,0,0,0,0,0,2,2,2,0,0,0
+,Cherry Salmon,1000,Medium,River,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5f/Cherry_salmon_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200527,14, 1 Jan 2018 4:00 GMT, 1 Jan 2018 9:00 GMT,,,3,,0,0,3,3,3,3,0,0,3,3,3,0
+,Char,3800,Medium,Waterfall,https://vignette.wikia.nocookie.net/animalcrossing/images/6/6a/Char_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200526,14, 1 Jan 2018 4:00 GMT, 1 Jan 2018 9:00 GMT,,,3,,0,0,3,3,3,3,0,0,3,3,3,0
+,Rainbow Trout,800,Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/a/a5/Rainbow_trout_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200550,14, 1 Jan 2018 4:00 GMT, 1 Jan 2018 9:00 GMT,,,2,,0,0,2,2,2,2,0,0,2,2,2,0
+,Stringfish,15000,Longest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/8/8e/Stringfish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150820001850,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,5,,5,5,0,0,0,0,0,0,0,0,0,5
+,Salmon,700,Long,River Mouth,https://vignette.wikia.nocookie.net/animalcrossing/images/5/53/Salmon_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200552,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,,0,0,0,0,0,0,0,0,1,0,0,0
+,King Salmon,1800,Longest,River Mouth,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e2/King_salmon_encyclopedia_%28New_Leaf%29.JPG/revision/latest?cb=20150821011626,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,,0,0,0,0,0,0,0,0,4,0,0,0
+,Mitten Crab,2000,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/c/c8/Mitten_crab.png/revision/latest?cb=20130717134830,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,0,0,0,0,0,0,0,0,4,4,4,0
+,Guppy,1300,Shortest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/1/15/Guppy_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200539,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,4,,0,0,0,4,4,4,4,4,4,4,4,0
+,Nibble Fish,1500,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/9/90/Nibble_fish.png/revision/latest?cb=20130616001737,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,4,,0,0,0,0,4,4,4,4,4,0,0,0
+,Angelfish,3000,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5c/Angelfish.png/revision/latest?cb=20130616203102,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,0,0,0,0,4,4,4,4,4,4,0,0
+,Neon Tetra,500,Shortest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/c/ca/Neon_tetra.png/revision/latest?cb=20130616052918,7, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,3,,0,0,0,3,3,3,3,3,3,3,3,0
+,Piranha,2500,Short,River,https://vignette.wikia.nocookie.net/animalcrossing/images/2/25/Piranha_encyclopedia_%28New_Leaf%29.png/revision/latest?cb=20150820174030,14, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT,,,4,,0,0,0,0,0,4,4,4,4,0,0,0
+,Arowana,10000,Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/2/29/Arowana.png/revision/latest?cb=20130616051520,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,5,,0,0,0,0,0,5,5,5,5,0,0,0
+,Dorado,15000,Very Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/6/67/Dorado_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200533,17, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT,,,5,,0,0,0,0,0,5,5,5,5,0,0,0
+,Gar,6000,Longest,Lake,https://vignette.wikia.nocookie.net/animalcrossing/images/9/91/Gar_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200536,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,0,0,0,0,0,4,4,4,4,0,0,0
+,Arapaima,10000,Longest,River,https://vignette.wikia.nocookie.net/animalcrossing/images/7/76/Arapaima_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200519,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,,0,0,0,0,0,0,4,4,4,0,0,0
+,Saddled Bichir,4000,Long,River,https://vignette.wikia.nocookie.net/animalcrossing/images/4/4a/SaddledBichirNL.png/revision/latest?cb=20130724221611,7, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT, 1 Jan 2018 23:59 GMT,4,,0,0,0,0,0,4,4,4,4,0,0,0
+,Sea Butterfly,1000,Shortest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/e/ea/Sea_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150820001850,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,,3,3,0,0,0,0,0,0,0,0,0,3
+,Sea Horse,1100,Shortest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/f/fd/Sea_horse_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200554,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,"All Year, All Day",0,0,0,3,2,2,2,2,2,2,3,0
+,Clown Fish,650,Shortest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/4/46/Clown_fish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200528,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,"All Year, All Day",0,0,0,3,2,2,2,2,3,0,0,0
+,Surgeonfish,1000,Short,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/6/62/SurgeonfishNL.png/revision/latest?cb=20130615111010,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,"All Year, All Day",0,0,0,3,3,3,3,3,3,0,0,0
+,Butterfly Fish,1000,Short,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/d/d8/ButterflyfishNL.png/revision/latest?cb=20130724212554,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,,0,0,0,3,3,3,3,3,3,0,0,0
+,Napoleonfish,10000,Longest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/8/89/Napoleonfish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200543,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 21:00 GMT,,,4,"All Year, All Day",0,0,0,0,0,0,4,4,0,0,0,0
+,Zebra Turkeyfish,400,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/c/cd/ZebraTurkeyfishNL.png/revision/latest?cb=20130724223027,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,"All Year, All Day",0,0,0,2,2,1,1,1,2,2,2,0
+,Blow Fish,125,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9c/NewLeafBlowFish.jpg/revision/latest?cb=20130813172735,7, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT, 1 Jan 2018 23:59 GMT,4,,4,4,0,0,0,0,0,0,0,0,4,4
+,Puffer Fish,240,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/6/66/Puffer_fish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200548,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,"All Year, All Day",0,0,0,0,0,0,3,3,3,0,0,0
+,Horse Mackerel,150,Short,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5b/HorseMackerelNL.png/revision/latest?cb=20130816230046,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,"All Year, All Day",1,1,1,1,1,1,1,1,1,1,1,1
+,Barred Knifejaw,5000,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/4/4b/BarredKnifejawNL.png/revision/latest?cb=20130816223803,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,"All Year, All Day",0,0,4,4,4,4,4,4,4,4,4,0
+,Sea Bass,200,Very Long,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/4/4b/Sea_bass_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013020400,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,"All Year, All Day",1,1,1,1,1,1,1,1,1,1,1,1
+,Red Snapper,3000,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/5/56/RedSnapperNL.png/revision/latest?cb=20130724214821,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,"All Year, All Day",3,3,3,3,3,3,3,3,3,3,3,3
+,Dab,300,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/0/00/Dab_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200531,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,,2,2,2,2,0,0,0,0,0,2,2,2
+,Olive Flounder,800,Long,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/3/36/OliveFlounderNL.png/revision/latest?cb=20130724220003,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,"All Year, All Day",3,3,3,3,3,3,3,3,3,3,3,3
+,Squid,400,Medium,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9a/SquidNL.png/revision/latest?cb=20130729185112,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,"All Year, All Day",2,2,2,2,2,2,2,2,0,0,0,2
+,Moray Eel,2000,Very Long,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/6/63/MorayEelNL.png/revision/latest?cb=20130724215354,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,"All Year, All Day",0,0,0,0,0,0,0,3,3,3,0,0
+,Ribbon Eel,600,Long and Thin,Tropical Island,https://vignette.wikia.nocookie.net/animalcrossing/images/6/6d/RibbonEelNL.png/revision/latest?cb=20130724213348,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,"All Year, All Day",3,3,3,3,3,3,3,3,3,3,3,3
+,Football Fish,2500,Long,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/f/fd/Football_fish_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200535,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,3,,3,3,3,0,0,0,0,0,0,0,3,3
+,Tuna,7000,Longest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/7/71/Tuna_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818200601,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,,4,4,4,0,0,0,0,0,0,0,4,4
+,Blue Marlin,10000,Longest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/b/b0/BluemarlinNL.png/revision/latest?cb=20130816222343,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,"All Year, All Day",0,0,0,0,0,0,4,4,4,0,0,0
+,Giant Trevally,4500,Very Long,Tropical Island,https://vignette.wikia.nocookie.net/animalcrossing/images/9/91/Giant_trevally.png/revision/latest?cb=20130613202549,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,,4,4,4,4,4,4,4,4,4,4,4,4
+,Ray,3000,Very Long,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/1/1b/Ray_%28New_Leaf_crop%29.jpg/revision/latest?cb=20141208005344,17, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT,,,4,"All Year, All Day",0,0,0,0,0,0,0,4,4,4,4,0
+,Ocean Sunfish,4000,"Longest, Fin",Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/8/8f/OceanSunfishNL.png/revision/latest?cb=20130722144947,17, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT,,,4,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
+,Hammerhead Shark,8000,"Longest, Fin",Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/7/7b/HammerheadSharkNL.png/revision/latest?cb=20130722144641,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
+,Shark,15000,"Longest, Fin",Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/1/14/Shark.png/revision/latest?cb=20130615111744,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
+,Saw Shark,12000,"Longest, Fin",Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/7/72/SawSharkNL.png/revision/latest?cb=20130722145235,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,4,"All Year, All Day",0,0,0,0,0,4,4,4,4,0,0,0
+,Whale Shark,13000,"Longest, Fin",Tropical Island,https://vignette.wikia.nocookie.net/animalcrossing/images/5/54/WhaleSharkNL.png/revision/latest?cb=20130722145604,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,,4,4,4,4,4,4,4,4,4,4,4,4
+,Oarfish,9000,Longest,Ocean,https://vignette.wikia.nocookie.net/animalcrossing/images/d/d2/Oarfish_encyclopedia_%28New_Leaf%29.png/revision/latest?cb=20150818200545,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,,4,4,4,4,4,0,0,0,0,0,0,4
+,Coelacanth,15000,Longest,Ocean during rain or snow,https://vignette.wikia.nocookie.net/animalcrossing/images/0/09/Coelacanth_new_leaf.png/revision/latest?cb=20130618002151,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,5,,5,5,5,5,5,5,5,5,5,5,5,5

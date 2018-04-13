@@ -1,73 +1,73 @@
-,Name,Price,Location,Total time,Start Time,End Time,Peak time,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
-,Common Butterfly,90,Above Flowers,15,4,19,8a-5p,0,0,1,1,1,1,0,0,1,0,0,0
-,Yellow Butterfly,90,Above Flowers,15,4,19,8a-5p,0,0,1,1,1,1,0,0,1,0,0,0
-,Tiger Butterfly,160,Above red or pink Flowers,15,4,19,8a-5p,0,0,3,3,3,3,3,3,3,0,0,0
-,Peacock Butterfly,220,"Above blue, purple or black Flowers",15,4,19,8a-5p,0,0,3,3,3,3,3,3,3,0,0,0
-,Monarch Butterfly,140,Above Flowers,13,4,17,8a-4p,0,0,0,0,0,0,0,0,2,2,2,0
-,Emperor Butterfly,2500,Above Flowers,13,19,8,,0,0,0,0,0,4,4,4,4,0,0,0
-,Agrias Butterfly,3000,Above Flowers,9,8,17,,0,0,0,0,0,4,4,4,4,0,0,0
-,Raja Brooke Butterfly,2500,River or Pond,9,8,17,,0,0,0,0,4,4,4,4,4,0,0,0
-,Birdwing Butterfly,4000,Above Flowers,8,8,16,,0,0,0,0,0,3,3,3,3,0,0,0
-,Moth,60,Outdoor Lights,9,19,4,,0,0,0,0,1,1,1,1,1,0,0,0
-,Oak Silk Moth,1200,Tree Trunk,9,19,4,,0,0,0,0,0,4,4,4,4,0,0,0
-,Honeybee,100,Above Flowers,9,8,17,,0,0,1,1,1,1,1,0,0,0,0,0
-,Bee,2500,Shake Trees,24,0,24,,1,1,1,1,1,1,1,1,1,1,1,1
-,Long Locust,200,Ground,11,8,19,,0,0,0,0,2,2,2,2,2,2,2,0
-,Migratory Locust,600,Ground,11,8,19,8a-4p,0,0,0,0,0,0,0,3,3,3,3,0
-,Rice Grasshopper,400,Ground,11,8,19,,0,0,0,0,0,0,0,3,3,3,3,0
-,Mantis,430,On Flowers,9,8,17,8a-4p,0,0,0,3,3,3,3,3,3,3,3,0
-,Orchid Mantis,2400,White Flowers,9,8,17,,0,0,0,4,4,4,4,4,4,4,4,0
-,Brown Cicada,200,Tree Trunk,9,8,17,8a-4p,0,0,0,0,0,0,1,1,0,0,0,0
-,Robust Cicada,300,Tree Trunk,9,8,17,8a-4p,0,0,0,0,0,0,2,2,0,0,0,0
-,Black Cicada,500,Tree Trunk,9,8,17,,0,0,0,0,0,0,3,3,0,0,0,0
-,Walker Cicada,400,Tree Trunk,9,8,17,,0,0,0,0,0,0,3,3,4,0,0,0
-,Evening Cicada,550,Tree Trunk,4,4,8,,0,0,0,0,0,0,2,2,0,0,0,0
-,Cicada Skin,100,Tree Trunk,24,0,24,,0,0,0,0,0,0,3,3,0,0,0,0
-,Lantern Fly,1800,Tree Trunk,15,16,19,,0,0,0,0,0,4,4,4,4,0,0,0
-,Red Dragonfly,80,Flying,11,8,19,4p-5p,0,0,0,0,0,0,0,0,1,1,0,0
-,Darner Dragonfly,200,Flying,9,8,17,4p-5p,0,0,0,0,0,2,2,2,0,0,0,0
-,Banded Dragonfly,4500,Flying,9,8,17,,0,0,0,0,0,0,4,4,0,0,0,0
-,Giant Petaltail,8000,Flying,2,17,19,,0,0,0,0,0,0,0,4,4,4,0,0
-,Ant,80,"Candy, Spoiled Turnips, Rotten Fruit",24,0,24,,1,1,1,1,1,1,1,1,1,1,1,1
-,Pondskater,130,"River, Pond",11,8,19,5p-7p,0,0,0,0,3,3,3,3,3,0,0,0
-,Diving Beetle,800,"River, Ponds",9,8,17,,0,0,0,0,3,3,3,3,3,0,0,0
-,Stinkbug,120,Tree Trunks,24,0,24,,0,0,0,3,3,3,3,3,3,3,0,0
-,Snail,250,On Hibiscus Bushes,24,0,24,Raining,0,0,0,1,1,1,1,1,1,0,0,0
-,Cricket,130,Ground,15,17,8,,0,0,0,0,0,0,0,0,1,1,1,0
-,Bell Cricket,430,Ground,15,17,8,,0,0,0,0,0,0,0,0,1,1,0,0
-,Grasshopper,160,Ground,9,8,17,,0,0,0,0,0,1,1,1,1,0,0,0
-,Mole Cricket,280,Underground,24,0,24,,3,3,3,3,3,0,0,0,0,0,3,3
-,Walking Leaf,600,Ground,9,8,17,,0,0,0,0,0,0,3,3,3,0,0,0
-,Walking Stick,600,Tree Trunk,7,17,19,,0,0,0,0,0,3,3,3,3,3,3,0
-,Bagworm,300,Shake Trees,24,0,24,8a-7p,3,3,0,0,0,0,0,0,0,3,3,3
-,Ladybug,200,On Flowers,9,8,17,,0,0,1,1,1,1,0,0,0,0,0,0
-,Violin Beetle,260,Tree Stumps,13,4,17,,0,0,0,0,0,3,0,0,3,3,3,0
-,Longhorn Beetle,260,Tree Stumps,8,11,19,,0,0,0,0,0,3,3,3,0,0,0,0
-,Tiger Beetle,1500,Ground,11,8,19,,0,0,3,3,3,3,3,3,3,3,0,0
-,Dung Beetle,800,Snowballs,15,17,8,,3,3,0,0,0,0,0,0,0,0,0,3
-,Wharf Roach,200,Beach,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
-,Hermit Crab,1000,Island Beach,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
-,Firefly,300,Fresh Water,9,19,4,,0,0,0,0,0,1,0,0,0,0,0,0
-,Fruit Beetle,100,Tree Trunk,24,0,24,5p-4a,0,0,0,0,0,1,1,1,1,0,0,0
-,Scarab Beetle,6000,Tree Trunk,9,23,8,,0,0,0,0,0,4,4,4,0,0,0,0
-,Jewel Beetle,2400,Tree Trunk,9,8,17,,0,0,0,0,0,4,4,4,0,0,0,0
-,Miyama Stag,1000,Tree Trunk,24,0,24,7p-8a,0,0,0,0,0,1,1,1,0,0,0,0
-,Saw Stag,2000,Tree Trunk,24,0,24,7p-8a,0,0,0,0,0,3,3,3,0,0,0,0
-,Giant Stag,10000,Tree Trunk,9,23,8,,0,0,0,0,0,4,4,4,0,0,0,0
-,Rainbow Stag,10000,Tree Trunk,13,19,8,,0,0,0,0,0,4,4,4,4,0,0,0
-,Cyclommatus Stag,8000,Palm Trunks,15,17,8,,0,0,0,0,0,2,2,2,0,0,0,0
-,Golden Stag,12000,Palm Trunks,15,17,8,,0,0,0,0,0,5,5,5,0,0,0,0
-,Horned Dynastid,1350,Tree Trunk,15,17,8,11p-8a,0,0,0,0,0,3,3,3,0,0,0,0
-,Horned Atlas,8000,Palm Trunks,15,17,8,,0,0,0,0,0,4,4,4,0,0,0,0
-,Horned Elephant,8000,Palm Trunks,15,17,8,,0,0,0,0,0,4,4,4,0,0,0,0
-,Horned Hercules,12000,Palm Trunks,15,17,8,,0,0,0,0,0,5,5,5,0,0,0,0
-,Goliath Beetle,6000,Palm Trunks,13,19,8,,0,0,0,0,0,4,4,4,4,0,0,0
-,Flea,70,On Villager,24,0,24,,0,0,4,4,4,4,4,4,4,4,4,0
-,Pillbug,250,Under Rock,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
-,Mosquito,130,Flying,11,17,4,7p-11p,0,0,0,0,0,2,2,2,2,0,0,0
-,Fly,60,Garbage or Spoiled Turnips,24,0,24,,1,1,1,1,1,1,1,1,1,1,1,1
-,House Centipede,250,Strike Rocks with Shovel,11,19,8,,0,0,0,0,0,0,0,4,4,4,0,0
-,Centipede,300,Strike Rocks with Shovel,7,16,23,,4,4,0,0,0,4,4,4,4,4,4,4
-,Spider,300,Shake Trees,13,19,8,,0,0,3,3,3,3,3,3,0,3,0,0
-,Tarantula,8000,Ground,9,19,4,,0,0,0,0,0,5,5,5,0,0,0,0
-,Scorpion,8000,Ground,9,19,4,,0,0,0,0,0,0,5,5,5,0,0,0
+,Name,Price,Location,Image URL,Total time,Start Time,End Time,Start Time 2,End Time 2,Rarity,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+,Common Butterfly,90,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/4/43/Common_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204145,15, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT,,,1,0,0,1,1,1,1,0,0,1,0,0,0
+,Yellow Butterfly,90,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e8/Yellow_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204243,15, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT,,,1,0,0,1,1,1,1,0,0,1,0,0,0
+,Tiger Butterfly,160,Above red or pink Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/5/50/Tiger_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204238,15, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,3,3,3,3,3,3,3,0,0,0
+,Peacock Butterfly,220,"Above blue, purple or black Flowers",https://vignette.wikia.nocookie.net/animalcrossing/images/1/16/Peacock_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204222,15, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,3,3,3,3,3,3,3,0,0,0
+,Monarch Butterfly,140,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/1/1b/MonarchButterflyNL.png/revision/latest?cb=20130727112226,13, 1 Jan 2018 4:00 GMT, 1 Jan 2018 17:00 GMT,,,2,0,0,0,0,0,0,0,0,2,2,2,0
+,Emperor Butterfly,2500,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/a/a1/Emperor_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204153,13, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,4,0,0,0
+,Agrias Butterfly,3000,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/2/2f/Agrias_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013220555,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,4,0,0,0,0,0,4,4,4,4,0,0,0
+,Raja Brooke Butterfly,2500,River or Pond,https://vignette.wikia.nocookie.net/animalcrossing/images/1/12/RajaBrookeButterfly.png/revision/latest?cb=20130615105951,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,4,0,0,0,0,4,4,4,4,4,0,0,0
+,Birdwing Butterfly,4000,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/3/39/Birdwing_butterfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204142,8, 1 Jan 2018 8:00 GMT, 1 Jan 2018 16:00 GMT,,,3,0,0,0,0,0,3,3,3,3,0,0,0
+,Moth,60,Outdoor Lights,https://vignette.wikia.nocookie.net/animalcrossing/images/9/91/Moth_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204218,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,1,0,0,0,0,1,1,1,1,1,0,0,0
+,Oak Silk Moth,1200,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/3/3b/Oak_silk_moth_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204219,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,4,0,0,0
+,Honeybee,100,Above Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/8/8f/Honeybee_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013021206,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,1,0,0,1,1,1,1,1,0,0,0,0,0
+,Bee,2500,Shake Trees,https://vignette.wikia.nocookie.net/animalcrossing/images/4/41/BeeNL.png/revision/latest?cb=20130615110759,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,1,1,1,1,1,1,1,1,1,1,1,1
+,Long Locust,200,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/7/74/LongLocust.png/revision/latest?cb=20130615105339,11, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT,,,2,0,0,0,0,2,2,2,2,2,2,2,0
+,Migratory Locust,600,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/3/39/Migratory_locust_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204213,11, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,0,0,0,0,0,3,3,3,3,0
+,Rice Grasshopper,400,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/c/c0/Rice_grasshopper.png/revision/latest?cb=20130717134111,11, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,0,0,0,0,0,3,3,3,3,0
+,Mantis,430,On Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9b/Mantis_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204212,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,3,0,0,0,3,3,3,3,3,3,3,3,0
+,Orchid Mantis,2400,White Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/1/1a/Orchid_mantis_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013022251,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,4,0,0,0,4,4,4,4,4,4,4,4,0
+,Brown Cicada,200,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/4/4a/Brown_cicada_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204143,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,1,0,0,0,0,0,0,1,1,0,0,0,0
+,Robust Cicada,300,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/8/85/Robust_cicada_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204228,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,2,0,0,0,0,0,0,2,2,0,0,0,0
+,Black Cicada,500,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/5/53/GiantCicadaNL.png/revision/latest?cb=20130713231154,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,3,0,0,0,0,0,0,3,3,0,0,0,0
+,Walker Cicada,400,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/4/40/Walker_cicada_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204239,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,4,0,0,0,0,0,0,3,3,4,0,0,0
+,Evening Cicada,550,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/8/83/Evening_cicada_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204154,4, 1 Jan 2018 4:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 16:00 GMT,1 Jan 2018 19:00 GMT,2,0,0,0,0,0,0,2,2,0,0,0,0
+,Cicada Shell,100,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/f/f4/Cicada_shell_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204144,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,0,0,0,0,0,0,3,3,0,0,0,0
+,Lantern Fly,1800,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/1/1d/Lantern_fly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204211,15, 1 Jan 2018 16:00 GMT, 1 Jan 2018 19:00 GMT,,,4,0,0,0,0,0,4,4,4,4,0,0,0
+,Red Dragonfly,80,Flying,https://vignette.wikia.nocookie.net/animalcrossing/images/a/aa/Red_dragonfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204227,11, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT,,,1,0,0,0,0,0,0,0,0,1,1,0,0
+,Darner Dragonfly,200,Flying,https://vignette.wikia.nocookie.net/animalcrossing/images/a/a5/Darner_dragonfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204149,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,2,0,0,0,0,0,2,2,2,0,0,0,0
+,Banded Dragonfly,4500,Flying,https://vignette.wikia.nocookie.net/animalcrossing/images/2/26/Banded_dragonfly_new_leaf.png/revision/latest?cb=20130617175700,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,4,0,0,0,0,0,0,4,4,0,0,0,0
+,Giant Petaltail,8000,Flying,https://vignette.wikia.nocookie.net/animalcrossing/images/2/2d/Petaltail_dragonfly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204223,2, 1 Jan 2018 17:00 GMT, 1 Jan 2018 19:00 GMT,,,4,0,0,0,0,0,0,0,4,4,4,0,0
+,Ant,80,"Candy, Spoiled Turnips, Rotten Fruit",https://vignette.wikia.nocookie.net/animalcrossing/images/a/a4/Ant_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204126,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,1,1,1,1,1,1,1,1,1,1,1,1
+,Pondskater,130,"River, Pond",https://vignette.wikia.nocookie.net/animalcrossing/images/2/23/Pondskater.png/revision/latest?cb=20130615105041,11, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,0,0,3,3,3,3,3,0,0,0
+,Diving Beetle,800,"River, Ponds",https://vignette.wikia.nocookie.net/animalcrossing/images/e/e1/Diving_beetle_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204150,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,3,0,0,0,0,3,3,3,3,3,0,0,0
+,Stinkbug,120,Tree Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/e/ea/Stinkbug_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204235,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,0,0,0,3,3,3,3,3,3,3,0,0
+,Snail,250,On Hibiscus Bushes,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9b/Snail_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204234,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,0,0,0,1,1,1,1,1,1,0,0,0
+,Cricket,130,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/7/71/Cricket_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204147,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,1,0,0,0,0,0,0,0,0,1,1,1,0
+,Bell Cricket,430,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/0/0d/Bell_cricket_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204141,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,1,0,0,0,0,0,0,0,0,1,1,0,0
+,Grasshopper,160,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/3/35/Grasshopper_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204159,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,1,0,0,0,0,0,1,1,1,1,0,0,0
+,Mole Cricket,280,Underground,https://vignette.wikia.nocookie.net/animalcrossing/images/4/4d/Mole_cricket_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204216,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,3,3,3,3,0,0,0,0,0,3,3
+,Walking Leaf,600,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/2/2c/Walking_leaf_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204240,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,3,0,0,0,0,0,0,3,3,3,0,0,0
+,Walking Stick,600,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/0/08/Walking_stick_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204242,7, 1 Jan 2018 17:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,0,0,0,3,3,3,3,3,3,0
+,Bagworm,300,Shake Trees,https://vignette.wikia.nocookie.net/animalcrossing/images/8/84/Bagworm_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204137,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,3,0,0,0,0,0,0,0,3,3,3
+,Ladybug,200,On Flowers,https://vignette.wikia.nocookie.net/animalcrossing/images/2/23/LadybugNL.png/revision/latest?cb=20130615110239,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,1,0,0,1,1,1,1,0,0,0,0,0,0
+,Violin Beetle,260,Tree Stumps,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e5/ViolinBeetleNL.png/revision/latest?cb=20130806155812,13, 1 Jan 2018 4:00 GMT, 1 Jan 2018 17:00 GMT,,,3,0,0,0,0,0,3,0,0,3,3,3,0
+,Longhorn Beetle,260,Tree Stumps,https://vignette.wikia.nocookie.net/animalcrossing/images/8/89/LonghornBeetleNL.png/revision/latest?cb=20130713231853,8, 1 Jan 2018 11:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,0,0,0,3,3,3,0,0,0,0
+,Tiger Beetle,1500,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/1/18/Tiger_beetle.png/revision/latest?cb=20130615230715,11, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT,,,3,0,0,3,3,3,3,3,3,3,3,0,0
+,Dung Beetle,800,Snowballs,https://vignette.wikia.nocookie.net/animalcrossing/images/d/d6/Dung_beetle_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204151,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,3,3,3,0,0,0,0,0,0,0,0,0,3
+,Wharf Roach,200,Beach,https://vignette.wikia.nocookie.net/animalcrossing/images/e/ea/Wharf_roach.png/revision/latest?cb=20130617174715,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,3,3,3,3,3,3,3,3,3,3,3
+,Hermit Crab,1000,Island Beach,https://vignette.wikia.nocookie.net/animalcrossing/images/3/3b/Hermit_crab_.png/revision/latest?cb=20130617185642,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,3,3,3,3,3,3,3,3,3,3,3
+,Firefly,300,Fresh Water,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5a/Firefly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150820001849,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,1,0,0,0,0,0,1,0,0,0,0,0,0
+,Fruit Beetle,100,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/6/64/Fruit_beetle_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204155,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,0,0,0,0,0,1,1,1,1,0,0,0
+,Scarab Beetle,6000,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/8/84/Scarab_beetle_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204231,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 23:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,0,0,0,0
+,Jewel Beetle,2400,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/1/12/Jewel_beetle_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204209,9, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT,,,4,0,0,0,0,0,4,4,4,0,0,0,0
+,Miyama Stag,1000,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/2/21/Miyama_stag_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204215,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,0,0,0,0,0,1,1,1,0,0,0,0
+,Saw Stag,2000,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9e/Saw_stag_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204230,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,0,0,0,0,0,3,3,3,0,0,0,0
+,Giant Stag,10000,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5d/Giant_stag_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151012031704,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 23:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,0,0,0,0
+,Rainbow Stag,10000,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/8/8a/Rainbow_stag_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204225,13, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,4,0,0,0
+,Cyclommatus Stag,8000,Palm Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/8/8d/Cyclommatus_stag_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013020937,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,2,0,0,0,0,0,2,2,2,0,0,0,0
+,Golden Stag,12000,Palm Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/1/17/Golden_stag_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151229001558,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,5,0,0,0,0,0,5,5,5,0,0,0,0
+,Horned Dynastid,1350,Tree Trunk,https://vignette.wikia.nocookie.net/animalcrossing/images/c/c1/Horned_dynastid_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204204,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,3,0,0,0,0,0,3,3,3,0,0,0,0
+,Horned Atlas,8000,Palm Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5b/Horned_atlas_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204202,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,0,0,0,0
+,Horned Elephant,8000,Palm Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/4/49/Horned_elephant_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204205,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,0,0,0,0
+,Horned Hercules,12000,Palm Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/2/20/HerculesBeetle.png/revision/latest?cb=20130623200608,15, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,5,0,0,0,0,0,5,5,5,0,0,0,0
+,Goliath Beetle,6000,Palm Trunks,https://vignette.wikia.nocookie.net/animalcrossing/images/a/a2/Goliath_beetle_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013014012,13, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,4,4,4,4,0,0,0
+,Flea,70,On Villager,https://vignette.wikia.nocookie.net/animalcrossing/images/3/30/FleaNL.png/revision/latest?cb=20130615105635,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,0,0,4,4,4,4,4,4,4,4,4,0
+,Pillbug,250,Under Rock,https://vignette.wikia.nocookie.net/animalcrossing/images/2/20/Pill_bug_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20151013015517,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,3,3,3,3,3,3,3,3,3,3,3
+,Mosquito,130,Flying,https://vignette.wikia.nocookie.net/animalcrossing/images/9/92/Mosquito_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204217,11, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 17:00 GMT, 1 Jan 2018 23:59 GMT,2,0,0,0,0,0,2,2,2,2,0,0,0
+,Fly,60,Garbage or Spoiled Turnips,https://vignette.wikia.nocookie.net/animalcrossing/images/2/2c/Fly_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150820001849,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,1,1,1,1,1,1,1,1,1,1,1,1
+,House Centipede,250,Strike Rocks with Shovel,https://vignette.wikia.nocookie.net/animalcrossing/images/5/54/HouseCentipedeNL.png/revision/latest?cb=20130802133209,11, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,0,0,4,4,4,0,0
+,Centipede,300,Strike Rocks with Shovel,https://vignette.wikia.nocookie.net/animalcrossing/images/6/66/Centipede.jpg/revision/latest?cb=20130702090133,7, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:00 GMT,,,4,4,4,0,0,0,4,4,4,4,4,4,4
+,Spider,300,Shake Trees,https://vignette.wikia.nocookie.net/animalcrossing/images/8/84/Spider.png/revision/latest?cb=20130615110439,13, 1 Jan 2018 0:00 GMT, 1 Jan 2018 8:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,3,0,0,3,3,3,3,3,3,0,3,0,0
+,Tarantula,8000,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/b/ba/Tarantula_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204236,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,5,0,0,0,0,0,5,5,5,0,0,0,0
+,Scorpion,8000,Ground,https://vignette.wikia.nocookie.net/animalcrossing/images/f/ff/Scorpion_encyclopedia_%28New_Leaf%29.jpg/revision/latest?cb=20150818204233,9, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 19:00 GMT, 1 Jan 2018 23:59 GMT,5,0,0,0,0,0,0,5,5,5,0,0,0

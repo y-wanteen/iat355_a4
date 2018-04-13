@@ -1,151 +1,31 @@
-,Name,Price,Shadow,Movement,Total time,Start Time,End Time,Peak time,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
-,Seaweed,200,Big,none,24,0,24,9a-4p,1,1,1,1,1,2,1,0,0,0,1,1
-,Sea Grapes,600,Small,none,24,0,24,4a-9p,0,0,0,0,0,2,2,1,2,0,0,0
-,Sea Urchin,800,Small,none,24,0,24,,0,0,0,0,0,1,1,1,2,0,0,0
-,Acorn Barnacle,200,Tiny,none,24,0,24,,2,2,2,2,2,2,2,2,2,2,2,2
-,Oyster,400,Small,none,24,0,24,9a-4p,2,2,0,0,0,0,0,0,2,2,1,1
-,Turban Shell,300,Small,moves in straight line,17,16,9,9p-4a,2,2,2,2,2,0,0,1,2,2,2,2
-,Abalone,400,Medium,moves in straight line,17,16,9,9p-4a,2,2,2,2,1,1,1,1,1,2,2,2
-,Ear Shell,300,Small,moves in straight line,17,16,9,9p-4a,2,2,2,2,1,1,1,1,1,2,2,2
-,Clam,300,Small,runs away from you,24,0,24,9a-4p,1,1,2,2,0,0,0,0,2,2,2,2
-,Pearl Oyster,1600,Small,none,24,0,24,,4,4,4,4,4,4,4,4,4,4,4,4
-,Scallop,1000,Medium,runs away from you,24,0,24,,2,3,3,3,3,3,3,3,3,3,2,2
-,Sea Anemone,100,Medium,none,24,0,24,,2,2,2,2,2,2,2,2,2,2,2,2
-,Sea Star,100,Small,moves in straight line,24,0,24,,2,2,2,2,2,2,2,2,2,2,2,2
-,Sea Cucumber,150,Medium,moves in straight line,24,0,24,,1,1,1,2,0,0,0,0,0,0,2,2
-,Sea Slug,200,Small,moves in straight line,24,0,24,,2,2,2,2,2,2,2,2,2,2,2,2
-,Flatworm,200,Small,moves in straight line,17,16,9,,0,0,0,0,0,0,0,2,2,0,0,0
-,Mantis Shrimp,1250,Small,runs away from you,17,16,9,,3,3,3,3,3,3,3,3,3,3,3,3
-,Sweet Shrimp,650,Small,runs away from you,17,16,9,9p-4a,3,3,0,0,0,0,0,0,3,2,2,2
-,Tiger Prawn,1600,Small,moves in straight line,17,16,9,,0,0,0,0,0,2,2,2,2,0,0,0
-,Spiny Lobster,3000,Big,runs away from you,7,21,4,,0,0,0,0,0,0,0,0,5,5,5,5
-,Lobster,2500,Big,moves in straight line,24,0,24,,4,4,4,4,4,4,4,4,4,4,4,4
-,Snow Crab,4000,Big,moves in straight line,24,0,24,,4,4,4,4,0,0,0,0,0,0,4,4
-,Horsehair Crab,4000,Medium,moves in straight line,24,0,24,,4,4,4,4,0,0,0,0,0,0,4,4
-,Red King Crab,6000,Big,moves in straight line,24,0,24,,4,4,4,0,0,0,0,0,0,0,4,4
-,Spider Crab,10000,Huge,moves in straight line,24,0,24,,0,0,5,5,0,0,0,0,0,0,0,0
-,Octopus,1200,Medium,runs away from you,24,0,24,,3,0,3,3,3,3,3,3,3,3,3,3
-,Spotted Garden Eel,600,Small,none,24,0,24,,2,2,2,2,2,2,2,2,2,2,2,2
-,Chambered Nautilus,900,Medium,moves in straight line,24,0,24,,3,3,3,3,3,3,3,3,3,3,3,3
-,Horseshoe Crab,1500,Medium,moves in straight line,7,21,4,,0,0,0,0,0,0,4,4,4,0,0,0
-,Giant Isopod,9000,Medium,moves in straight line,24,0,24,,5,5,5,5,5,5,5,5,5,5,5,5
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,Created by: geckonori,,,,,,,,,,,,,,,,,,,
-,geckonori.tumblr.com,,,,,,,,,,,,,,,,,,,
+,Name,Price,Shadow,Location,Movement,Image URL,Total time,Start Time,End Time,Start Time 2,End Time 2,Rarity,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+,Seaweed,200,Big,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e6/Seaweed_encylopedia.png/revision/latest?cb=20130615225955,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,1,1,1,1,1,2,1,0,0,0,1,1
+,Sea Grapes,600,Small,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/1/14/Sea_grapes.png/revision/latest?cb=20130615230441,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,0,0,0,0,0,2,2,1,2,0,0,0
+,Sea Urchin,800,Small,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/8/84/Sea_urchin.png/revision/latest?cb=20130615231012,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,0,0,0,0,0,1,1,1,2,0,0,0
+,Acorn Barnacle,200,Tiny,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/9/92/Acorn_barnacle.png/revision/latest?cb=20130615231220,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,2,2,2,2,2,2,2,2,2,2,2,2
+,Oyster,400,Small,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/5/54/Oyster.png/revision/latest?cb=20130717134539,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,2,2,0,0,0,0,0,0,2,2,1,1
+,Turban Shell,300,Small,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/9/92/TurbanShell.png/revision/latest?cb=20130629223827,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,2,2,2,2,2,0,0,1,2,2,2,2
+,Abalone,400,Medium,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5d/Abalone.png/revision/latest?cb=20130615231705,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,2,2,2,2,1,1,1,1,1,2,2,2
+,Ear Shell,300,Small,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/6/6f/Ear_shell.png/revision/latest?cb=20130615232054,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,2,2,2,2,1,1,1,1,1,2,2,2
+,Clam,300,Small,Deep Sea,runs away from you,https://vignette.wikia.nocookie.net/animalcrossing/images/e/ed/Clam.png/revision/latest?cb=20130717133906,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,1,1,2,2,0,0,0,0,2,2,2,2
+,Pearl Oyster,1600,Small,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/8/87/PearlOyster.png/revision/latest?cb=20130623164326,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,4,4,4,4,4,4,4,4,4,4,4,4
+,Scallop,1000,Medium,Deep Sea,runs away from you,https://vignette.wikia.nocookie.net/animalcrossing/images/c/cf/Scallop.png/revision/latest?cb=20130615233541,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,2,3,3,3,3,3,3,3,3,3,2,2
+,Sea Anemone,100,Medium,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/8/8d/Sea_anemone.png/revision/latest?cb=20130615234046,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,2,2,2,2,2,2,2,2,2,2,2,2
+,Sea Star,100,Small,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/b/b8/Sea_star.png/revision/latest?cb=20130615234419,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,2,2,2,2,2,2,2,2,2,2,2,2
+,Sea Cucumber,150,Medium,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/0/09/Sea_cucumber_s.jpg/revision/latest?cb=20130113183459,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,1,1,1,1,2,0,0,0,0,0,0,2,2
+,Sea Slug,200,Small,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/7/7b/Sea_slug.png/revision/latest?cb=20130615234819,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,2,2,2,2,2,2,2,2,2,2,2,2
+,Flatworm,200,Small,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/1/1a/Flatworm.png/revision/latest?cb=20130613201751,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,0,0,0,0,0,0,0,2,2,0,0,0
+,Mantis Shrimp,1250,Small,Deep Sea,runs away from you,https://vignette.wikia.nocookie.net/animalcrossing/images/2/21/Mantis_shrimp.png/revision/latest?cb=20130613202015,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,3,3,3,3,3,3,3,3,3,3,3,3,3
+,Sweet Shrimp,650,Small,Deep Sea,runs away from you,https://vignette.wikia.nocookie.net/animalcrossing/images/f/f3/Sweet_shrimp.jpg/revision/latest?cb=20130916200205,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,3,3,3,0,0,0,0,0,0,3,2,2,2
+,Tiger Prawn,1600,Small,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/1/11/Tiger_prawn.png/revision/latest?cb=20130615235437,17, 1 Jan 2018 0:00 GMT, 1 Jan 2018 9:00 GMT, 1 Jan 2018 16:00 GMT, 1 Jan 2018 23:59 GMT,2,0,0,0,0,0,2,2,2,2,0,0,0
+,Spiny Lobster,3000,Big,Deep Sea,runs away from you,https://vignette.wikia.nocookie.net/animalcrossing/images/9/95/Spiny_lobster_encyclopedia_%28New_Leaf%29.png/revision/latest?cb=20150822194221,7, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT, 1 Jan 2018 23:59 GMT,5,0,0,0,0,0,0,0,0,5,5,5,5
+,Lobster,2500,Big,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9f/Lobster.png/revision/latest?cb=20130616000105,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,4,4,4,4,4,4,4,4,4,4,4,4
+,Snow Crab,4000,Big,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/1/19/Snowcrabby.png/revision/latest?cb=20130811003430,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,4,4,4,4,0,0,0,0,0,0,4,4
+,Horsehair Crab,4000,Medium,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/9/9f/Horsehair_crab_encyclopedia_%28New_Leaf%29.png/revision/latest?cb=20150822194221,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,4,4,4,4,0,0,0,0,0,0,4,4
+,Red King Crab,6000,Big,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/8/86/Redkingcrabpicture.jpg/revision/latest?cb=20131207001600,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,4,4,4,4,0,0,0,0,0,0,0,4,4
+,Spider Crab,10000,Huge,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e3/Giant_Spider_Crab.jpg/revision/latest?cb=20130116030449,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,5,0,0,5,5,0,0,0,0,0,0,0,0
+,Octopus,1200,Medium,Deep Sea,runs away from you,https://vignette.wikia.nocookie.net/animalcrossing/images/5/5a/Octopus.png/revision/latest?cb=20130616000314,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,0,3,3,3,3,3,3,3,3,3,3
+,Spotted Garden Eel,600,Small,Deep Sea,none,https://vignette.wikia.nocookie.net/animalcrossing/images/4/48/Spotted_garden_eel.png/revision/latest?cb=20130616000621,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,2,2,2,2,2,2,2,2,2,2,2,2,2
+,Chambered Nautilus,900,Medium,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/3/32/Chambered_nautilus_encyclopedia_%28New_Leaf%29.png/revision/latest?cb=20150822194220,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,3,3,3,3,3,3,3,3,3,3,3,3,3
+,Horseshoe Crab,1500,Medium,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/e/e0/Horseshoe_Crab.jpg/revision/latest?cb=20130702084459,7, 1 Jan 2018 0:00 GMT, 1 Jan 2018 4:00 GMT, 1 Jan 2018 21:00 GMT, 1 Jan 2018 23:59 GMT,4,0,0,0,0,0,0,4,4,4,0,0,0
+,Giant Isopod,9000,Medium,Deep Sea,moves in straight line,https://vignette.wikia.nocookie.net/animalcrossing/images/b/b0/Giant_isopod.png/revision/latest?cb=20130616001420,24, 1 Jan 2018 0:00 GMT, 1 Jan 2018 23:59 GMT,,,5,5,5,5,5,5,5,5,5,5,5,5,5

@@ -1,7 +1,11 @@
 //Data
-var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs3.csv";
-var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish3.csv";
-var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving3.csv";
+// var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs3.csv";
+// var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish3.csv";
+// var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving3.csv";
+
+var bugData = "data/acnl-bugs3.csv";
+var fishData = "data/acnl-fish3.csv";
+var divingData = "data/acnl-diving3.csv";
 
 //Key/value Arrays commonly used
 var fillColour = {
@@ -432,7 +436,7 @@ d3.csv(bugData, function(datasetBug) {
             var highlightkey = d.key;
 
             // remove previous selecitons ...
-            d3.selectAll("circle")
+            d3.selectAll("circle,rect")
               .classed("enlarge", false)
               .style('opacity', 0.2)
               .attr('fill', function(d) //set fill colour based on data category/wildlife type
@@ -449,7 +453,8 @@ d3.csv(bugData, function(datasetBug) {
             // console.log(selectorClass.replace(" ", "."));
 
             //select all circles of the same classes/species
-            d3.selectAll("circle." + selectorClass.replace(/ /g, "."))
+            d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
+                          ",rect.timelineSeries_" + selectorClass.replace(/ /g, "."))
               .style('opacity', 1)
               .style('stroke', 'white')
               .classed("enlarge", true);
@@ -585,10 +590,11 @@ d3.csv(bugData, function(datasetBug) {
 
         u.enter()
           .append("circle")
+          .attr("id", "overview")
           .attr("class", function(d) //add classes to circles here
             {
               // return d['Category'] + " " + d['Name'] + " " + d['Month'];
-              return "overview " + d['Category'] + " " + d['Name'].replace(/ /g, "-");
+              return d['Category'] + " " + d['Name'].replace(/ /g, "-");
               //replace spaces in name with - so that it doesn't get split into two classes
             })
 
@@ -660,7 +666,7 @@ d3.csv(bugData, function(datasetBug) {
             var highlightkey = d.key;
 
             // remove previous selecitons ...
-            d3.selectAll("circle")
+            d3.selectAll("circle,rect")
               .classed("enlarge", false)
               .style('opacity', 0.2)
               .attr('fill', function(d) //set fill colour based on data category/wildlife type
@@ -673,10 +679,11 @@ d3.csv(bugData, function(datasetBug) {
             var selectorClass = this.className['baseVal'];
 
             //print classes to console
-            // console.log(selectorClass.replace(" ", "."));
+            console.log(selectorClass.replace(" ", "."));
 
             //select all circles of the same classes/species
-            d3.selectAll("circle." + selectorClass.replace(/ /g, "."))
+            d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
+                          ",rect.timelineSeries_" + selectorClass.replace(/ /g, ".") )
               .style('opacity', 1)
               .style('stroke', 'white')
               .classed("enlarge", true);
@@ -924,7 +931,7 @@ d3.csv(bugData, function(datasetBug) {
             .style("opacity", "0.1"); //lowers opacity of other
         } else {
           //clear filters when clear button pressed or any error occurs
-          d3.selectAll("circle")
+          d3.selectAll("circle,rect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity", "0.8") //revert back to orig opacity
@@ -977,7 +984,7 @@ d3.csv(bugData, function(datasetBug) {
                 var highlightkey = d.key;
 
                 // remove previous selecitons ...
-                d3.selectAll("circle")
+                d3.selectAll("circle,rect")
                   .classed("enlarge", false)
                   .style('opacity', 0.2)
                   .attr('fill', function(d) //set fill colour based on data category/wildlife type
@@ -988,10 +995,11 @@ d3.csv(bugData, function(datasetBug) {
 
                 //get the classes of the circle selected
                 var nameLabel = datum.label;
-                var selectorClass = nameLabel.replace(/ /g, "-");
+                var selectorClass = d.Category + " " + nameLabel.replace(/ /g, "-");
 
                 //select all circles of the same classes/species
-                d3.selectAll("circle." + selectorClass.replace(/ /g, "-"))
+                d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
+                              ",rect.timelineSeries_" + selectorClass.replace(/ /g, ".") )
                   .style('opacity', 1)
                   .style('stroke', 'white')
                   .classed("enlarge", true);
@@ -1066,7 +1074,7 @@ d3.csv(bugData, function(datasetBug) {
 
         //selection for circles in OVERVIEW graph only and subsequently the timeline
         //prevents duplicates from drawing in the timeline as well
-        d3.selectAll('.overview')
+        d3.selectAll('#overview')
           .style('opacity', function(d) 
           {
             //make opacity darker if selected
