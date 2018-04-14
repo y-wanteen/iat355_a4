@@ -17,12 +17,14 @@ margin: 0;
   flex:1;
 }
 
+/*incorrect default timeline axis provided by plugin*/
 #timeline .axis path
 {
   stroke:white;
 }
 
-#timeline .axis line
+/*the vertical lines following the timeline down*/
+#timeline .axis line 
 {
   stroke:lightgrey;
   opacity:0.7;
@@ -50,13 +52,13 @@ margin: 0;
       max-width: 500px;
 }
 
-.fixed
+/*.fixed
 {
   position:fixed;
   bottom:0;
   background:white;
   border: solid 1px lightgrey;
-}
+}*/
 
 .icon{
   max-width: 200px;
@@ -195,6 +197,11 @@ circle
 
 }
 
+.selection
+{
+  color:black !important;
+}
+
 rect[class*="timelineSeries_"]
 {
   cursor:pointer;
@@ -207,4 +214,9 @@ path{
 
 text{
   /* font-weight: bold; */
+}
+
+#monthsAxis .tick text:hover
+{
+  cursor:pointer;
 }
