@@ -446,7 +446,7 @@ d3.csv(bugData, function(datasetBug)
             var highlightkey = d.key;
 
             // remove previous selecitons ...
-            d3.selectAll("circle,rect")
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
               .classed("enlarge", false)
               .style('opacity', 0.2)
               .attr('fill', function(d) //set fill colour based on data category/wildlife type
@@ -464,7 +464,7 @@ d3.csv(bugData, function(datasetBug)
 
             //select all circles of the same classes/species
             d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
-                          ",rect.timelineSeries_" + selectorClass.replace(/ /g, "."))
+                          ",rect.timelineSeries_timelineRect." + selectorClass.replace(/ /g, "."))
               .style('opacity', 1)
               .style('stroke', 'white')
               .classed("enlarge", true);
@@ -676,7 +676,7 @@ d3.csv(bugData, function(datasetBug)
             var highlightkey = d.key;
 
             // remove previous selecitons ...
-            d3.selectAll("circle,rect")
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
               .classed("enlarge", false)
               .style('opacity', 0.2)
               .attr('fill', function(d) //set fill colour based on data category/wildlife type
@@ -693,7 +693,7 @@ d3.csv(bugData, function(datasetBug)
 
             //select all circles and rectangles of the same classes/species
             d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
-                          ",rect.timelineSeries_" + selectorClass.replace(/ /g, ".") )
+                          ",rect.timelineSeries_timelineRect." + selectorClass.replace(/ /g, ".") )
               .style('opacity', 1)
               .style('stroke', 'white')
               .classed("enlarge", true);
@@ -764,7 +764,7 @@ d3.csv(bugData, function(datasetBug)
                 var highlightkey = d.key;
 
                 // remove previous selecitons ...
-                d3.selectAll("circle,rect")
+                d3.selectAll("circle,rect.timelineSeries_timelineRect")
                   .classed("enlarge", false)
                   .style('opacity', 0.2)
                   .attr('fill', function(d) //set fill colour based on data category/wildlife type
@@ -779,7 +779,7 @@ d3.csv(bugData, function(datasetBug)
 
                 //select all circles of the same classes/species
                 d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
-                              ",rect.timelineSeries_" + selectorClass.replace(/ /g, ".") )
+                              ",rect.timelineSeries_timelineRect." + selectorClass.replace(/ /g, ".") )
                   .style('opacity', 1)
                   .style('stroke', 'white')
                   .classed("enlarge", true);
@@ -808,7 +808,7 @@ d3.csv(bugData, function(datasetBug)
       //update timeline array data
       function updateTimelineArray(name, category, startTime, endTime, startTime2, endTime2, price, imageURL, rarity, location, monthList)
       {
-        var setClass = category + " " + name.replace(/ /g, "-");
+        var setClass = "timelineRect " + category + " " + name.replace(/ /g, "-");
 
         if (startTime2 != 0 && endTime2!= 0)
         {
@@ -1015,7 +1015,7 @@ d3.csv(bugData, function(datasetBug)
       {
         if (filterValue != "clear" && filterType == "category") //filter by category
         {
-          d3.selectAll("circle,rect")
+          d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             //clear previous opacity setting
@@ -1029,7 +1029,7 @@ d3.csv(bugData, function(datasetBug)
         } 
         else if (filterValue != "clear" && filterType == "rarity") //filter by rarity
         {
-          d3.selectAll("circle,rect")
+          d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity", "0.8")
@@ -1041,7 +1041,7 @@ d3.csv(bugData, function(datasetBug)
         } 
         else if (filterValue != "clear" && filterType == "month") //filter by month
         {
-          d3.selectAll("circle,rect")
+          d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity",0.8)
@@ -1065,7 +1065,7 @@ d3.csv(bugData, function(datasetBug)
         else 
         {
           //clear filters when clear button pressed or any error occurs
-          d3.selectAll("circle,rect")
+          d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity", "0.8") //revert back to orig opacity
@@ -1171,7 +1171,7 @@ d3.csv(bugData, function(datasetBug)
           d3.selectAll('circle')
             .classed("enlarge", false);
 
-          d3.selectAll('circle, rect')
+          d3.selectAll('circle, rect.timelineSeries_timelineRect')
             .transition()
             .duration(150)
             .ease(d3.easeLinear)

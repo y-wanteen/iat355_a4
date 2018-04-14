@@ -202,7 +202,8 @@ circle
   color:black !important;
 }
 
-rect[class*="timelineSeries_"]
+/*rect[class*="timelineSeries_"]*/
+.timelineSeries_timelineRect
 {
   cursor:pointer;
   opacity:0.8;
