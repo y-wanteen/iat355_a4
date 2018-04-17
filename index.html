@@ -1,107 +1,131 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- D3 Library for reading datasets -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8" type="text/javascript"></script>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- D3 Library for reading datasets -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8" type="text/javascript"></script>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
-		<script src="https://d3js.org/d3-color.v1.min.js"></script>
-		<script src="https://d3js.org/d3-collection.v1.min.js"></script>
-		<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
-		<script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
-		<script src="https://d3js.org/d3-timer.v1.min.js"></script>
-		<script src="https://d3js.org/d3-force.v1.min.js"></script>
-		<script src="dist/d3-timelines.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+	<script src="https://d3js.org/d3-color.v1.min.js"></script>
+	<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+	<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+	<script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
+	<script src="https://d3js.org/d3-timer.v1.min.js"></script>
+	<script src="https://d3js.org/d3-force.v1.min.js"></script>
+	<script src="dist/d3-timelines.js"></script>
+
+	<!-- fullpage js/css -->
+	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+	<script type="text/javascript" src="scrolloverflow.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.fullPage.js"></script>
 
 
-		<link rel="stylesheet" href="style.css">
-		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-		<title> IAT355 A4 - Animal Crossing </title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<title> IAT355 A4 - Animal Crossing </title>
 
-	</head>
+</head>
 
-	<body>
+<body>
 
-	<div class="header-box">
-		<div class="">
-			<h1 class="title">Animal Crossing:</h1>
-			<h2 class="sub-title">Species selling price (in Bells) across months when they are availaible.
-				Filter the data via clicking on the legend or the dots.
-				Drag across the bottom graph to adjust the brush and its highlights.
-			</h2>
-		</div>
+	<div class="legend">
+		<div class="legend-container">
+			<select id="month-selectbox" data-selected="">
+				  <option value="" selected="selected" >All Months</option>
+				  <option value="1">January</option>
+				  <option value="2">February</option>
+				  <option value="3">March</option>
+				  <option value="4">April</option>
+				  <option value="5">May</option>
+				</select>
+</div>
 
-		<div class="legend">
-			<div class="legend-container">
-				<div class="legend-color">
+<div class="legend-container">
+				<div>
+					<select id="color-selectbox" data-selected="">
+					<option value="" selected="selected" >All Species</option>
+					<option value="1" id="bug-filter">Bugs</option>
+					<option value="2" id="fish-filter">Fish</option>
+					<option value="3" id="diving-filter">Sea Creatures</option>
+				</select>
+				</div>
+				<div>
 					<span class="box" style="background-color:#69D1C5;"></span>
-					<button class="filter" id="bug-filter">Bugs</button>
-				</div>
-
-				<div class="legend-color">
 					<span class="box" style="background-color:tomato;"></span>
-					<button class="filter" id="fish-filter">Fish</button>
-				</div>
-
-				<div class="legend-color">
 					<span class="box" style="background-color:#2A1E5C;"></span>
-					<button class="filter" id="diving-filter">Sea Creatures</button>
 				</div>
-
-				<button class="filter" id="clear">Clear</button>
-
 			</div>
-
 
 			<div class="legend-container">
-				<div class="legend-size">
+				<div>
+					<select id="rarity-selectbox" data-selected="">
+					<option value="" selected="selected" >All Rarity</option>
+					<option value="1" id="common">Common </option>
+					<option value="2" id="fairlyCommon">Fairly Common</option>
+					<option value="3" id="uncommon">Uncommon</option>
+					<option value="4" id="scarce">Scarce</option>
+					<option value="5" id="rare">Rare</option>
+				</select>
+				</div>
+				<div>
 					<div class="circle"></div>
-					<button class="rarity-label filter" id="common">Common</button>
-				</div>
-
-				<div class="legend-size">
-					<div class="circle"style="width: 6px; height: 6px;"></div>
-					<button class="rarity-label filter" id="fairlyCommon" style="margin-left: 0;">Fairly Common</button>
-				</div>
-
-				<div class="legend-size">
-					<div class="circle"style="width: 8.5px; height: 8.5px;"></div>
-					<button class="rarity-label filter" id="uncommon" >Uncommon</button>
-				</div>
-
-				<div class="legend-size">
+					<div class="circle" style="width: 6px; height: 6px;"></div>
+					<div class="circle" style="width: 8.5px; height: 8.5px;"></div>
 					<div class="circle" style="width: 11px; height: 11px;"></div>
-					<button class="rarity-label filter" id="scarce">Scarce</button>
-				</div>
-
-				<div class="legend-size">
 					<div class="circle" style="width: 16px; height: 16px;"></div>
-					<button class="rarity-label filter" id="rare" style="margin-left: 1.7rem;" >Rare</button>
 				</div>
-
-
 			</div>
+
+			<div class="legend-container">
 			<label>Search: </label>
 			<input list="speciesList" id="search" placeholder="Type Species Name">
 
 			<datalist id="speciesList">
-			</datalist>
+				</datalist>
+			</div>
+
+			<div class="legend-container">
+			<button class="filter" id="clear">Clear</button>
+		</div>
+		</div>
+
+	</div>
+	<!-- end legend -->
+
+	<div id="fullpage">
+		<div class="section">
+			<div class="">
+				<h1 class="title">Animal Crossing:</h1>
+				<h2 class="sub-title">Species selling price (in Bells) across months when they are availaible.
+								Filter the data via clicking on the legend or the dots.
+								Drag across the bottom graph to adjust the brush and its highlights.
+							</h2>
+			</div>
+		</div>
+
+		<div class="section fp-auto-height-responsive" >
+			<div id="graph"></div>
 
 		</div>
+
+		<div class="section fp-auto-height-responsive">
+			<div id="priceRange"></div>
+
+			<div id="timeline"></div>
+
+		</div>
+
 	</div>
+	<!-- end full pate -->
 
-
-	<div id="graph"></div>
-	<div id="priceRange"></div>
-	<div id="timeline"></div>
 
 </body>
 
-	<!-- <script src="A5.js"></script> -->
-	<script src="acnl_datavis.js"></script>
+<!-- <script src="A5.js"></script> -->
+<script src="acnl_datavis.js"></script>
 
 
 </html>

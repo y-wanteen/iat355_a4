@@ -45,7 +45,7 @@ var speciesRarity = {
 var margin = {
   top: 70,
   right: 0,
-  bottom: 20,
+  bottom: 120,
   left: 40
 };
 
@@ -100,7 +100,7 @@ var svg2 = d3.select("#priceRange")
   .append("g")
   .attr("transform", "translate( 50," + margin.top + ")");
 
-// start working with d3 and data			
+// start working with d3 and data
 
 //Global variables //////////
 var totalPriceRange = [];
@@ -111,17 +111,17 @@ var timelineSpecies = [];
 
 //labels for the timeline axis
 var timelineTicks = ['12AM', '2AM', '4AM', '6AM', '8AM',
-            '10AM', '12PM', '2PM', '4PM','6PM', 
+            '10AM', '12PM', '2PM', '4PM','6PM',
             '8PM', '10PM', '12AM']
 
 // BUG DATA //////////////////////////////
-d3.csv(bugData, function(datasetBug) 
+d3.csv(bugData, function(datasetBug)
 {
 
   // Get Range of Sell Prices ///////////////////////
-  function getPriceRange(data) 
+  function getPriceRange(data)
   {
-    var range = d3.extent(data, function(d) 
+    var range = d3.extent(data, function(d)
     {
       return +d['Price']
     });
@@ -134,14 +134,14 @@ d3.csv(bugData, function(datasetBug)
 
   // FISH DATA //////////////////////////////
 
-  d3.csv(fishData, function(datasetFish) 
+  d3.csv(fishData, function(datasetFish)
   {
 
     //Get fish sell price range
     var fishPriceRange = getPriceRange(datasetFish);
 
     // DEEP SEA CREATURE DATA //////////////////////////////
-    d3.csv(divingData, function(datasetDiving) 
+    d3.csv(divingData, function(datasetDiving)
     {
 
       //Get deep sea creature sell price range
@@ -267,7 +267,7 @@ d3.csv(bugData, function(datasetBug)
 
       var timelineAxis = d3.axisTop()
             .scale(timelineScale)
-            .tickFormat(function(d, i) 
+            .tickFormat(function(d, i)
             {
               return timelineTicks[i]
             }); //change number labels into months
@@ -288,7 +288,7 @@ d3.csv(bugData, function(datasetBug)
       var monthlyWildlife = []; //array to store all montly available wildlife
 
       // Get Monthly Availability ///////////////////////
-      function getAvailability(setClass, data, month) 
+      function getAvailability(setClass, data, month)
       {
 
         // searchClass = setClass + "." + month;
@@ -297,7 +297,7 @@ d3.csv(bugData, function(datasetBug)
 
         //first, check what exactly is available in that month
         data.forEach(function(d) {
-          if (d[month] > 0) 
+          if (d[month] > 0)
           {
 
              sumCounter++;
@@ -382,19 +382,19 @@ d3.csv(bugData, function(datasetBug)
             {
               var rarity = +d['Rarity'];
               var nodeRadius;
-              if (rarity == 1) 
+              if (rarity == 1)
               {
                 nodeRadius = 3;
-              } else if (rarity == 2) 
+              } else if (rarity == 2)
               {
                 nodeRadius = 4.5;
-              } else if (rarity == 3) 
+              } else if (rarity == 3)
               {
                 nodeRadius = 5.5;
-              } else if (rarity == 4) 
+              } else if (rarity == 4)
               {
                 nodeRadius = 8;
-              } else if (rarity == 5) 
+              } else if (rarity == 5)
               {
                 nodeRadius = 11;
               }
@@ -411,7 +411,7 @@ d3.csv(bugData, function(datasetBug)
           .attr("stroke", "lightgrey")
 
           // mouse over tool tip
-          .on("mouseover", function(d) 
+          .on("mouseover", function(d)
           {
             var rarity = speciesRarity[d['Rarity']];
             var imagePath = d['Image URL'];
@@ -440,7 +440,7 @@ d3.csv(bugData, function(datasetBug)
           })
 
           //select objects of the same type in other graphs on click
-          .on("click", function(d) 
+          .on("click", function(d)
           {
             console.log(d);
             var highlightkey = d.key;
@@ -512,7 +512,7 @@ d3.csv(bugData, function(datasetBug)
 
       function getOverview(setClass, data)
       {
-        data.forEach(function(d) 
+        data.forEach(function(d)
         {
 
         	//get time of day that the species appears in
@@ -531,7 +531,7 @@ d3.csv(bugData, function(datasetBug)
 
       				endTime2 = new Date(d['End Time 2']);
       				endTime2 = endTime2.getTime();
-      			
+
       			}
       			else
       			{
@@ -544,7 +544,7 @@ d3.csv(bugData, function(datasetBug)
             //get months that the species shows up in and add them into an array
             var monthsList = [];
 
-            for (var i = 0; i < months.length; i++) 
+            for (var i = 0; i < months.length; i++)
             {
               if (d[months[i]] > 0)
               {
@@ -613,19 +613,19 @@ d3.csv(bugData, function(datasetBug)
             {
               var rarity = +d['Rarity'];
               var nodeRadius;
-              if (rarity == 1) 
+              if (rarity == 1)
               {
                 nodeRadius = 3;
               } else if (rarity == 2)
               {
                 nodeRadius = 4.5;
-              } else if (rarity == 3) 
+              } else if (rarity == 3)
               {
                 nodeRadius = 5.5;
-              } else if (rarity == 4) 
+              } else if (rarity == 4)
               {
                 nodeRadius = 8;
-              } else if (rarity == 5) 
+              } else if (rarity == 5)
               {
                 nodeRadius = 11;
               }
@@ -670,7 +670,7 @@ d3.csv(bugData, function(datasetBug)
           })
 
           //select objects of same type on click
-          .on("click", function(d) 
+          .on("click", function(d)
           {
             console.log(d);
             var highlightkey = d.key;
@@ -821,7 +821,7 @@ d3.csv(bugData, function(datasetBug)
               label: name,
               times:[
                   {
-                      "Category": category, 
+                      "Category": category,
                       "speciesName": name,
                       "Price": price,
                       "imageURL": imageURL,
@@ -831,8 +831,8 @@ d3.csv(bugData, function(datasetBug)
                       "color": fillColour[category],
                       "starting_time": startTime, "ending_time":endTime
                   },
-                  { 
-                    "Category": category, 
+                  {
+                    "Category": category,
                     "speciesName": name,
                     "Price": price,
                     "imageURL": imageURL,
@@ -843,7 +843,7 @@ d3.csv(bugData, function(datasetBug)
                     "starting_time":startTime2, "ending_time":endTime2
                   }]
             });
-        
+
         }
         else
         {
@@ -854,7 +854,7 @@ d3.csv(bugData, function(datasetBug)
             class: setClass,
             label: name,
             times:[{
-                    "Category": category, 
+                    "Category": category,
                     "speciesName": name,
                     "Price": price,
                     "imageURL": imageURL,
@@ -905,12 +905,12 @@ d3.csv(bugData, function(datasetBug)
       });
 
       //search function
-      function search(monthlyWildlife, searchValue) 
+      function search(monthlyWildlife, searchValue)
       {
 
         timelineSpecies = [];
 
-        if (searchValue != "") 
+        if (searchValue != "")
         {
           d3.selectAll("circle")
             .classed("enlarge", false)
@@ -918,7 +918,7 @@ d3.csv(bugData, function(datasetBug)
             //clear previous opacity setting
             .style("opacity", "0.8")
             //filters categories of species based on datatype selected
-            .filter(function(d) 
+            .filter(function(d)
             {
 
               if (d['Name'] == searchValue)
@@ -926,7 +926,7 @@ d3.csv(bugData, function(datasetBug)
                 updateTimelineArray(d['Name'], d['Category'], d['Start Time'],
                                     d['End Time'], d['Start Time 2'], d['End Time 2'],
                                     +d['Price'], d['Image URL'], +d['Rarity'], d['Location'], d['Month List']);
-            
+
               }
 
               return d['Name'] != searchValue
@@ -1021,24 +1021,24 @@ d3.csv(bugData, function(datasetBug)
             //clear previous opacity setting
             .style("opacity", "0.8")
             //filters categories of species based on datatype selected
-            .filter(function(d) 
+            .filter(function(d)
             {
               return d['Category'] != filterValue
             })
             .style("opacity", "0.1"); //lowers opacity of other
-        } 
+        }
         else if (filterValue != "clear" && filterType == "rarity") //filter by rarity
         {
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity", "0.8")
-            .filter(function(d) 
+            .filter(function(d)
             {
               return d['Rarity'] != filterValue
             })
             .style("opacity", "0.1"); //lowers opacity of other
-        } 
+        }
         else if (filterValue != "clear" && filterType == "month") //filter by month
         {
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
@@ -1062,7 +1062,7 @@ d3.csv(bugData, function(datasetBug)
             })
             .style("opacity", "0.1"); //lowers opacity of other
         }
-        else 
+        else
         {
           //clear filters when clear button pressed or any error occurs
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
@@ -1080,7 +1080,7 @@ d3.csv(bugData, function(datasetBug)
         .call(brushX)
         .call(brushX.move, [0,1]) //initial brush size
 
-      function brushedX() 
+      function brushedX()
       {
         var s = d3.event.selection || xScale2.range();
         var e = d3.event.selection.map(xScale2.invert, xScale2);
@@ -1095,7 +1095,7 @@ d3.csv(bugData, function(datasetBug)
          d3.selectAll('circle')
           .style('opacity', function(d) {
             //make opacity darker if selected
-            if (e[0] <= d['Price'] && d['Price'] <= e[1]) 
+            if (e[0] <= d['Price'] && d['Price'] <= e[1])
             {
               //add them to the array of selected species
               selectedSpecies.push(d);
@@ -1123,10 +1123,10 @@ d3.csv(bugData, function(datasetBug)
         //selection for circles in OVERVIEW graph only and subsequently the timeline
         //prevents duplicates from drawing in the timeline as well
         d3.selectAll('#overview')
-          .style('opacity', function(d) 
+          .style('opacity', function(d)
           {
             //make opacity darker if selected
-            if (e[0] <= d['Price'] && d['Price'] <= e[1]) 
+            if (e[0] <= d['Price'] && d['Price'] <= e[1])
             {
               //add them to the array of selected species
               selectedSpecies.push(d);
