@@ -100,10 +100,18 @@ justify-content: center;
 
 .box{
   float: left;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin: 0.5rem;
   box-shadow: 4px 2px 8px #c7c5c5;
+  cursor: pointer;
+  border: transparent solid 1px;
+  transition: .35s ease-in-out;
+}
+.box:hover{
+  border: white solid 1px;
+  transition: .35s ease-in-out;
+
 }
 
 .legend-color{
@@ -144,6 +152,16 @@ label{
   display: inline-block;
   margin: 0.2rem;
   box-shadow: 4px 2px 8px #c7c5c5;
+  cursor: pointer;
+  border: transparent solid 1px;
+  transition: .35s ease-in-out;
+
+}
+
+.circle:hover, .circle:focus, .circle:active{
+  border: white solid 1px;
+  transition: .35s ease-in-out;
+
 }
 
 .rarity-label{

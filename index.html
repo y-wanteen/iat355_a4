@@ -18,8 +18,8 @@
 
 	<!-- fullpage js/css -->
 	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
-	<script type="text/javascript" src="scrolloverflow.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="scrolloverflow.min.js"></script>
 	<script type="text/javascript" src="jquery.fullPage.js"></script>
 
 
@@ -33,49 +33,57 @@
 
 	<div class="legend">
 		<div class="legend-container">
-			<select id="month-selectbox" data-selected="">
-				  <option value="" selected="selected" >All Months</option>
-				  <option value="1">January</option>
-				  <option value="2">February</option>
-				  <option value="3">March</option>
-				  <option value="4">April</option>
-				  <option value="5">May</option>
+			<select id="month-select">
+				  <option value="0" selected="selected" >All Months</option>
+				  <option value="Jan" >January</option>
+				  <option value="Feb">February</option>
+				  <option value="Mar" id="">March</option>
+				  <option value="Apr" id="">April</option>
+				  <option value="May" id="">May</option>
+					<option value="Jun" id="">June</option>
+					<option value="Jul" id="">July</option>
+					<option value="Aug" id="">Aug</option>
+					<option value="Sep" id="">September</option>
+					<option value="Oct" id="">October</option>
+					<option value="Nov" id="">November</option>
+					<option value="Dec" id="">December</option>
+
 				</select>
 </div>
 
-<div class="legend-container">
+			<div class="legend-container">
 				<div>
-					<select id="color-selectbox" data-selected="">
+					<select id="species-select" data-selected="">
 					<option value="" selected="selected" >All Species</option>
-					<option value="1" id="bug-filter">Bugs</option>
-					<option value="2" id="fish-filter">Fish</option>
-					<option value="3" id="diving-filter">Sea Creatures</option>
+					<option value="bugs" >Bugs</option>
+					<option value="fish" >Fish</option>
+					<option value="diving" >Sea Creatures</option>
 				</select>
 				</div>
 				<div>
-					<span class="box" style="background-color:#69D1C5;"></span>
-					<span class="box" style="background-color:tomato;"></span>
-					<span class="box" style="background-color:#2A1E5C;"></span>
+					<span class="box" style="background-color:#69D1C5;" id="bug-filter"></span>
+					<span class="box" style="background-color:tomato;" id="fish-filter" ></span>
+					<span class="box" style="background-color:#2A1E5C;" id="diving-filter"></span>
 				</div>
 			</div>
 
 			<div class="legend-container">
 				<div>
-					<select id="rarity-selectbox" data-selected="">
+					<select id="rarity-select" data-selected="">
 					<option value="" selected="selected" >All Rarity</option>
-					<option value="1" id="common">Common </option>
-					<option value="2" id="fairlyCommon">Fairly Common</option>
-					<option value="3" id="uncommon">Uncommon</option>
-					<option value="4" id="scarce">Scarce</option>
-					<option value="5" id="rare">Rare</option>
+					<option value="1" >Common </option>
+					<option value="2" >Fairly Common</option>
+					<option value="3" id="">Uncommon</option>
+					<option value="4" id="">Scarce</option>
+					<option value="5" id="">Rare</option>
 				</select>
 				</div>
 				<div>
-					<div class="circle"></div>
-					<div class="circle" style="width: 6px; height: 6px;"></div>
-					<div class="circle" style="width: 8.5px; height: 8.5px;"></div>
-					<div class="circle" style="width: 11px; height: 11px;"></div>
-					<div class="circle" style="width: 16px; height: 16px;"></div>
+					<div class="circle" id="common"></div>
+					<div class="circle" id="fairlyCommon" style="width: 6px; height: 6px;"></div>
+					<div class="circle" id="uncommon" style="width: 8.5px; height: 8.5px;"></div>
+					<div class="circle" id="scarce" style="width: 11px; height: 11px;"></div>
+					<div class="circle" id="rare" style="width: 16px; height: 16px;"></div>
 				</div>
 			</div>
 
@@ -90,8 +98,6 @@
 			<div class="legend-container">
 			<button class="filter" id="clear">Clear</button>
 		</div>
-		</div>
-
 	</div>
 	<!-- end legend -->
 
