@@ -1,7 +1,7 @@
 //Data
-var bugData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-bugs3.csv";
-var fishData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-fish3.csv";
-var divingData = "http://www.sfu.ca/~wanteeny/iat355/a5/data/acnl-diving3.csv";
+var bugData = "http://www.sfu.ca/~wanteeny/iat355/animal-crossing/data/acnl-bugs.csv";
+var fishData = "http://www.sfu.ca/~wanteeny/iat355/animal-crossing/data/acnl-fish.csv";
+var divingData = "http://www.sfu.ca/~wanteeny/iat355/animal-crossing/data/acnl-diving.csv";
 
 // var bugData = "data/acnl-bugs3.csv";
 // var fishData = "data/acnl-fish3.csv";
