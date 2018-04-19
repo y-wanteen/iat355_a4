@@ -45,7 +45,7 @@ var speciesRarity = {
 var margin = {
   top: 70,
   right: 0,
-  bottom: 120,
+  bottom: 30,
   left: 40
 };
 
@@ -211,7 +211,7 @@ d3.csv(bugData, function(datasetBug) {
       svg.append("text")
         .attr("transform",
           "translate(" + (width / 2) + " ," +
-          (height + margin.top / 2) + ")")
+          (height + margin.top ) + ")")
         .style("text-anchor", "middle")
         .text("Month of Appearance");
 
@@ -336,12 +336,12 @@ d3.csv(bugData, function(datasetBug) {
         .classed('tooltip', true)
         .style("visibility", "hidden");
 
-        //repositioning tooltip based on its position
+      //repositioning tooltip based on its position
       onmousemove = function(e) {
         var mousex = e.pageX + 20; //Get X coordinates
         var mousey = e.pageY + 10; //Get Y coordinates
         if ((mousey + 180) > $(window).height() &&
-        (mousex + 200) < $(window).width()) {
+          (mousex + 200) < $(window).width()) {
 
           $('.tooltip')
             .css({
@@ -350,22 +350,21 @@ d3.csv(bugData, function(datasetBug) {
             })
 
         } else if ((mousex + 200) > $(window).width() &&
-      (mousey + 180) < $(window).height()) {
+          (mousey + 180) < $(window).height()) {
           $('.tooltip')
             .css({
               top: mousey,
               left: mousex - 200
             })
 
-        }
-        else if ((mousex + 200) > $(window).width() &&
-      (mousey + 180) > $(window).height()) {
+        } else if ((mousex + 200) > $(window).width() &&
+          (mousey + 180) > $(window).height()) {
           $('.tooltip')
             .css({
-              top: mousey-200,
+              top: mousey - 200,
               left: mousex - 250
             })
-          }else {
+        } else {
           $('.tooltip')
             .css({
               top: mousey,
@@ -1039,59 +1038,89 @@ d3.csv(bugData, function(datasetBug) {
       function filter(filterType, monthlyWildlife, filterValue) {
         if (filterValue != "clear" && filterType == "category") //filter by category
         {
-                    if(filterValue!="all"){
-          d3.selectAll("circle,rect.timelineSeries_timelineRect")
-            .classed("enlarge", false)
-            .transition(t)
-            //clear previous opacity setting
-            .style("opacity", "0.8")
-            //filters categories of species based on datatype selected
-            .filter(function(d) {
-              return d['Category'] != filterValue
-            })
-            .style("opacity", "0.1"); //lowers opacity of other
-          }else{
+          if (filterValue != "all") {
+
+// filter index matches with filter selected
+            if(filterValue=="bugs")index=1;
+            if(filterValue=="fish")index=2;
+            if(filterValue=="diving")index=3;
+            document.getElementById("species-select").options.selectedIndex = index;
+
+
             d3.selectAll("circle,rect.timelineSeries_timelineRect")
-            .style("opacity", "0.8");
+              .classed("enlarge", false)
+              .transition(t)
+              //clear previous opacity setting
+              .style("opacity", "0.8")
+              //filters categories of species based on datatype selected
+              .filter(function(d) {
+                return d['Category'] != filterValue
+              })
+              .style("opacity", "0.1"); //lowers opacity of other
+          } else {
+            //if selection is all, then set everything to normal opacity
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
+              .style("opacity", "0.8");
           }
         } else if (filterValue != "clear" && filterType == "rarity") //filter by rarity
         {
-          if(filterValue!="all"){
-          d3.selectAll("circle,rect.timelineSeries_timelineRect")
-            .classed("enlarge", false)
-            .transition(t)
-            .style("opacity", "0.8")
-            .filter(function(d) {
-              return d['Rarity'] != filterValue
-            })
-            .style("opacity", "0.1"); //lowers opacity of other
-          }else{
+          if (filterValue != "all") {
+
+            //changing select option to match icon click filter
+            var index= filterValue;
+            document.getElementById("rarity-select").options.selectedIndex = index;
+
             d3.selectAll("circle,rect.timelineSeries_timelineRect")
-            .style("opacity", "0.8");
+              .classed("enlarge", false)
+              .transition(t)
+              .style("opacity", "0.8")
+              .filter(function(d) {
+                return d['Rarity'] != filterValue
+              })
+              .style("opacity", "0.1"); //lowers opacity of other
+          } else {
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
+              .style("opacity", "0.8");
           }
         } else if (filterValue != "clear" && filterType == "month") //filter by month
         {
-          if(filterValue!="all"){
-          d3.selectAll("circle,rect.timelineSeries_timelineRect")
-            .classed("enlarge", false)
-            .transition(t)
-            .style("opacity", 0.8)
-            .filter(function(d) {
-              if (d['Month'] != null) {
-                // console.log(d['Month'])
-                return d['Month'] != filterValue;
-              }
+          if (filterValue != "all") {
 
-              if (d['Month List'] != null) {
-                // console.log(d['Month List'])
-                return !d['Month List'].includes(filterValue);
-              }
+            if(filterValue=="Jan")index=1;
+            if(filterValue=="Feb")index=2;
+            if(filterValue=="Mar")index=3;
+            if(filterValue=="Apr")index=4;
+            if(filterValue=="May")index=5;
+            if(filterValue=="Jun")index=6;
+            if(filterValue=="Jul")index=7;
+            if(filterValue=="Aug")index=8;
+            if(filterValue=="Sep")index=9;
+            if(filterValue=="Oct")index=10;
+            if(filterValue=="Nov")index=11;
+            if(filterValue=="Dec")index=12;
+            document.getElementById("month-select").options.selectedIndex = index;
 
-            })
-            .style("opacity", "0.1"); //lowers opacity of other
-          }else{
+
             d3.selectAll("circle,rect.timelineSeries_timelineRect")
-            .style("opacity", "0.8");
+              .classed("enlarge", false)
+              .transition(t)
+              .style("opacity", 0.8)
+              .filter(function(d) {
+                if (d['Month'] != null) {
+                  // console.log(d['Month'])
+                  return d['Month'] != filterValue;
+                }
+
+                if (d['Month List'] != null) {
+                  // console.log(d['Month List'])
+                  return !d['Month List'].includes(filterValue);
+                }
+
+              })
+              .style("opacity", "0.1"); //lowers opacity of other
+          } else {
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
+              .style("opacity", "0.8");
           }
 
         } else {
