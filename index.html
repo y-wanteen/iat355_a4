@@ -103,10 +103,9 @@
 
 	<div id="fullpage">
 		<div class="section hero">
+				<div class="hero-bg"></div>
 				<h1 class="title">Animal Crossing: An Interactive Visualization</h1>
-				<h2 class="sub-title">Species available to be captured are graphed in relation to selling price (in Bells) across the months when they are availaible.
-								Filter the data via clicking on the legend or the dots.
-								Drag across the bottom graph to adjust the brush and its highlights.
+				<h2 class="sub-title">Species available to be captured are graphed in relation to selling price (in Bells) across the months when they are availaible.	Filter the data via clicking on the legend or the dots. Drag across the bottom graph to adjust the brush and its highlights. Highlighted species' appearance duration will be shown in a timeline.
 							</h2>
 			<div class="isabelle"></div>
 		</div>
@@ -119,14 +118,25 @@
 		<div class="section fp-auto-height-responsive">
 			<div id="priceRange"></div>
 
-			<div id="timeline" ></div>
+			<div id="timeline"></div>
 
 		</div>
 
 	</div>
 	<!-- end full pate -->
 
-
+	<script src="jquery.scrollify.js"></script>
+  <script>
+				$(function() {
+					$.scrollify({
+						section : ".section",
+            scrollSpeed: 1100,
+            scrollbars: true,
+            setHeights:false,
+            touchScroll:false,
+					});
+				});
+  </script>
 </body>
 
 <!-- <script src="A5.js"></script> -->

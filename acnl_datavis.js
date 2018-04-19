@@ -929,7 +929,7 @@ d3.csv(bugData, function(datasetBug) {
             .filter(function(d)
             {
 
-              if (d['Name'] == searchValue && d['Month'] == null) 
+              if (d['Name'] == searchValue && d['Month'] == null)
               {
                 updateTimelineArray(d['Name'], d['Category'], d['Start Time'],
                   d['End Time'], d['Start Time 2'], d['End Time 2'], +d['Price'], d['Image URL'], +d['Rarity'], d['Location'], d['Month List']);
@@ -1126,7 +1126,12 @@ d3.csv(bugData, function(datasetBug) {
           }
 
         } else {
-          //clear filters when clear button pressed or any error occurs
+          //clear all input filters when clear button pressed or any error occurs
+          document.getElementById("month-select").options.selectedIndex = 0;
+          document.getElementById("species-select").options.selectedIndex = 0;
+          document.getElementById("rarity-select").options.selectedIndex = 0;
+          document.getElementById('search').value = ''
+
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
