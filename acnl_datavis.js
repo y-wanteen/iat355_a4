@@ -911,7 +911,7 @@ d3.csv(bugData, function(datasetBug) {
       //search function for species search
       d3.select("#search").on("change", function() {
         var searchValue = document.getElementById("search").value;
-        search(monthlyWildlife, searchValue);
+        search(speciesOverview, searchValue);
       });
 
       //search function
@@ -920,15 +920,17 @@ d3.csv(bugData, function(datasetBug) {
         timelineSpecies = [];
 
         if (searchValue != "") {
-          d3.selectAll("circle")
+          d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             //clear previous opacity setting
             .style("opacity", "0.8")
             //filters categories of species based on datatype selected
-            .filter(function(d) {
+            .filter(function(d)
+            {
 
-              if (d['Name'] == searchValue) {
+              if (d['Name'] == searchValue && d['Month'] == null) 
+              {
                 updateTimelineArray(d['Name'], d['Category'], d['Start Time'],
                   d['End Time'], d['Start Time 2'], d['End Time 2'], +d['Price'], d['Image URL'], +d['Rarity'], d['Location'], d['Month List']);
 
@@ -940,7 +942,7 @@ d3.csv(bugData, function(datasetBug) {
 
         } else {
           //clear filters when clear button pressed or any error occurs
-          d3.selectAll("circle")
+          d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity", "0.8") //revert back to orig opacity
