@@ -336,12 +336,12 @@ d3.csv(bugData, function(datasetBug) {
         .classed('tooltip', true)
         .style("visibility", "hidden");
 
+        //repositioning tooltip based on its position
       onmousemove = function(e) {
-        // console.log("mouse location:", e.clientX, e.clientY)
-
         var mousex = e.pageX + 20; //Get X coordinates
         var mousey = e.pageY + 10; //Get Y coordinates
-        if ((mousey + 180) > $(window).height()) {
+        if ((mousey + 180) > $(window).height() &&
+        (mousex + 200) < $(window).width()) {
 
           $('.tooltip')
             .css({
@@ -349,20 +349,28 @@ d3.csv(bugData, function(datasetBug) {
               left: mousex
             })
 
-        } else if ((mousex + 200) > $(window).width()) {
+        } else if ((mousex + 200) > $(window).width() &&
+      (mousey + 180) < $(window).height()) {
           $('.tooltip')
             .css({
               top: mousey,
               left: mousex - 200
             })
 
-        } else {
+        }
+        else if ((mousex + 200) > $(window).width() &&
+      (mousey + 180) > $(window).height()) {
+          $('.tooltip')
+            .css({
+              top: mousey-200,
+              left: mousex - 250
+            })
+          }else {
           $('.tooltip')
             .css({
               top: mousey,
               left: mousex
             })
-
         }
       }
 
@@ -461,7 +469,7 @@ d3.csv(bugData, function(datasetBug) {
 
           //select objects of the same type in other graphs on click
           .on("click", function(d) {
-            console.log(d);
+            // console.log(d);
             var highlightkey = d.key;
 
             // remove previous selecitons ...
@@ -677,7 +685,7 @@ d3.csv(bugData, function(datasetBug) {
 
           //select objects of same type on click
           .on("click", function(d) {
-            console.log(d);
+            // console.log(d);
             var highlightkey = d.key;
 
             // remove previous selecitons ...
@@ -694,7 +702,7 @@ d3.csv(bugData, function(datasetBug) {
             var selectorClass = this.className['baseVal'];
 
             //print classes to console
-            console.log(selectorClass.replace(" ", "."));
+            // console.log(selectorClass.replace(" ", "."));
 
             //select all circles and rectangles of the same classes/species
             d3.selectAll("circle." + selectorClass.replace(/ /g, ".") +
@@ -768,7 +776,7 @@ d3.csv(bugData, function(datasetBug) {
           })
           .click(function(d, i, datum) //select objects of the same type on click
             {
-              console.log(d);
+              // console.log(d);
               var highlightkey = d.key;
 
               // remove previous selecitons ...
@@ -955,7 +963,7 @@ d3.csv(bugData, function(datasetBug) {
         })
       }
 
-      //linking id of filter in HTML
+      //linking id of filter in HTML filter icons
       var bFilter = document.getElementById('bug-filter'); //species category bttons
       var fFilter = document.getElementById('fish-filter');
       var dFilter = document.getElementById('diving-filter');
@@ -1008,7 +1016,7 @@ d3.csv(bugData, function(datasetBug) {
       addFilterListener('month', novFilter, 'Nov');
       addFilterListener('month', decFilter, 'Dec');
 
-      //add eventlistener when month selection box is changed
+      //add eventlistener when dropdown filter is changed
       document.getElementById("month-select").addEventListener("change", monthSelect);
       document.getElementById("species-select").addEventListener("change", speciesSelect);
       document.getElementById("rarity-select").addEventListener("change", raritySelect);
@@ -1031,6 +1039,7 @@ d3.csv(bugData, function(datasetBug) {
       function filter(filterType, monthlyWildlife, filterValue) {
         if (filterValue != "clear" && filterType == "category") //filter by category
         {
+                    if(filterValue!="all"){
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
@@ -1041,8 +1050,13 @@ d3.csv(bugData, function(datasetBug) {
               return d['Category'] != filterValue
             })
             .style("opacity", "0.1"); //lowers opacity of other
+          }else{
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
+            .style("opacity", "0.8");
+          }
         } else if (filterValue != "clear" && filterType == "rarity") //filter by rarity
         {
+          if(filterValue!="all"){
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
@@ -1051,25 +1065,35 @@ d3.csv(bugData, function(datasetBug) {
               return d['Rarity'] != filterValue
             })
             .style("opacity", "0.1"); //lowers opacity of other
+          }else{
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
+            .style("opacity", "0.8");
+          }
         } else if (filterValue != "clear" && filterType == "month") //filter by month
         {
+          if(filterValue!="all"){
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
             .classed("enlarge", false)
             .transition(t)
             .style("opacity", 0.8)
             .filter(function(d) {
               if (d['Month'] != null) {
-                console.log(d['Month'])
+                // console.log(d['Month'])
                 return d['Month'] != filterValue;
               }
 
               if (d['Month List'] != null) {
-                console.log(d['Month List'])
+                // console.log(d['Month List'])
                 return !d['Month List'].includes(filterValue);
               }
 
             })
             .style("opacity", "0.1"); //lowers opacity of other
+          }else{
+            d3.selectAll("circle,rect.timelineSeries_timelineRect")
+            .style("opacity", "0.8");
+          }
+
         } else {
           //clear filters when clear button pressed or any error occurs
           d3.selectAll("circle,rect.timelineSeries_timelineRect")
@@ -1104,8 +1128,8 @@ d3.csv(bugData, function(datasetBug) {
             if (e[0] <= d['Price'] && d['Price'] <= e[1]) {
               //add them to the array of selected species
               selectedSpecies.push(d);
-              console.log("selected: ");
-              console.log(selectedSpecies);
+              // console.log("selected: ");
+              // console.log(selectedSpecies);
 
               return 1;
             } else //else lower opacity
@@ -1133,14 +1157,14 @@ d3.csv(bugData, function(datasetBug) {
             if (e[0] <= d['Price'] && d['Price'] <= e[1]) {
               //add them to the array of selected species
               selectedSpecies.push(d);
-              console.log("selected: ");
-              console.log(selectedSpecies);
+              // console.log("selected: ");
+              // console.log(selectedSpecies);
 
               updateTimelineArray(d['Name'], d['Category'], d['Start Time'],
                 d['End Time'], d['Start Time 2'], d['End Time 2'], +d['Price'], d['Image URL'], +d['Rarity'], d['Location'], d['Month List']);
-
-              console.log("timeline:");
-              console.log(timelineSpecies)
+              //
+              // console.log("timeline:");
+              // console.log(timelineSpecies)
 
               return 1;
 
